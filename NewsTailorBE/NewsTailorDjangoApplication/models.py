@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=256, unique=True, null=False)
@@ -10,14 +11,16 @@ class User(models.Model):
     updated_at = models.DateField(auto_now=True)
 
     class Meta:
-        db_table = 'user'
+        db_table = "user"
+
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True, null=False)
-    
+
     class Meta:
-        db_table = 'category'
+        db_table = "category"
+
 
 class Source(models.Model):
     id = models.AutoField(primary_key=True)
@@ -25,14 +28,16 @@ class Source(models.Model):
     url = models.URLField(max_length=256, unique=True, null=False)
 
     class Meta:
-        db_table = 'source'
+        db_table = "source"
+
 
 class Configuration(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=256, null = False)
+    name = models.CharField(max_length=256, null=False)
     read_time = models.IntegerField(null=False)
     fetch_period = models.IntegerField(null=False)
     user_configuration = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 class Configuration_Category(models.Model):
     configuration_id = models.ForeignKey(Configuration, on_delete=models.CASCADE)
@@ -40,20 +45,28 @@ class Configuration_Category(models.Model):
     percentage = models.IntegerField(null=False)
 
     class Meta:
-        db_table = 'configuration_category'
+        db_table = "configuration_category"
         constraints = [
-            models.UniqueConstraint(fields=['configuration_id', 'category_id'], name='unique_configuration_category')
+            models.UniqueConstraint(
+                fields=["configuration_id", "category_id"],
+                name="unique_configuration_category",
+            )
         ]
+
 
 class Configuration_Source(models.Model):
     configuration_id = models.ForeignKey(Configuration, on_delete=models.CASCADE)
     source_id = models.ForeignKey(Source, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'configuration_source'
+        db_table = "configuration_source"
         constraints = [
-            models.UniqueConstraint(fields=['configuration_id', 'source_id'], name='unique_configuration_source')
+            models.UniqueConstraint(
+                fields=["configuration_id", "source_id"],
+                name="unique_configuration_source",
+            )
         ]
+
 
 class NewsArticle(models.Model):
     id = models.AutoField(primary_key=True)
@@ -66,7 +79,8 @@ class NewsArticle(models.Model):
     news_article_source = models.ForeignKey(Source, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'newsarticle'  
+        db_table = "newsarticle"
+
 
 class Newspaper(models.Model):
     id = models.AutoField(primary_key=True)
@@ -77,22 +91,18 @@ class Newspaper(models.Model):
     user_newspaper = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'newspaper'
+        db_table = "newspaper"
+
 
 class Newspaper_NewsArticle(models.Model):
     newspaper_id = models.ForeignKey(Newspaper, on_delete=models.CASCADE)
     newsarticle_id = models.ForeignKey(NewsArticle, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'newspaper_newsarticle'
+        db_table = "newspaper_newsarticle"
         constraints = [
-            models.UniqueConstraint(fields=['newspaper_id', 'newsarticle_id'], name='unique_newspaper_newsarticle')
+            models.UniqueConstraint(
+                fields=["newspaper_id", "newsarticle_id"],
+                name="unique_newspaper_newsarticle",
+            )
         ]
-
-
-
-        
-
-        
-        
-
