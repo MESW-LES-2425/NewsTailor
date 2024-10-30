@@ -10,6 +10,7 @@ guardian_api_key = os.getenv("GUARDIAN_API_KEY")
 
 
 def obtain_news_from_news_api(category: str, user_language: str) -> requests:
+    """Generic method to obtain news from news_api provider. Category and language should be provided via request."""
     params = {
         "category": category,
         "apiKey": news_api_key,
@@ -26,6 +27,7 @@ def obtain_news_from_news_api(category: str, user_language: str) -> requests:
 
 
 def obtain_news_from_guardian_api(category: str) -> requests:
+    """Generic method to obtain news from guardian provider. Category and language should be provided via request."""
     url = "https://content.guardianapis.com/search"
     params = {"api-key": guardian_api_key, "section": category, "page-size": 10}
     response = requests.get(url, params=params)
