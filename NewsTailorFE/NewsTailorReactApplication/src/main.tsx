@@ -5,6 +5,6 @@ import Sidebar from './Sidebar';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Sidebar />;
+    <Sidebar />
   </React.StrictMode>,
 )
