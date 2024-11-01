@@ -8,142 +8,231 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=256, unique=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=256, unique=True)),
             ],
             options={
-                'db_table': 'category',
+                "db_table": "category",
             },
         ),
         migrations.CreateModel(
-            name='Configuration',
+            name="Configuration",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=256)),
-                ('read_time', models.IntegerField()),
-                ('fetch_period', models.IntegerField()),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=256)),
+                ("read_time", models.IntegerField()),
+                ("fetch_period", models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
-            name='NewsArticle',
+            name="NewsArticle",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=256)),
-                ('description', models.TextField()),
-                ('content', models.TextField()),
-                ('published_at', models.DateTimeField()),
-                ('url', models.URLField(max_length=256, unique=True)),
-                ('news_article_cateogry', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.category')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=256)),
+                ("description", models.TextField()),
+                ("content", models.TextField()),
+                ("published_at", models.DateTimeField()),
+                ("url", models.URLField(max_length=256, unique=True)),
+                (
+                    "news_article_cateogry",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.category",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'newsarticle',
+                "db_table": "newsarticle",
             },
         ),
         migrations.CreateModel(
-            name='Newspaper',
+            name="Newspaper",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=256)),
-                ('content', models.TextField()),
-                ('created_at', models.DateTimeField()),
-                ('generated_using', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.configuration')),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=256)),
+                ("content", models.TextField()),
+                ("created_at", models.DateTimeField()),
+                (
+                    "generated_using",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.configuration",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'newspaper',
+                "db_table": "newspaper",
             },
         ),
         migrations.CreateModel(
-            name='Source',
+            name="Source",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=256)),
-                ('url', models.URLField(max_length=256, unique=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=256)),
+                ("url", models.URLField(max_length=256, unique=True)),
             ],
             options={
-                'db_table': 'source',
+                "db_table": "source",
             },
         ),
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('username', models.CharField(max_length=256, unique=True)),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('password', models.CharField(max_length=128)),
-                ('is_banned', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateField(auto_now=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("username", models.CharField(max_length=256, unique=True)),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("password", models.CharField(max_length=128)),
+                ("is_banned", models.BooleanField(default=False)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateField(auto_now=True)),
             ],
             options={
-                'db_table': 'user',
+                "db_table": "user",
             },
         ),
         migrations.CreateModel(
-            name='Newspaper_NewsArticle',
+            name="Newspaper_NewsArticle",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('newsarticle_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.newsarticle')),
-                ('newspaper_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.newspaper')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "newsarticle_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.newsarticle",
+                    ),
+                ),
+                (
+                    "newspaper_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.newspaper",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'newspaper_newsarticle',
+                "db_table": "newspaper_newsarticle",
             },
         ),
         migrations.AddField(
-            model_name='newspaper',
-            name='user_newspaper',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.user'),
+            model_name="newspaper",
+            name="user_newspaper",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="NewsTailorDjangoApplication.user",
+            ),
         ),
         migrations.AddField(
-            model_name='newsarticle',
-            name='news_article_source',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.source'),
+            model_name="newsarticle",
+            name="news_article_source",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="NewsTailorDjangoApplication.source",
+            ),
         ),
         migrations.CreateModel(
-            name='Configuration_Source',
+            name="Configuration_Source",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('configuration_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.configuration')),
-                ('source_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.source')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "configuration_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.configuration",
+                    ),
+                ),
+                (
+                    "source_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.source",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'configuration_source',
+                "db_table": "configuration_source",
             },
         ),
         migrations.CreateModel(
-            name='Configuration_Category',
+            name="Configuration_Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('percentage', models.IntegerField()),
-                ('category_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.category')),
-                ('configuration_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.configuration')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("percentage", models.IntegerField()),
+                (
+                    "category_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.category",
+                    ),
+                ),
+                (
+                    "configuration_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="NewsTailorDjangoApplication.configuration",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'configuration_category',
+                "db_table": "configuration_category",
             },
         ),
         migrations.AddField(
-            model_name='configuration',
-            name='user_configuration',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='NewsTailorDjangoApplication.user'),
+            model_name="configuration",
+            name="user_configuration",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="NewsTailorDjangoApplication.user",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='newspaper_newsarticle',
-            constraint=models.UniqueConstraint(fields=('newspaper_id', 'newsarticle_id'), name='unique_newspaper_newsarticle'),
+            model_name="newspaper_newsarticle",
+            constraint=models.UniqueConstraint(
+                fields=("newspaper_id", "newsarticle_id"),
+                name="unique_newspaper_newsarticle",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='configuration_source',
-            constraint=models.UniqueConstraint(fields=('configuration_id', 'source_id'), name='unique_configuration_source'),
+            model_name="configuration_source",
+            constraint=models.UniqueConstraint(
+                fields=("configuration_id", "source_id"),
+                name="unique_configuration_source",
+            ),
         ),
         migrations.AddConstraint(
-            model_name='configuration_category',
-            constraint=models.UniqueConstraint(fields=('configuration_id', 'category_id'), name='unique_configuration_category'),
+            model_name="configuration_category",
+            constraint=models.UniqueConstraint(
+                fields=("configuration_id", "category_id"),
+                name="unique_configuration_category",
+            ),
         ),
     ]

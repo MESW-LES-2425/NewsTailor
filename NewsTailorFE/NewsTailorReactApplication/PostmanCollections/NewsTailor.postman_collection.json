@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "37da8d4b-5e7f-41bc-9b7d-8f99c9d2e08f",
+		"name": "NewsTailor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23450916"
+	},
+	"item": [
+		{
+			"name": "Technology News Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"technology\",\n    \"language\": \"English\",\n    \"source\": \"news_api\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/news",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
