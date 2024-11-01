@@ -33,7 +33,6 @@ def obtain_news_from_guardian_api(category: str) -> requests:
     params = {"api-key": guardian_api_key, "section": category, "page-size": 10}
     response = requests.get(url, params=params)
     data = response.json()
-    print(data)
 
     return data
 
