@@ -57,12 +57,15 @@ class UserLoginSerializer(serializers.Serializer):
         try:
             user = User.objects.get(email=data['email'])
         except User.DoesNotExist:
-            raise serializers.ValidationError("User not found!")
+            errors['email'] = "User not found!"
+            raise serializers.ValidationError(errors)
         
         if user.is_banned:
-           raise serializers.ValidationError("User account is banned!")
+           errors['non_field_error'] = "User account is banned!"
+           raise serializers.ValidationError(errors)
         
         user = authenticate(**data)
         if user:
             return user
-        raise serializers.ValidationError("Incorrect Credentials!")
+        errors['non_field_error'] = "Incorrect Credentials!"
+        raise serializers.ValidationError(errors)
