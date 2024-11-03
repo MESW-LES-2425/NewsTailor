@@ -1,18 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-
-class User(models.Model):
-    id = models.AutoField(primary_key=True)
+class User(AbstractUser):
     username = models.CharField(max_length=256, unique=True, null=False)
     email = models.EmailField(max_length=254, unique=True, null=False)
-    password = models.CharField(max_length=128, null=False)
-    is_banned = models.BooleanField(null=False, default=False)
+    is_banned = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
-
+    updated_at = models.DateField(auto_now=True) 
+    
+    USERNAME_FIELD="email"
+    REQUIRED_FIELDS=["username"]
+    
     class Meta:
         db_table = "user"
-
 
 class Category(models.Model):
     id = models.AutoField(primary_key=True)
