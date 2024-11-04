@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 
 # Create your views here.
 
-@api_view(['GET'])
+
+@api_view(["GET"])
 def hello_world(request):
     return Response({"message": "Hello from Django API!"})
