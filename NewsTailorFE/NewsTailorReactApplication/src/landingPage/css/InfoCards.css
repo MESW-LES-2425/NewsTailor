@@ -1,0 +1,33 @@
+.news-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.news-card {
+  background-color: #e0e0e0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.news-card:hover {
+    background-color: #cccccc;
+}
+
+.news-icon {
+  font-size: 2rem;
+  margin-right: 15px;
+}
+
+.news-card p {
+  margin: 0;
+  color: #333;
+}
