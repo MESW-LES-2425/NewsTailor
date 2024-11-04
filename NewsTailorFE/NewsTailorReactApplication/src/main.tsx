@@ -2,8 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./pages/Home"
-import Login from "./pages/Login"
-import Register from "./pages/Register"
+import Auth from "./components/auth/Auth"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import './index.css'
@@ -24,8 +23,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Auth />} />
+        <Route path="/login" element={<Auth />} />
         <Route path="/logout" element={<ProtectedRoute><Logout /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
