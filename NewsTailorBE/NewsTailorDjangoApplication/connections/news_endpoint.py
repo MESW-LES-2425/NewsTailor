@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_GET
-from .news_api import obtain_news_from_news_api, obtain_news_from_guardian_api
+from news_api import obtain_news_from_news_api, obtain_news_from_guardian_api
 
 
 @require_GET
