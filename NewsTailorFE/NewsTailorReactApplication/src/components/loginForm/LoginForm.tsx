@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useLoginForm from "./useLoginForm";
 import "./loginForm.css";
 import "../../styles/auth-commun/signin-signup.css";
@@ -20,13 +20,13 @@ const LoginForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit} className="sign-in-form">
             <h2 className="signin-signup-title">Sign in</h2>    
-            <div className="signin-signup-input-field">
+            <div className={`signin-signup-input-field ${errors.email ? "error-auth-border" : ""}`}>
                 <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
                 <input type="text" name="email" value={formData.email}
                     onChange={handleChange} placeholder="Email" required
                 />
-                {errors.email && <p className="error">{errors.email}</p>}
-            </div>    
+            </div>
+            {errors.email && <p className="error-auth-message">{errors.email}</p>}    
             <div className="signin-signup-input-field" style={{ position: 'relative' }}>
                 <FontAwesomeIcon icon={faLock} className="auth-icons" />
                 <input type={showPassword ? "text" : "password"} name="password" value={formData.password}
@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
                     onClick={() => toggleShowPassword(!showPassword)}
                 />
             </div>         
-            {errors.non_field_error && <p className="error-message">{errors.non_field_error}</p>}          
+            {errors.non_field_error && <p className="error-auth-message">{errors.non_field_error}</p>}          
             <button className="auth-btn solid" type="submit" disabled={isLoading}>
                 {isLoading ? "Logging In..." : "Login"}
             </button>   

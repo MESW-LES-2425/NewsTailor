@@ -30,20 +30,20 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
     return (
         <form onSubmit={handleSubmit} className="sign-up-form">
             <h2 className="signin-signup-title">Register</h2>
-            <div className="signin-signup-input-field">
+            <div className={`signin-signup-input-field ${errors.username ? "error-auth-border" : ""}`}>
                 <FontAwesomeIcon icon={faUser} className="auth-icons" />
                 <input type="text" name="username" value={formData.username} onChange={handleChange}
                     placeholder="User" required
                 />
-                {errors.username && <p className="error">{errors.username.join(", ")}</p>}
             </div>
-            <div className="signin-signup-input-field">
+            {errors.username && <p className="error-auth-message">{errors.username.join(", ")}</p>}
+            <div className={`signin-signup-input-field ${errors.email ? "error-auth-border" : ""}`}>
                 <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
                 <input type="email" name="email" value={formData.email} onChange={handleChange}
                     placeholder="Email" required
                 />
-                {errors.email && <p className="error">{errors.email.join(", ")}</p>}
             </div>
+            {errors.email && <p className="error-auth-message">{errors.email.join(", ")}</p>}
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faLock} className="auth-icons" />
                 <input type={showPassword1 ? "text" : "password"} name="password1" value={formData.password1}
@@ -65,8 +65,8 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
                         onChange={(isValid) => handleValidPassword(isValid)}
                     />
                 </div>
-                {errors.password && <p className="error">{errors.password.join(", ")}</p>}
             </div>
+            {errors.password && <p className="error">{errors.password.join(", ")}</p>}
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faLock} className="auth-icons" />
                 <input type={showPassword2 ? "text" : "password"} name="password2" value={formData.password2}

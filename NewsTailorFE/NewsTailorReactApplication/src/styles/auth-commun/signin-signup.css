@@ -101,3 +101,14 @@
     font-size: 0.9rem;
     z-index: 1000;
 }
+
+.error-auth-border {
+    border: 1px solid red;
+    outline: none;
+}
+
+.error-auth-message {
+    color: red; 
+    font-size: 14px;
+    margin-top: 5px;
+}
