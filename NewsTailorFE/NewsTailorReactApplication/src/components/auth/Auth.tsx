@@ -7,11 +7,15 @@ import "./auth.css"
 function Auth() {
     const { isSignUpMode, enableSignUpMode, enableSignInMode } = useAuthMode();
 
+    const handleRegisterSuccess = () => {
+        enableSignInMode();
+    }
+
     return (
         <div className={`auth-container ${isSignUpMode ? "sign-up-mode" : ""}`}>
         <div className="auth-forms-container">
             <div className="signin-signup">
-                <RegisterForm />
+                <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
                 <LoginForm />
             </div>
         </div>

@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 function Logout() {
   localStorage.clear()
-  return <Navigate to="/login" />
+  return <Navigate to="/auth" />
 }
 
 function App() {
@@ -23,8 +23,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
-        <Route path="/register" element={<Auth />} />
-        <Route path="/login" element={<Auth />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/logout" element={<ProtectedRoute><Logout /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

@@ -6,7 +6,12 @@ import "./registerForm.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-const RegisterForm: React.FC = () => {
+
+interface callBackFunction {
+    onRegisterSuccess: () => void;
+}
+
+const RegisterForm: React.FC<callBackFunction> = ({onRegisterSuccess}) => {
     const {
         formData,
         isLoading,
@@ -15,7 +20,7 @@ const RegisterForm: React.FC = () => {
         errors,
         handleChange,
         handleSubmit,
-    } = useRegisterForm();
+    } = useRegisterForm({ onRegisterSuccess });
 
     return (
         <form onSubmit={handleSubmit} className="sign-up-form">
@@ -25,18 +30,21 @@ const RegisterForm: React.FC = () => {
                 <input type="text" name="username" value={formData.username}
                     onChange={handleChange} placeholder="User" required
                 />
+                {errors.username && <p className="error">{errors.username.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faEnvelope} className="auth-icons"/>
                 <input type="email" name="email" value={formData.email}
                     onChange={handleChange} placeholder="Email" required
                 />
+                {errors.email && <p className="error">{errors.email.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faLock} className="auth-icons"/>
                 <input type="password" name="password1" value={formData.password1}
                     onChange={handleChange} placeholder="Password" required
                 />
+                {errors.password && <p className="error">{errors.password.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faLock} className="auth-icons"/>

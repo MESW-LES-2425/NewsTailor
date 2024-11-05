@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import api from "../../api";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 interface FormData {
@@ -10,7 +9,11 @@ interface FormData {
     password2: string;
 }
 
-const useRegisterForm = () => {
+interface callBackFunction {
+    onRegisterSuccess: () => void;
+}
+
+const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
     const [formData, setFormData] = useState<FormData>({
         username: "",
         email: "",
@@ -21,7 +24,6 @@ const useRegisterForm = () => {
     const [isPasswordValid, setPasswordValid] = useState<boolean>(false);
     const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
     
-    const navigate = useNavigate();
     const route = "/api/register/";
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +44,7 @@ const useRegisterForm = () => {
 
         try {
             await api.post(route, formData);
-            navigate("/login");
+            onRegisterSuccess();
         } catch (error) {
             if (axios.isAxiosError(error) && error.response) {
                 setErrors(error.response.data);

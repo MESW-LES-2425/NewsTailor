@@ -23,6 +23,7 @@ const LoginForm : React.FC = () => {
                 <input type="text" name="email" value={formData.email}
                     onChange={handleChange} placeholder="Email" required
                 />
+                {errors.email && <p className="error">{errors.email}</p>}
             </div>
             <div className="signin-signup-input-field">
                 <FontAwesomeIcon icon={faLock} className="auth-icons"/>
@@ -30,6 +31,7 @@ const LoginForm : React.FC = () => {
                     onChange={handleChange} placeholder="Password" required
                 />
             </div>
+            {errors.non_field_error && <p className="error-message">{errors.non_field_error}</p>}
             <button className="auth-btn solid" type="submit" disabled={isLoading}>
                     {isLoading ? "Login In..." : "Login"}
             </button> 
