@@ -1,4 +1,6 @@
 from django.urls import path
+
+from .connections.fetch_news_view import FetchNewsView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -8,4 +10,5 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name="logout"),
     path("token/", TokenObtainPairView.as_view(), name="get_token"),
     path("token/refresh/", TokenRefreshView.as_view(), name="refresh"),
+    path('fetch-news/', FetchNewsView.as_view(), name='fetch-news')
 ]
