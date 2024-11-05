@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import useLoginForm from "./useLoginForm";
-import "./loginForm.css"
+import "./loginForm.css";
 import "../../styles/auth-commun/signin-signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
-const LoginForm : React.FC = () => {
+const LoginForm: React.FC = () => {
     const {
         formData,
         isLoading,
+        toggleShowPassword,
+        showPassword,
         errors,
         handleChange,
         handleSubmit,
@@ -17,41 +19,44 @@ const LoginForm : React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="sign-in-form">
-            <h2 className="signin-signup-title">Sign in</h2>
+            <h2 className="signin-signup-title">Sign in</h2>    
             <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faEnvelope} className="auth-icons"/>
+                <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
                 <input type="text" name="email" value={formData.email}
                     onChange={handleChange} placeholder="Email" required
                 />
                 {errors.email && <p className="error">{errors.email}</p>}
-            </div>
-            <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faLock} className="auth-icons"/>
-                <input type="password" name="password" value={formData.password}
+            </div>    
+            <div className="signin-signup-input-field" style={{ position: 'relative' }}>
+                <FontAwesomeIcon icon={faLock} className="auth-icons" />
+                <input type={showPassword ? "text" : "password"} name="password" value={formData.password}
                     onChange={handleChange} placeholder="Password" required
                 />
-            </div>
-            {errors.non_field_error && <p className="error-message">{errors.non_field_error}</p>}
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="toggle-password-icon"
+                    onClick={() => toggleShowPassword(!showPassword)}
+                />
+            </div>         
+            {errors.non_field_error && <p className="error-message">{errors.non_field_error}</p>}          
             <button className="auth-btn solid" type="submit" disabled={isLoading}>
-                    {isLoading ? "Login In..." : "Login"}
-            </button> 
-            <p className="social-text">Or Sign in with social platforms</p> 
+                {isLoading ? "Logging In..." : "Login"}
+            </button>   
+            <p className="social-text">Or Sign in with social platforms</p>     
             <div className="social-media">
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faFacebookF} className="fab fa-facebook-f"/>
+                    <FontAwesomeIcon icon={faFacebookF} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faTwitter} className="fab fa-twitter"/>
+                    <FontAwesomeIcon icon={faTwitter} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faGoogle} className="fab fa-google"/>
+                    <FontAwesomeIcon icon={faGoogle} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faLinkedinIn} className="fab fa-linkedin-in"/>
+                    <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
-            </div> 
+            </div>
         </form>
     );
 };
 
-export default LoginForm
+export default LoginForm;

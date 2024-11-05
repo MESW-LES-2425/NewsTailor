@@ -22,9 +22,20 @@ const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
     });
     const [isLoading, setLoading] = useState<boolean>(false);
     const [isPasswordValid, setPasswordValid] = useState<boolean>(false);
+    const [showPasswordCheckList, setShowPasswordCheckList] = useState(false);
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
     const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
     
     const route = "/api/register/";
+
+    const handleValidPassword = (valid: boolean) => setPasswordValid(valid)
+
+    const toggleShowPassword1 = (show:boolean) => setShowPassword1(show);
+
+    const toggleShowPassword2 = (show:boolean) => setShowPassword2(show);
+
+    const toggleShowPasswordCheckList = (show:boolean) => setShowPasswordCheckList(show);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -39,8 +50,13 @@ const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
 
         if (isLoading) return;
         setLoading(true);
-
+        
         setErrors({});
+
+        if(!isPasswordValid){
+            setLoading(false)
+            return; 
+        }
 
         try {
             await api.post(route, formData);
@@ -59,8 +75,13 @@ const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
     return {
         formData,
         isLoading,
-        isPasswordValid,
-        setPasswordValid,
+        handleValidPassword,
+        toggleShowPasswordCheckList,
+        toggleShowPassword1,
+        toggleShowPassword2,
+        showPasswordCheckList,
+        showPassword1,
+        showPassword2,
         errors,
         handleChange,
         handleSubmit,

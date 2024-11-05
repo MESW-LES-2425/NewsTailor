@@ -15,11 +15,14 @@ const useLoginForm = () => {
         password:""
     });
     const [isLoading, setLoading] = useState<boolean>(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
 
     const route = "/api/login/";
     const getTokensRoute = "/api/token/";
     const navigate = useNavigate();
+
+    const toggleShowPassword = (show:boolean) => setShowPassword(show);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -57,6 +60,8 @@ const useLoginForm = () => {
     return {
         formData,
         isLoading,
+        toggleShowPassword,
+        showPassword,
         errors,
         handleChange,
         handleSubmit,

@@ -2,21 +2,26 @@ import React from "react";
 import useRegisterForm from "./useRegisterForm";
 import PasswordChecklist from "react-password-checklist";
 import "../../styles/auth-commun/signin-signup.css";
-import "./registerForm.css"
+import "./registerForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import { faUser, faLock, faEnvelope, faEye, faEyeSlash, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
 interface callBackFunction {
     onRegisterSuccess: () => void;
 }
 
-const RegisterForm: React.FC<callBackFunction> = ({onRegisterSuccess}) => {
+const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
     const {
         formData,
         isLoading,
-        isPasswordValid,
-        setPasswordValid,
+        handleValidPassword,
+        toggleShowPasswordCheckList,
+        toggleShowPassword1,
+        toggleShowPassword2,
+        showPasswordCheckList,
+        showPassword1,
+        showPassword2,
         errors,
         handleChange,
         handleSubmit,
@@ -26,50 +31,69 @@ const RegisterForm: React.FC<callBackFunction> = ({onRegisterSuccess}) => {
         <form onSubmit={handleSubmit} className="sign-up-form">
             <h2 className="signin-signup-title">Register</h2>
             <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faUser} className="auth-icons"/>
-                <input type="text" name="username" value={formData.username}
-                    onChange={handleChange} placeholder="User" required
+                <FontAwesomeIcon icon={faUser} className="auth-icons" />
+                <input type="text" name="username" value={formData.username} onChange={handleChange}
+                    placeholder="User" required
                 />
                 {errors.username && <p className="error">{errors.username.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faEnvelope} className="auth-icons"/>
-                <input type="email" name="email" value={formData.email}
-                    onChange={handleChange} placeholder="Email" required
+                <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
+                <input type="email" name="email" value={formData.email} onChange={handleChange}
+                    placeholder="Email" required
                 />
                 {errors.email && <p className="error">{errors.email.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faLock} className="auth-icons"/>
-                <input type="password" name="password1" value={formData.password1}
+                <FontAwesomeIcon icon={faLock} className="auth-icons" />
+                <input type={showPassword1 ? "text" : "password"} name="password1" value={formData.password1}
                     onChange={handleChange} placeholder="Password" required
                 />
+                <FontAwesomeIcon icon={showPassword1 ? faEyeSlash : faEye} className="toggle-password-icon"
+                    onClick={() => toggleShowPassword1(!showPassword1)}
+                />
+                <FontAwesomeIcon icon={faQuestionCircle} className="password-info-icon"
+                    onMouseEnter={() => toggleShowPasswordCheckList(true)}
+                    onMouseLeave={() => toggleShowPasswordCheckList(false)}
+                />
+                <div className="password-checklist" style={{ visibility: showPasswordCheckList ? "visible" : "hidden" }}>
+                    <PasswordChecklist
+                        rules={["minLength", "specialChar", "number", "capital", "match"]}
+                        minLength={8}
+                        value={formData.password1}
+                        valueAgain={formData.password2}
+                        onChange={(isValid) => handleValidPassword(isValid)}
+                    />
+                </div>
                 {errors.password && <p className="error">{errors.password.join(", ")}</p>}
             </div>
             <div className="signin-signup-input-field">
-                <FontAwesomeIcon icon={faLock} className="auth-icons"/>
-                <input type="password" name="password2" value={formData.password2}
+                <FontAwesomeIcon icon={faLock} className="auth-icons" />
+                <input type={showPassword2 ? "text" : "password"} name="password2" value={formData.password2}
                     onChange={handleChange} placeholder="Confirm Password" required
+                />
+                <FontAwesomeIcon icon={showPassword2 ? faEyeSlash : faEye} className="toggle-password-icon"
+                    onClick={() => toggleShowPassword2(!showPassword2)}
                 />
             </div>
             <button className="auth-btn" type="submit" disabled={isLoading}>
-                    {isLoading ? "Registering..." : "Register"}
-            </button> 
-            <p className="social-text">Or Sign up with social platforms</p> 
+                {isLoading ? "Registering..." : "Register"}
+            </button>
+            <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faFacebookF} className="fab fa-facebook-f"/>
+                    <FontAwesomeIcon icon={faFacebookF} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faTwitter} className="fab fa-twitter"/>
+                    <FontAwesomeIcon icon={faTwitter} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faGoogle} className="fab fa-google"/>
+                    <FontAwesomeIcon icon={faGoogle} />
                 </a>
                 <a href="#" className="social-icon">
-                    <FontAwesomeIcon icon={faLinkedinIn} className="fab fa-linkedin-in"/>
+                    <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
-            </div> 
+            </div>
         </form>
     );
 };
