@@ -10,7 +10,8 @@ from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_ne
 class FetchNewsView(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request):  # Change get to post
+    @staticmethod
+    def post(request):
         data = request.data
         category = data.get("category")
         language = data.get("language")

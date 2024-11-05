@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
-import NewsGeneration from '../components/NewsGeneration';
+import Sidebar from '../components/mainPage/Sidebar';
+import NewsGeneration from '../components/mainPage/NewsGeneration';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import api from "../api";
 import { useNavigate } from "react-router-dom";

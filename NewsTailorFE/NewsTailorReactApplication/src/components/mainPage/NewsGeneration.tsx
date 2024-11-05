@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./newsGeneration.css";
 
 const NewsGeneration: React.FC = () => {
   const [news, setNews] = useState<string | null>(null);
@@ -15,6 +16,7 @@ const NewsGeneration: React.FC = () => {
           'Content-Type': 'application/json',
         },
       });
+      // Setting news values to the state variable
       setNews(response.data);
     } catch (error) {
       console.error('Error fetching news:', error);
@@ -23,11 +25,11 @@ const NewsGeneration: React.FC = () => {
 
   return (
     <div className="news-generation">
-      <h1>News Generation</h1>
-      <button onClick={fetchNews}>Generate News</button>
+      <h1>Customize your newspaper</h1>
+      <button onClick={fetchNews}>Generate</button>
       {news && (
-        <div>
-          <h2>Fetched News:</h2>
+        <div className='news-content-container'>
+          <h2>News:</h2>
           <p>{news}</p>
         </div>
       )}
