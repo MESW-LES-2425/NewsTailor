@@ -1,10 +1,7 @@
-.auth-buttons {
+.auth-button {
   display: flex;
   justify-content: center;
   margin: 20px;
-}
-
-.auth-button {
   background-color: #00264d;
   color: white;
   border: none;

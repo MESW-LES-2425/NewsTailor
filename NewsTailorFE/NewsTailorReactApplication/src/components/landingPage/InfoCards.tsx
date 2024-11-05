@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/InfoCards.css';
+import '../../styles/InfoCards.css';
 
 interface InfoCard {
   text: string;

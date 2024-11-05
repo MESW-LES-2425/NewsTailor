@@ -1,16 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route} from "react-router-dom"
 import './index.css'
-import Sidebar from './Sidebar';
-import Header from './landingPage/Header';
-import AuthButtons from './landingPage/AuthButtons';
-import InfoCards from './landingPage/InfoCards';
+import LandingPage from './pages/LandingPage'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Sidebar />
-    <Header />
-    <AuthButtons />
-    <InfoCards />
-  </React.StrictMode>,
-)
+    <App />
+  </React.StrictMode>
+);
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/welcome" element={<LandingPage />}/>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App
