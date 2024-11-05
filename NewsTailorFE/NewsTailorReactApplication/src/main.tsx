@@ -13,18 +13,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>
 );
 
-function Logout() {
-  localStorage.clear()
-  return <Navigate to="/auth" />
-}
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
         <Route path="/auth" element={<Auth />} />
-        <Route path="/logout" element={<ProtectedRoute><Logout /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
