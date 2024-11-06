@@ -30,7 +30,7 @@ const NewsGeneration: React.FC = () => {
       <button onClick={fetchNews}>Generate</button>
       {news && (
         <div className='news-content-container'>
-          <h2>News:</h2>
+          <h2>Obtained News</h2>
           <p>{news}</p>
         </div>
       )}

@@ -6,8 +6,7 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <h1 className="title">
-        NewsTailor 
-        <img src={newspaperImage} alt="news icon" className="news-icon" />
+        NewsTailor <img src={newspaperImage} alt="news icon" className="news-icon" />
       </h1>
     </header>
   );

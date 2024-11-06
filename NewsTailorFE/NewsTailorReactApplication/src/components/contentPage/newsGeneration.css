@@ -4,11 +4,12 @@
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    min-height: 800px;
+    height: 75%;
     background-color: #f8f8f8;
-    border-radius: 12px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,4 +54,9 @@
   .news-content-container {
     padding-top: 75px;
     padding-inline: 50px;
+  }
+
+  p{
+    font-size: 12px;
+    font-family: 'ABeeZee'
   }
