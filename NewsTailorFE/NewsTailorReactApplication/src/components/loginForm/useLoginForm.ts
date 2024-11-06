@@ -46,7 +46,7 @@ const useLoginForm = () => {
             const tokenResponse = await api.post(getTokensRoute, formData);
             localStorage.setItem(ACCESS_TOKEN, tokenResponse.data.access);
             localStorage.setItem(REFRESH_TOKEN, tokenResponse.data.refresh);
-            navigate("/", {state: {userId}});
+            navigate("/home")
         } catch (error) {
 
             if (axios.isAxiosError(error) && error.response) {

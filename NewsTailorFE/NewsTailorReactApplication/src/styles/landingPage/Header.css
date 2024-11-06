@@ -1,0 +1,19 @@
+.header {
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: #00264d;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.news-icon {
+  width: 70px; 
+  height: 70px;
+}

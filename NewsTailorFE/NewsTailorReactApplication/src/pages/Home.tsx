@@ -1,7 +1,9 @@
-import Sidebar from '../Sidebar';
+import { useLocation, useNavigate } from "react-router-dom";
+import Sidebar from '../components/mainPage/Sidebar';
+import NewsGeneration from '../components/mainPage/NewsGeneration';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import api from "../api";
-import { useLocation, useNavigate } from "react-router-dom";
+import Header from '../components/landingPage/Header';
 
 function Home() {
     const navigate = useNavigate();
@@ -27,13 +29,14 @@ function Home() {
             console.log("Failed logout! " + error);
         }
     };
-
     return (
         <div>
-            <Sidebar userId={userId} />
-            <button onClick={handleLogout}>Logout</button>
+          <Header />
+          <Sidebar userId={userId} />
+          <NewsGeneration />
+          <button onClick={handleLogout}>Logout</button>
         </div>
-    );
+      );
 }
 
 export default Home;

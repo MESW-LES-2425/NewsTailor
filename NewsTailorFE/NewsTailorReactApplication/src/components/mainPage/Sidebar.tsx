@@ -1,6 +1,8 @@
 import React from 'react';
 import {MdHome, MdDescription, MdBookmark, MdPerson} from 'react-icons/md';
 import {Link} from 'react-router-dom';
+import "./sidebar.css";
+
 
 
 interface SidebarProps {
