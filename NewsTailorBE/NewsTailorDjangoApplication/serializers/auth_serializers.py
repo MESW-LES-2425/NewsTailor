@@ -58,7 +58,7 @@ class UserLoginSerializer(serializers.Serializer):
     def validate(self, data):
         errors = {}
         try:
-            user = User.objects.get()
+            user = User.objects.get(email=data['email'])
         except User.DoesNotExist:
             errors['email'] = "User not found!"
             raise serializers.ValidationError(errors)
