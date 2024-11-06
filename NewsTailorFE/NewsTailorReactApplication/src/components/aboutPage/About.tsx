@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/aboutPage/About.css';
-import teamIcon from '../../assets/teamIcon.svg';
+import teamImage from '../../assets/team.png';
 
 const About: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const About: React.FC = () => {
         </p>
       </div>
       <div className="about-icon">
-        <img src={teamIcon} alt="Team Illustration" />
+        <img src={teamImage} alt="Team Illustration" className="about-image" />
       </div>
     </div>
   );
