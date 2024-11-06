@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from '../components/mainPage/Sidebar';
-import NewsGeneration from '../components/mainPage/NewsGeneration';
+import Sidebar from '../components/contentPage/Sidebar';
+import NewsGeneration from '../components/contentPage/NewsGeneration';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import api from "../api";
 import Header from '../components/landingPage/Header';

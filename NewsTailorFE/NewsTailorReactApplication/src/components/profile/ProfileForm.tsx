@@ -1,11 +1,10 @@
 import { MdEdit } from 'react-icons/md';
-import Sidebar from '../components/mainPage/Sidebar';
-import Logo from "../../Logo.tsx";
+import Header from '../components/landingPage/Header.tsx';
 import useProfileForm from './useProfileForm';
 import './Profile.css';
+import Sidebar from "../components/mainPage/Sidebar.tsx";
 
 function ProfileForm() {
-
     const {
         userId,
         isEditing,
@@ -19,7 +18,7 @@ function ProfileForm() {
     return (
         <div>
             <Sidebar userId={userId} />
-            <Logo />
+            <Header />
             <div className="container">
                 <h1 className="header">User Profile</h1>
                 <div className="card">
@@ -62,6 +61,6 @@ function ProfileForm() {
             </div>
         </div>
     );
-}
+};
 
 export default ProfileForm;
