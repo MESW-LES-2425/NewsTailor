@@ -4,6 +4,7 @@ import NewsGeneration from '../components/mainPage/NewsGeneration';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import Header from '../components/landingPage/Header';
 
 function Home() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Home() {
 
   return (
     <div>
+      <Header />
       <Sidebar />
       <NewsGeneration />
       <button onClick={handleLogout}>Logout</button>
