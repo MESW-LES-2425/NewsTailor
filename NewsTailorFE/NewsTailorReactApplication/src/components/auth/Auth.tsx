@@ -12,7 +12,7 @@ function Auth() {
     }
 
     return (
-        <div className={`auth-container ${isSignUpMode ? "sign-up-mode" : ""}`}>
+        <div className={`auth-container ${isSignUpMode ? "sign-up-mode" : ""} fade-in`}>
         <div className="auth-forms-container">
             <div className="signin-signup">
                 <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
