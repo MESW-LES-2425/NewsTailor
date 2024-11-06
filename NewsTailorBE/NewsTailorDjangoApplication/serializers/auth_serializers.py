@@ -72,3 +72,15 @@ class UserLoginSerializer(serializers.Serializer):
             return user
         errors['non_field_error'] = "Incorrect Credentials!"
         raise serializers.ValidationError(errors)
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email')
+
+    def get(self, instance):
+        return instance
+
+    def update(self, instance, validated_data):
+        return super().update(instance, validated_data)
