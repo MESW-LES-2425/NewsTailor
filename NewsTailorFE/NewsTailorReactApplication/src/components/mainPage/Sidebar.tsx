@@ -1,5 +1,7 @@
 import React from 'react';
 import { MdHome, MdDescription, MdBookmark, MdPerson } from 'react-icons/md';
+import "./sidebar.css";
+
 
 const Sidebar: React.FC = () => {
   return (
