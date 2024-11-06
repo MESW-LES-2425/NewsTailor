@@ -28,14 +28,20 @@ services:
     image: newstailor_fe:latest
     container_name: newstailor_fe
     ports:
-      - "5173:5173" 
+      - "5173:5173"
+    volumes:
+      - ./NewsTailorFE/NewsTailorReactApplication:/app
+      - /app/node_modules
 
   newstailor_be:
     image: newstailor_be:latest
     container_name: newstailor_be
     ports:
-      - "5273:5273" 
+      - "5273:5273"
+    volumes:
+      - ./NewsTailorBE:/app
 
 
 volumes:
   postgres_data:
+
