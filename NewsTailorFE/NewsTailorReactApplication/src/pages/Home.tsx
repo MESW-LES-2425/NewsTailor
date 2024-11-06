@@ -29,12 +29,18 @@ function Home() {
             console.log("Failed logout! " + error);
         }
     };
+
+    const handleAbout = () => {
+      navigate('/about');
+    };
+
     return (
         <div>
           <Header />
           <Sidebar userId={userId} />
           <NewsGeneration />
           <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleAbout}>About</button>
         </div>
       );
 }
