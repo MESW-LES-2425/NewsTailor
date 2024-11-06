@@ -41,17 +41,19 @@ const useLoginForm = () => {
         setErrors({});
 
         try {
-            await api.post(route, formData);
+            const loginResponse = await api.post(route, formData);
+            const userId = loginResponse.data.id;
             const tokenResponse = await api.post(getTokensRoute, formData);
             localStorage.setItem(ACCESS_TOKEN, tokenResponse.data.access);
             localStorage.setItem(REFRESH_TOKEN, tokenResponse.data.refresh);
-            navigate("/")
+            navigate("/", {state: {userId}});
         } catch (error) {
+
             if (axios.isAxiosError(error) && error.response) {
                 setErrors(error.response.data);
             } else {
                 console.error("An unknown error occurred", error);
-            } 
+            }
         } finally {
             setLoading(false);
         }

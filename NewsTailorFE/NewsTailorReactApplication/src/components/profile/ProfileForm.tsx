@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { MdEdit } from 'react-icons/md';
-import Sidebar from '../Sidebar';
-import Logo from "../Logo.tsx";
-import '../styles/user-profile/UserProfile.css';
+import Sidebar from '../../Sidebar.tsx';
+import Logo from "../../Logo.tsx";
+import useProfileForm from './useProfileForm';
+import './Profile.css';
 
-function UserProfile() {
-    const { userId } = useParams();
-    const [isEditing, setIsEditing] = useState(false);
-    const [username, setUsername] = useState(userId);
-    const [password, setPassword] = useState(userId);
+function ProfileForm() {
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-    };
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        if (name === 'username') {
-            setUsername(value);
-        } else if (name === 'password') {
-            setPassword(value);
-        }
-    };
+    const {
+        userId,
+        isEditing,
+        username,
+        email,
+        handleEditClick,
+        handleInputChange,
+        handleSubmit,
+    } = useProfileForm();
 
     return (
         <div>
-            <Sidebar/>
-            <Logo/>
+            <Sidebar userId={userId} />
+            <Logo />
             <div className="container">
                 <h1 className="header">User Profile</h1>
                 <div className="card">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <button type="button" onClick={handleEditClick}>
-                            <MdEdit className="icon"/>
+                            <MdEdit className="icon" />
                         </button>
                         <div className="form-field">
                             <label htmlFor="username">Username:</label>
@@ -50,17 +42,17 @@ function UserProfile() {
                             )}
                         </div>
                         <div className="form-field">
-                            <label htmlFor="password">Password:</label>
+                            <label htmlFor="email">Email:</label>
                             {isEditing ? (
                                 <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    value={password}
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={email}
                                     onChange={handleInputChange}
                                 />
                             ) : (
-                                <p>{password ? '*' : 'Enter your password'}</p>
+                                <p>{email || 'Enter your email'}</p>
                             )}
                         </div>
 
@@ -72,4 +64,4 @@ function UserProfile() {
     );
 }
 
-export default UserProfile;
+export default ProfileForm;
