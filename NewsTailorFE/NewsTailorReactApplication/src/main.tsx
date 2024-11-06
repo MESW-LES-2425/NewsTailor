@@ -25,7 +25,7 @@ function App() {
                 <Route path="/auth" element={<Auth/>}/>
                 <Route path="/register" element={<Auth/>}/>
                 <Route path="/login" element={<Auth/>}/>
-                <Route path="/about" element={<AboutPage />}/>
+                <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>}/>
                 <Route path="/404" element={<NotFound/>}></Route>
                 <Route path="/profile/:userId" element={<ProfileForm/>}/>
                 <Route path="*" element={<NotFound/>}></Route>
