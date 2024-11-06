@@ -1,8 +1,8 @@
 import { MdEdit } from 'react-icons/md';
-import Header from '../components/landingPage/Header.tsx';
+import Header from '../landingPage/Header.tsx';
 import useProfileForm from './useProfileForm';
 import './Profile.css';
-import Sidebar from "../components/mainPage/Sidebar.tsx";
+import Sidebar from "../contentPage/Sidebar.tsx";
 
 function ProfileForm() {
     const {
@@ -61,6 +61,6 @@ function ProfileForm() {
             </div>
         </div>
     );
-};
+}
 
 export default ProfileForm;

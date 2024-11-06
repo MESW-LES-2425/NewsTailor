@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId}) => {
     return (
         <aside className="sidebar">
             <nav className="nav">
-                <Link className="navItem" to="/">
+                <Link className="navItem" to="/" state={{userId }}>
                     <MdHome className="icon"/>
                     Home
                 </Link>

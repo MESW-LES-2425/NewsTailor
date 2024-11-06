@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import api from "../../api";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import axios from "axios";
 
 const useProfileForm = () => {
-    const { userId } = useParams<{ userId: string }>();
+    const {userId} = useParams<{ userId: string }>();
     const [isEditing, setIsEditing] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ const useProfileForm = () => {
         const fetchUserData = async () => {
             try {
                 const response = await api.get(`/api/user/${userId}/`);
-                const { username, email } = response.data;
+                const {username, email} = response.data;
                 setUsername(username);
                 setEmail(email);
             } catch (error) {
@@ -33,7 +33,7 @@ const useProfileForm = () => {
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         if (name === 'username') {
             setUsername(value);
         } else if (name === 'email') {
@@ -44,7 +44,7 @@ const useProfileForm = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await api.put(`/api/user/update/${userId}/`, { username, email });
+            const response = await api.put(`/api/user/update/${userId}/`, {username, email});
             setIsEditing(false);
             console.log("User data updated successfully!", response.data);
         } catch (error) {
