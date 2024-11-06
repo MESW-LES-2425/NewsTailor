@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import "./newsGeneration.css";
+import api from '../../api';
 
 const NewsGeneration: React.FC = () => {
   const [news, setNews] = useState<string | null>(null);
 
   const fetchNews = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/fetch-news/', {
+      const route = "api/fetch-news/";
+      const response = await api.post(route, {
         category: 'technology',
         language: 'English',
         source: 'news_api',
