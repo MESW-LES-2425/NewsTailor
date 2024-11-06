@@ -1,7 +1,7 @@
 import React from "react";
 import useRegisterForm from "./useRegisterForm";
 import PasswordChecklist from "react-password-checklist";
-import "../../styles/auth-commun/signin-signup.css";
+import "../../styles/auth-common/signin-signup.css";
 import "./registerForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope, faEye, faEyeSlash, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";

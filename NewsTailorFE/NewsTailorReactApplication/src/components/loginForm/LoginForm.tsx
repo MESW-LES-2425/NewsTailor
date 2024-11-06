@@ -1,7 +1,7 @@
 import React from "react";
 import useLoginForm from "./useLoginForm";
 import "./loginForm.css";
-import "../../styles/auth-commun/signin-signup.css";
+import "../../styles/auth-common/signin-signup.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEnvelope, faLock, faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {faFacebookF, faTwitter, faGoogle, faLinkedinIn} from "@fortawesome/free-brands-svg-icons";

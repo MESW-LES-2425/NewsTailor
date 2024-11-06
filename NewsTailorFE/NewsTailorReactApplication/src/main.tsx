@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import './index.css'
 import ProfileForm from "./components/profile/ProfileForm.tsx";
+import LandingPage from './pages/LandingPage.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -19,6 +20,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+                <Route path="/landingPage" element={<LandingPage/>}/>
                 <Route path="/auth" element={<Auth/>}/>
                 <Route path="/register" element={<Auth/>}/>
                 <Route path="/login" element={<Auth/>}/>

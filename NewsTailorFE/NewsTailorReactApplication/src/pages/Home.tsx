@@ -23,7 +23,7 @@ function Home() {
                 localStorage.removeItem(ACCESS_TOKEN);
 
                 // Navigate after successfully logging out
-                navigate("/auth");
+                navigate("/landingPage");
             }
         } catch (error) {
             console.log("Failed logout! " + error);

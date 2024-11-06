@@ -8,18 +8,7 @@
 
 body, input {
     font-family: 'ABeeZee', sans-serif;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'azeebee', sans-serif;
-    border-style: ridge;
-    position: absolute;
-    left: 0;
-    top: 33%;
+    background-color: #F1F1F1;
 }
 
 .nav {
@@ -51,7 +40,7 @@ body, input {
     margin-right: 20px;
     font-size: 24px;
     color: #333;
-    font-family: 'azeebee', sans-serif;
+    font-family: sans-serif;
 }
 
 .logo-container {
@@ -96,14 +85,6 @@ body, input {
 .form-field input:focus {
     outline: none;
     border-color: #333;
-}
-
-.header {
-    position: relative;
-    right: 150px;
-    margin-bottom: 20px;
-    color: #02263f;
-    font-size: 45px;
 }
 
 .container {
