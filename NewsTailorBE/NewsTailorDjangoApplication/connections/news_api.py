@@ -1,7 +1,8 @@
 import os
 import requests
 from dotenv import load_dotenv
-from request_utils import translate_user_preferred_language
+
+from NewsTailorDjangoApplication.connections.request_utils import translate_user_preferred_language
 
 load_dotenv()
 NewsAPIUrl = "https://newsapi.org/v2/top-headlines/sources"

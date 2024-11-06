@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
@@ -7,11 +6,13 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 
-User = get_user_model() 
+User = get_user_model()
+
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny,)
+
 
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
@@ -25,6 +26,7 @@ class UserLoginView(generics.GenericAPIView):
         data = serializer.data
 
         return Response(data, status=status.HTTP_200_OK)
+
 
 class UserLogoutView(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)

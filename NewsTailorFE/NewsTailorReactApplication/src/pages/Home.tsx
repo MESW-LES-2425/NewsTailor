@@ -10,10 +10,8 @@ function Home() {
   const handleLogout = async () => {
     try {
       const refreshToken = localStorage.getItem(REFRESH_TOKEN);
-      console.log("Refresh token: " + refreshToken);
-      console.log("Access token: " + localStorage.getItem(ACCESS_TOKEN));
-
       const route = "/api/logout/";
+
       if (refreshToken) {
         await api.post(route, { "refresh": refreshToken });
         localStorage.removeItem(REFRESH_TOKEN);
