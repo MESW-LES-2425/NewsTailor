@@ -1,10 +1,19 @@
 import React from 'react';
-import '../../styles/AuthButton.css';  
+import { useNavigate } from 'react-router-dom';
+import '../../styles/landingPage/AuthButton.css';
 
 const AuthButton: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/auth');
+  };
+
   return (
-    <div>
-      <button className="auth-button">Get Started</button>
+    <div className="auth-button-container">
+      <button className="auth-button" onClick={handleGetStarted}>
+        Get Started
+      </button>
     </div>
   );
 };

@@ -1,25 +1,28 @@
-.news-section {
+.info-section {
   display: flex;
   justify-content: center;
   padding: 20px;
 }
 
-.news-cards {
+.info-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  max-width: 1000px;
+  width: 100%; 
 }
 
-.news-card {
+.info-card {
   background-color: #e0e0e0;
   padding: 20px;
   display: flex;
   align-items: center;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.news-card:hover {
-    background-color: #cccccc;
+.info-card:hover {
+  background-color: #cccccc;
 }
 
 .news-icon {
@@ -27,7 +30,7 @@
   margin-right: 15px;
 }
 
-.news-card p {
+.info-card p {
   margin: 0;
   color: #333;
 }

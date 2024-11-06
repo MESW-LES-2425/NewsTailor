@@ -1,11 +1,13 @@
 import React from 'react';
-import '../../styles/Header.css';
+import '../../styles/landingPage/Header.css';
+import newspaperImage from '../../assets/newspaper.svg';
 
 const Header: React.FC = () => {
   return (
     <header className="header">
       <h1 className="title">
-        NewsTailor <span role="img" aria-label="news icon">📰</span>
+        NewsTailor 
+        <img src={newspaperImage} alt="news icon" className="news-icon" />
       </h1>
     </header>
   );
