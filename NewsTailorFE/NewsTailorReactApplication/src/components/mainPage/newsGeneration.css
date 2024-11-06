@@ -4,7 +4,7 @@
     left: 50%;
     transform: translateX(-50%);
     width: 50%;
-    min-height: 800px; /* Fixed height for the component */
+    min-height: 800px;
     background-color: #f8f8f8;
     border-radius: 12px;
     padding: 20px;
@@ -21,9 +21,9 @@
     font-weight: 700;
     color: #1A2A3A;
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 20px;
-    margin: 0; /* Remove default margin */
+    margin: 0;
   }
 
   .news-generation button {
