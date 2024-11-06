@@ -1,0 +1,27 @@
+.footer {
+background-color: #f0f0f0;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+padding: 25px;
+display: flex;
+justify-content: center;
+}
+
+.footer-icons {
+display: flex;
+gap: 30px;
+}
+
+.footer-icon {
+width: 40px;
+height: auto;
+opacity: 0.8;
+transition: opacity 0.3s ease;
+}
+
+.footer-icon:hover {
+opacity: 1;
+}
+  

@@ -27,12 +27,17 @@ function Home() {
     }
   };
 
+  const handleAbout = () => {
+    navigate('/about');
+  };
+
   return (
     <div>
       <Header />
       <Sidebar />
       <NewsGeneration />
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleAbout}>About Us</button>
     </div>
   );
 }
