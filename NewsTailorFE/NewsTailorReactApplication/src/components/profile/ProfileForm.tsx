@@ -1,5 +1,5 @@
 import { MdEdit } from 'react-icons/md';
-import Sidebar from '../../Sidebar.tsx';
+import Sidebar from '../components/mainPage/Sidebar';
 import Logo from "../../Logo.tsx";
 import useProfileForm from './useProfileForm';
 import './Profile.css';
