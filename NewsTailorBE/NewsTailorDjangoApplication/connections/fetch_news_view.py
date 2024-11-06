@@ -10,7 +10,8 @@ from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_ne
 class FetchNewsView(APIView):
     permission_classes = [AllowAny]
 
-    def get(self, request):
+    @staticmethod
+    def post(request):
         data = request.data
         category = data.get("category")
         language = data.get("language")
@@ -30,4 +31,3 @@ class FetchNewsView(APIView):
             return Response({"error": "Invalid source specified."}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(response, status=status.HTTP_200_OK)
-
