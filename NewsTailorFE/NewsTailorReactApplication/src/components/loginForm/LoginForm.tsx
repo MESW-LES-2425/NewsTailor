@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => {
                        onChange={handleChange} placeholder="Password" required
                 />
                 <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="toggle-password-icon"
-                                 onClick={() => toggleShowPassword(!showPassword)}
+                                 onClick={() => toggleShowPassword(!showPassword)} data-testid="toggle-password-icon"
                 />
             </div>
             {errors.non_field_error && <p className="error-auth-message">{errors.non_field_error}</p>}
@@ -42,16 +42,16 @@ const LoginForm: React.FC = () => {
             </button>
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="facebook-icon">
                     <FontAwesomeIcon icon={faFacebookF}/>
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="twitter-icon">
                     <FontAwesomeIcon icon={faTwitter}/>
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="google-icon">
                     <FontAwesomeIcon icon={faGoogle}/>
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="linkedin-icon">
                     <FontAwesomeIcon icon={faLinkedinIn}/>
                 </a>
             </div>

@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "esModuleInterop": true,
     "module": "es2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable", "es2020", "esnext"],
+    "esModuleInterop": true,
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
