@@ -2,6 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 
+from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
 from NewsTailorDjangoApplication.connections.request_utils import translate_user_preferred_language
 
 load_dotenv()
@@ -46,3 +47,6 @@ def obtain_news_from_new_york_times():
     response = requests.get(url, params=params)
 
     return response
+
+
+obtain_news_from_dev_to("technology")
