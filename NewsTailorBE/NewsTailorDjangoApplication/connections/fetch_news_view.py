@@ -42,4 +42,3 @@ class FetchNewsView(APIView):
                                 status=status.HTTP_400_BAD_REQUEST)
 
         return Response(aggregated_response, status=status.HTTP_200_OK)
-

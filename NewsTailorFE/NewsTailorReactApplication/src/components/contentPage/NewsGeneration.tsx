@@ -11,18 +11,21 @@ const NewsGeneration: React.FC = () => {
       const response = await api.post(route, {
         category: 'technology',
         language: 'English',
-        source: 'dev_to',
+        sources: ['dev_to', 'news_api'],
       }, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      // Setting news values to the state variable
-      setNews(response.data);
+
+      const newsData = Object.values(response.data).flat();
+
+      setNews(newsData.join('\n'));
     } catch (error) {
       console.error('Error fetching news:', error);
     }
   };
+
 
   return (
     <div className="news-generation">

@@ -48,6 +48,7 @@ def obtain_news_from_new_york_times():
 
     return response
 
+
 """
 What has to be done: (What I thought feel free to change) 
 Generic method to contact OpenAI that will have the context retrieved from all the news sources in the sources list.

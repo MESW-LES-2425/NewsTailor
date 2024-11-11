@@ -7,6 +7,7 @@ news_api_key = "6403ec0578fc47c89422eacab1a9565f"
 NewsAPIUrl = "https://newsapi.org/v2/top-headlines"
 NUMBER_OF_ARTICLES = 5  # Limit on the number of articles to fetch
 
+
 def obtain_article_urls(category: str, user_language: str) -> list:
     """Fetch article URLs based on category, language, and optional query."""
     params = {
@@ -18,12 +19,13 @@ def obtain_article_urls(category: str, user_language: str) -> list:
 
     response = requests.get(NewsAPIUrl, params=params)
     if response.status_code == 200:
-        articles = response.json().get("articles", [])
-        urls = [article["url"] for article in articles if "url" in article]
+        news_articles = response.json().get("articles", [])
+        urls = [article["url"] for article in news_articles if "url" in article]
         return urls
     else:
         print(f"Request failed with status code {response.status_code}")
         return []
+
 
 def fetch_full_article_content(url: str) -> str:
     """Scrape the full content of an article from the HTML page."""
@@ -42,6 +44,7 @@ def fetch_full_article_content(url: str) -> str:
         print(f"An error occurred while fetching content from {url}: {e}")
         return "Content unavailable"
 
+
 def obtain_news_from_news_api(category: str, user_language: str, query: str = None) -> list:
     """Fetch full news articles by category, language, and optional query."""
     urls = obtain_article_urls(category, user_language)
@@ -53,12 +56,3 @@ def obtain_news_from_news_api(category: str, user_language: str, query: str = No
             "content": full_content
         })
     return news_data
-
-# Example usage
-category = "technology"
-user_language = "English"
-query = "AI"
-
-articles = obtain_news_from_news_api(category, user_language, query=query)
-for article in articles:
-    print(f"URL: {article['url']}\nContent: {article['content'][:500]}...\n")
