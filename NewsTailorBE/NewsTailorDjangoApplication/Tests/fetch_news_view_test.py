@@ -3,9 +3,8 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from unittest.mock import patch
 
-
 class FetchNewsViewTests(APITestCase):
-    url = reverse('fetch-news')  # Update this to match the URL pattern for FetchNewsView
+    url = reverse('fetch-news')  
 
     def setUp(self):
         # Test data used in the requests
