@@ -31,7 +31,7 @@ const NewsGeneration: React.FC = () => {
       {news && (
         <div className='news-content-container'>
           <h2>Obtained News</h2>
-          <p>{news}</p>
+          <p className='news-paragraph'>{news}</p>
         </div>
       )}
     </div>
