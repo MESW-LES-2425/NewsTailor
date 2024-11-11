@@ -20,7 +20,7 @@ def obtain_news_from_dev_to(tag=None):
         for article in articles:
             article_content = obtain_news_content_from_devto_id(article)
             news_data.append(article_content)
-        return news_data
+        return news_data[0].get("content")
     else:
         return f"Failed to fetch articles. Status code: {response.status_code}"
 

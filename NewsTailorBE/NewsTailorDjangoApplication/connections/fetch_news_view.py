@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
 from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, \
     obtain_news_from_new_york_times
 
@@ -15,19 +16,30 @@ class FetchNewsView(APIView):
         data = request.data
         category = data.get("category")
         language = data.get("language")
-        source = data.get("source")
+        sources = data.get("sources")  # This parameter is expecting a list of sources - will explode if it is not
 
-        if not all([category, language, source]):
-            return Response({"error": "Missing Category, Language, or Source in the request."},
+        if not all([category, language, sources]):
+            return Response({"error": "Missing Category, Language, or Sources in the request."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        if source == "news_api":
-            response = obtain_news_from_news_api(category, language)
-        elif source == "guardian":
-            response = obtain_news_from_guardian_api(category)
-        elif source == "nyt":
-            response = obtain_news_from_new_york_times()
-        else:
-            return Response({"error": "Invalid source specified."}, status=status.HTTP_400_BAD_REQUEST)
+        if not isinstance(sources, list):
+            return Response({"error": "Sources should be provided as a list."},
+                            status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(response, status=status.HTTP_200_OK)
+        aggregated_response = {}
+
+        for source in sources:
+            if source == "news_api":
+                aggregated_response["news_api"] = obtain_news_from_news_api(category, language)
+            elif source == "guardian":
+                aggregated_response["guardian"] = obtain_news_from_guardian_api(category)
+            elif source == "nyt":
+                aggregated_response["nyt"] = obtain_news_from_new_york_times()
+            elif source == "dev_to":
+                aggregated_response["dev_to"] = obtain_news_from_dev_to(category)
+            else:
+                return Response({"error": f"Invalid source specified: {source}"},
+                                status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(aggregated_response, status=status.HTTP_200_OK)
+

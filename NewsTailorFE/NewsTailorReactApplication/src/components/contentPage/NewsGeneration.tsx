@@ -11,7 +11,7 @@ const NewsGeneration: React.FC = () => {
       const response = await api.post(route, {
         category: 'technology',
         language: 'English',
-        source: 'news_api',
+        source: 'dev_to',
       }, {
         headers: {
           'Content-Type': 'application/json',
