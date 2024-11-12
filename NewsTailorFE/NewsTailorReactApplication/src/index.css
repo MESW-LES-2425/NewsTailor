@@ -94,3 +94,35 @@ body, input {
     flex-direction: column;
     margin-top: 20vh;
 }
+
+.blue-circle-button{
+    background-color: #1A2A3A;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    right: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  .blue-circle-button-about{
+    background-color: #1A2A3A;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    right: 120px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  }

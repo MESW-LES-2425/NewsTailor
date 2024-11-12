@@ -27,21 +27,6 @@
     margin: 0;
   }
 
-  .news-generation button {
-    background-color: #1A2A3A;
-    color: white;
-    font-size: 18px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
-  }
-
   .news-generation button:hover {
     background-color: #142029;
   }
