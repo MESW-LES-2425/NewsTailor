@@ -31,18 +31,18 @@ function Home() {
     };
 
     const handleAbout = () => {
-      navigate('/about');
+        navigate('/about');
     };
 
     return (
         <div>
-          <Header />
-          <Sidebar userId={userId} />
-          <NewsGeneration />
-          <button onClick={handleLogout}>Logout</button>
-          <button onClick={handleAbout}>About</button>
+            <Header />
+            <Sidebar userId={userId} />
+            <NewsGeneration />
+            <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
+            <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
         </div>
-      );
+    );
 }
 
 export default Home;
