@@ -84,3 +84,8 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         return super().update(instance, validated_data)
+
+    def validate_email(self, value):
+        if '@' not in value:
+            raise serializers.ValidationError("Enter a valid email address.")
+        return value
