@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage'
 import './index.css'
 import ProfileForm from "./components/profile/ProfileForm.tsx";
 import LandingPage from './pages/LandingPage.tsx'
+import FaqPage from './pages/FaqPage.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/register" element={<Auth/>}/>
                 <Route path="/login" element={<Auth/>}/>
                 <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>}/>
+                <Route path="/faq" element={<FaqPage />}/>
                 <Route path="/404" element={<NotFound/>}></Route>
                 <Route path="/profile/:userId" element={<ProfileForm/>}/>
                 <Route path="*" element={<NotFound/>}></Route>

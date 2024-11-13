@@ -123,6 +123,23 @@ body, input {
     position: absolute;
     text-align: center;
     top: 20px;
-    right: 120px;
+    right: 125px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
   }
+
+  .blue-circle-button-faq{
+    background-color: #1A2A3A;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    right: 220px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  }
+  
