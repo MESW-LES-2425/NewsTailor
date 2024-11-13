@@ -11,6 +11,6 @@ urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="get_token"),
     path("token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("user/<int:user_id>/", UserProfileView.as_view(), name="profile"),
-    path("user/update/<int:user_id>/", UserUpdateView.as_view(), name='user-update'),
+    path("user/update/<int:id>/", UserUpdateView.as_view(), name='user-update'),
     path('fetch-news/', FetchNewsView.as_view(), name='fetch-news')
 ]

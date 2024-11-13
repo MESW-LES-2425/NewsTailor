@@ -34,6 +34,10 @@ function Home() {
         navigate('/about');
     };
 
+    const handleFaq = () => {
+      navigate('/faq')
+    };
+
     return (
         <div>
             <Header />
@@ -41,6 +45,7 @@ function Home() {
             <NewsGeneration />
             <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
             <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
+            <button className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>
         </div>
     );
 }

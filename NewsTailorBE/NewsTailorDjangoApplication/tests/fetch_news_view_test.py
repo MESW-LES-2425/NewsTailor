@@ -4,7 +4,7 @@ from rest_framework.test import APITestCase
 from unittest.mock import patch
 
 class FetchNewsViewTests(APITestCase):
-    url = reverse('fetch-news')  
+    url = reverse('fetch-news')
 
     def setUp(self):
         # Test data used in the requests
