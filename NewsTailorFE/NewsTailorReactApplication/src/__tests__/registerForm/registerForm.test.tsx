@@ -1,18 +1,29 @@
 import '@testing-library/jest-dom';
 import {render, screen, waitFor} from "@testing-library/react";
-import {MemoryRouter} from "react-router-dom";
+import {MemoryRouter, useNavigate} from "react-router-dom";
 import RegisterForm from "../../components/registerForm/RegisterForm.tsx";
 import UserEvent from "@testing-library/user-event";
 
-describe('RegisterForm', () => {
-    const mockOnRegisterSuccess = jest.fn();
+jest.mock("../../api.ts");
 
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useNavigate: jest.fn(),
+}));
+
+describe('RegisterForm', () => {
+    const onRegisterSuccessMock = jest.fn();
+    const navigate = jest.fn();
     beforeEach(() => {
+        (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
             <MemoryRouter>
-                <RegisterForm onRegisterSuccess={mockOnRegisterSuccess} />
+                <RegisterForm onRegisterSuccess={onRegisterSuccessMock} />
             </MemoryRouter>
         );
+    });
+    afterEach(() => {
+        jest.clearAllMocks();
     });
 
     test('renders register form correctly', async () => {
