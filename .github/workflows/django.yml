@@ -27,19 +27,9 @@ jobs:
       with:
         version: latest
 
-    - name: Build Docker Image FE
-      working-directory: NewsTailorFE
-      run: |
-        docker build -t newstailor_fe .
-
-    - name: Build Docker Image BE
-      working-directory: NewsTailorBE
-      run: |
-        docker build -t newstailor_be .
-
     - name: Build and Start Docker Containers
       run: |
-        docker-compose -f docker-compose.yml up -d
+        docker-compose up -d
 
     - name: Install Dependencies
       working-directory: NewsTailorBE
