@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -27,5 +28,14 @@ jobs:
     - name: Run Tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        NEW_YORK_TIMES_API_KEY: ${{ secrets.NEW_YORK_TIMES_API_KEY }}
+        NUMBER_OF_NEWS_ARTICLES: ${{ secrets.NUMBER_OF_NEWS_ARTICLES }}
       run: |
         python NewsTailorBE/manage.py test
