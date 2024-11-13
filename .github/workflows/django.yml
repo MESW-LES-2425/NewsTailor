@@ -27,6 +27,16 @@ jobs:
       with:
         version: latest
 
+    - name: Build Docker Image FE
+      working-directory: NewsTailorFE/NewsTailorReactApplication
+      run: |
+        docker build -t newstailor_fe .
+        
+    - name: Build Docker Image BE
+      working-directory: NewsTailorBE
+      run: |
+        docker build -t newstailor_be .    
+
     - name: Build and Start Docker Containers
       run: |
         docker compose -f docker-compose.yaml up -d
