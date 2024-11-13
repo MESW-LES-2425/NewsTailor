@@ -22,8 +22,8 @@ function ProfileForm() {
             <div className="container">
                 <h1 className="header">User Profile</h1>
                 <div className="card">
-                    <form onSubmit={handleSubmit}>
-                        <button type="button" onClick={handleEditClick}>
+                    <form role="form" onSubmit={handleSubmit}>
+                        <button type="button" onClick={handleEditClick} aria-label="edit">
                             <MdEdit className="icon" />
                         </button>
                         <div className="form-field">
@@ -55,7 +55,7 @@ function ProfileForm() {
                             )}
                         </div>
 
-                        {isEditing && <button type="submit">Update</button>}
+                        {isEditing && <button type="submit" >Update</button>}
                     </form>
                 </div>
             </div>
