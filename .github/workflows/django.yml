@@ -22,6 +22,25 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+      with:
+        version: latest
+
+    - name: Build Docker Image FE
+      working-directory: NewsTailorFE
+      run: |
+        docker build -t newstailor_fe .
+
+    - name: Build Docker Image BE
+      working-directory: NewsTailorBE
+      run: |
+        docker build -t newstailor_be .
+
+    - name: Build and Start Docker Containers
+      run: |
+        docker-compose -f docker-compose.yml up -d
+
     - name: Install Dependencies
       working-directory: NewsTailorBE
       run: |
@@ -43,3 +62,7 @@ jobs:
         NUMBER_OF_NEWS_ARTICLES: ${{ secrets.NUMBER_OF_NEWS_ARTICLES }}
       run: |
         python manage.py test
+
+    - name: Shut down Docker containers
+      run: |
+        docker-compose down
