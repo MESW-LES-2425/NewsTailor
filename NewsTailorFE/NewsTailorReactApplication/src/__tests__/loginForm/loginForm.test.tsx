@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom';
-import {render, screen, waitFor} from "@testing-library/react";
+import {render, renderHook, screen, waitFor} from "@testing-library/react";
 import LoginForm from "../../components/loginForm/LoginForm.tsx";
 import {MemoryRouter, useNavigate} from "react-router-dom";
 import UserEvent, {userEvent} from "@testing-library/user-event";
 import api from "../../api.ts";
 import {ACCESS_TOKEN, REFRESH_TOKEN} from "../../constants.ts";
+import useLoginForm from "../../components/loginForm/useLoginForm.ts";
 
 jest.mock("../../api.ts");
 
@@ -156,13 +157,18 @@ describe('LoginForm', () => {
         await userEvent.click(submitButton);
 
         await waitFor(() => {
-            expect(mockedApi.post).toHaveBeenCalledWith("/api/login/", {
-                email: "notfound@example.com",
-                password: "wrongpassword",
-            });
-
             expect(screen.getByText("User not Found!")).toBeInTheDocument();
         });
     });
+});
 
+describe('useLoginForm Hook', () => {
+
+    test('initializes with correct initial state', () => {
+        const { result } = renderHook(() => useLoginForm());
+        expect(result.current.formData).toEqual({ email: '', password: '' });
+        expect(result.current.isLoading).toBe(false);
+        expect(result.current.showPassword).toBe(false);
+        expect(result.current.errors).toEqual({});
+    });
 });

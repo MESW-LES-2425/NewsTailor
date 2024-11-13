@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom';
-import {render, screen, waitFor} from "@testing-library/react";
+import {render, renderHook, screen, waitFor} from "@testing-library/react";
 import {MemoryRouter, useNavigate} from "react-router-dom";
 import RegisterForm from "../../components/registerForm/RegisterForm.tsx";
 import UserEvent from "@testing-library/user-event";
+import api from "../../api.ts";
+import useRegisterForm from "../../components/registerForm/useRegisterForm.ts";
 
 jest.mock("../../api.ts");
 
@@ -11,9 +13,11 @@ jest.mock("react-router-dom", () => ({
     useNavigate: jest.fn(),
 }));
 
+const onRegisterSuccessMock = jest.fn();
+const navigate = jest.fn();
+const mockedApi = api as jest.Mocked<typeof api>;
+
 describe('RegisterForm', () => {
-    const onRegisterSuccessMock = jest.fn();
-    const navigate = jest.fn();
     beforeEach(() => {
         (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
@@ -86,5 +90,82 @@ describe('RegisterForm', () => {
 
         await UserEvent.unhover(passwordCheckListIcon);
         await waitFor(() => expect(passwordCheckList).not.toBeVisible());
+    });
+
+    test("submits form and register with success", async () => {
+        mockedApi.post
+            .mockResolvedValueOnce({ data: { message: "Register with success!" } });
+
+        const userInput = screen.getByPlaceholderText(/user/i);
+        const emailInput = screen.getByPlaceholderText(/email/i);
+        const passwordInput = screen.getByPlaceholderText("Password");
+        const confirmPasswordInput = screen.getByPlaceholderText("Confirm Password")
+        const submitButton = screen.getByRole("button", { name: /register/i });
+
+        await UserEvent.type(userInput, "testuser");
+        await UserEvent.type(emailInput, "test@example.com");
+        await UserEvent.type(passwordInput, "Password123#");
+        await UserEvent.type(confirmPasswordInput, "Password123#");
+        await UserEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(mockedApi.post).toHaveBeenCalledWith("/api/register/", {
+                username: "testuser",
+                email: "test@example.com",
+                password1: "Password123#",
+                password2: "Password123#"
+            });
+            expect(onRegisterSuccessMock).toHaveBeenCalled();
+        });
+    });
+
+    test("submits form with taken email or username", async () => {
+        mockedApi.post.mockRejectedValueOnce({
+            isAxiosError: true,
+            response: {
+                data: {
+                    username: ["Username already taken!"],
+                    email: ["Email already taken!"]
+                },
+                status: 400,
+            },
+        });
+
+        const userInput = screen.getByPlaceholderText(/user/i);
+        const emailInput = screen.getByPlaceholderText(/email/i);
+        const passwordInput = screen.getByPlaceholderText("Password");
+        const confirmPasswordInput = screen.getByPlaceholderText("Confirm Password")
+        const submitButton = screen.getByRole("button", { name: /register/i });
+
+        await UserEvent.type(userInput, "testuser");
+        await UserEvent.type(emailInput, "test@example.com");
+        await UserEvent.type(passwordInput, "Password123#");
+        await UserEvent.type(confirmPasswordInput, "Password123#");
+        await UserEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(screen.getByText("Username already taken!")).toBeInTheDocument();
+            expect(screen.getByText("Email already taken!")).toBeInTheDocument();
+        });
+    });
+});
+
+describe('useRegisterForm Hook', () => {
+
+    test('initializes with correct initial state', () => {
+        const { result } = renderHook(() => useRegisterForm({ onRegisterSuccess: onRegisterSuccessMock }));
+
+        expect(result.current.formData).toEqual({
+            username: '',
+            email: '',
+            password1: '',
+            password2: '',
+        });
+
+        expect(result.current.isLoading).toBe(false);
+        expect(result.current.showPasswordCheckList).toBe(false);
+        expect(result.current.showPassword1).toBe(false);
+        expect(result.current.showPassword2).toBe(false);
+        expect(result.current.errors).toEqual({});
     });
 });
