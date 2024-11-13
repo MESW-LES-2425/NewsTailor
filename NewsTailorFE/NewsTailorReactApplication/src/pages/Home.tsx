@@ -31,7 +31,7 @@ function Home() {
     };
 
     const handleAbout = () => {
-      navigate('/about');
+        navigate('/about');
     };
 
     const handleFaq = () => {
@@ -40,14 +40,14 @@ function Home() {
 
     return (
         <div>
-          <Header />
-          <Sidebar userId={userId} />
-          <NewsGeneration />
-          <button onClick={handleLogout}>Logout</button>
-          <button onClick={handleAbout}>About</button>
-          <button onClick={handleFaq}>FAQs</button>
+            <Header />
+            <Sidebar userId={userId} />
+            <NewsGeneration />
+            <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
+            <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
+            <button className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>
         </div>
-      );
+    );
 }
 
 export default Home;
