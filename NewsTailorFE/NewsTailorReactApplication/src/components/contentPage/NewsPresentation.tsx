@@ -1,34 +1,24 @@
-import { useNavigate } from 'react-router-dom';
-import "./contentTable.css";
+import React from 'react';
 import api from '../../api';
+import "./contentTable.css";
 
 interface NewsPropertiesPresentation {
     news?: { content?: string; title?: string; id?: string; userid?: string };
+    onConclude?: () => void;
 }
 
-const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news }) => {
-    const navigate = useNavigate();
+const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclude }) => {
 
     const concludeReadingSession = async () => {
         if (!news?.id) {
-            console.error('News ID is missing, cannot conclude reading session.');
+            console.error('News ID is missing.');
             return;
         }
-
         try {
-            const route = "api/conclude-reading-session/";
-            await api.post(route, {
-                newspaperid: news.id,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            await api.post("api/conclude-reading-session/", { newspaperid: news.id }, {
+                headers: { 'Content-Type': 'application/json' },
             });
-
-            // After successful conclusion, navigate to the user's news generation component
-            if (news.userid) {
-                navigate(`/news-generation/${news.userid}`);  // Navigate to the news generation component
-            }
+            if (onConclude) onConclude();
         } catch (error) {
             console.error('Error concluding reading session:', error);
         }
