@@ -5,7 +5,7 @@ from rest_framework import status
 from NewsTailorDjangoApplication.serializers.newspaper_serializers import NewsPaperSerializer
 
 
-class NewsPaperUtilsView(APIView):
+class ObtainNewsPaperByIdView(APIView):
     permission_classes = [AllowAny]
 
     @staticmethod
@@ -13,6 +13,18 @@ class NewsPaperUtilsView(APIView):
         newspaper_data = NewsPaperSerializer.get_news_paper_by_user(user_id)
 
         if newspaper_data:
-            return Response({'exists': True, 'content': newspaper_data['content']}, status=status.HTTP_200_OK)
+            return Response({'exists': True, 'Newspaper': newspaper_data}, status=status.HTTP_200_OK)
         else:
             return Response({'exists': False}, status=status.HTTP_200_OK)
+
+
+class DeleteNewsPaperByIdView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.delete_news_paper_by_id(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)

@@ -4,8 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
-from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, \
-    obtain_news_from_new_york_times
+from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, obtain_news_from_new_york_times
 from NewsTailorDjangoApplication.serializers.newspaper_serializers import NewsPaperSerializer
 
 
@@ -17,7 +16,7 @@ class FetchNewsView(APIView):
         data = request.data
         category = data.get("category")
         language = data.get("language")
-        sources = data.get("sources")  # This parameter is expecting a list of sources - will explode if it is not
+        sources = data.get("sources")  # This parameter is expecting a list of sources
         userid = data.get("userid")
 
         if not all([category, language, sources]):
@@ -30,19 +29,28 @@ class FetchNewsView(APIView):
 
         aggregated_response = {}
 
+        # Fetch news from each source
         for source in sources:
-            if source == "news_api":
-                aggregated_response["news_api"] = obtain_news_from_news_api(category, language)
-            elif source == "guardian":
-                aggregated_response["guardian"] = obtain_news_from_guardian_api(category)
-            elif source == "nyt":
-                aggregated_response["nyt"] = obtain_news_from_new_york_times()
-            elif source == "dev_to":
-                aggregated_response["dev_to"] = obtain_news_from_dev_to(category)
-            else:
-                return Response({"error": f"Invalid source specified: {source}"},
-                                status=status.HTTP_400_BAD_REQUEST)
+            try:
+                if source == "news_api":
+                    aggregated_response["news_api"] = obtain_news_from_news_api(category, language)
+                elif source == "guardian":
+                    aggregated_response["guardian"] = obtain_news_from_guardian_api(category)
+                elif source == "nyt":
+                    aggregated_response["nyt"] = obtain_news_from_new_york_times()
+                elif source == "dev_to":
+                    aggregated_response["dev_to"] = obtain_news_from_dev_to(category)
+                else:
+                    return Response({"error": f"Invalid source specified: {source}"},
+                                    status=status.HTTP_400_BAD_REQUEST)
+            except Exception as e:
+                return Response({"error": f"Error fetching data from {source}: {str(e)}"},
+                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        NewsPaperSerializer.create_news_paper(aggregated_response, userid)
+        # Call the serializer method to create the newspaper entry
+        try:
+            NewsPaperSerializer.create_news_paper(aggregated_response, userid)
+        except ValueError as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(aggregated_response, status=status.HTTP_200_OK)

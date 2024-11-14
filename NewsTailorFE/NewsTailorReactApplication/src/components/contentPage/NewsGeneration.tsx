@@ -1,33 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./contentTable.css";
 import api from '../../api';
 import SourceSelectionComponent from './SourceSelectionComponent';
 import NewsPresentation from './NewsPresentation';
 
 interface NewsProperties {
-    userId?: string | undefined
+    userId?: string | undefined;
 }
 
-
 const NewsGeneration: React.FC<NewsProperties> = ({ userId }) => {
-    const [news, setNews] = useState<string | null>(null);
+    const [news, setNews] = useState<{ content?: string; title?: string; id?: string; userid?: string } | null>(null);
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
     const [contentGenerated, setContentGenerated] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const checkIfNewsExists = async () => {
-        try {
-            const response = await api.post(`api/check-news/${userId}/`);
-            if (response.data.exists) {
-                setNews(response.data.content);
-                setContentGenerated(true);
+    useEffect(() => {
+        const checkIfNewsExists = async () => {
+            try {
+                const response = await api.post(`api/check-news/${userId}/`);
+                if (response.data.exists) {
+                    setNews(response.data.Newspaper);
+                    setContentGenerated(true);
+                }
+            } catch (error) {
+                console.error("Error checking news existence. Please check your database connection.", error);
             }
-        } catch (error) {
-            console.error("Error checking news existence. Please check your database connection.", error);
-        }
-    };
+        };
 
+        if (userId) {
+            checkIfNewsExists();
+        }
+    }, [userId]);
 
     const fetchNews = async () => {
+        setLoading(true);
+        setError(null);
+
         try {
             const route = "api/fetch-news/";
             const response = await api.post(route, {
@@ -41,11 +50,13 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId }) => {
                 },
             });
 
-            const newsData = Object.values(response.data).flat();
-            setNews(newsData.join('\n'));
+            setNews(response.data);
             setContentGenerated(true);
-        } catch (error) {
+        } catch (error: any) {
+            setError('Error generating news. Please try again later.');
             console.error('Error fetching news:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -53,19 +64,18 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId }) => {
         setSelectedSources(sources);
     };
 
-
-    checkIfNewsExists();
-
-    // With this we can replace the news generation component by the component for reading the news.
     if (contentGenerated && news) {
         return <NewsPresentation news={news} />;
     }
-    // If the news is not generated then we move on to the configuration page.
+
     return (
         <div className="content-table">
             <h1>Customize your newspaper</h1>
+            {error && <div className="error">{error}</div>}
             <SourceSelectionComponent onSourceChange={handleSourceChange} />
-            <button className="blue-circle-button" onClick={fetchNews}>Generate</button>
+            <button className="blue-circle-button" onClick={fetchNews} disabled={loading}>
+                {loading ? 'Generating...' : 'Generate'}
+            </button>
         </div>
     );
 };

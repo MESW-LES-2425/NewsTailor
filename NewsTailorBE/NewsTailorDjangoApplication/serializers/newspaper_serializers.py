@@ -44,3 +44,16 @@ class NewsPaperSerializer(serializers.ModelSerializer):
             return cls(newspaper_instance).data
         except Newspaper.DoesNotExist:
             return None
+
+    @classmethod
+    def delete_news_paper_by_id(cls, id):
+        """
+        Deletes a Newspaper instance by its newspaper.
+        Raises an error if the instance does not exist.
+        """
+        try:
+            newspaper_instance = Newspaper.objects.get(id=id)
+            newspaper_instance.delete()
+            return {"message": f"Newspaper with id {id} has been deleted successfully."}
+        except Newspaper.DoesNotExist:
+            raise ValueError(f"Newspaper with id {id} does not exist.")

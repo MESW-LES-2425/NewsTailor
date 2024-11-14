@@ -24,6 +24,7 @@ function App() {
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/" element={<Auth />} />
                 <Route path="/register" element={<Auth />} />
                 <Route path="/login" element={<Auth />} />
                 <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
