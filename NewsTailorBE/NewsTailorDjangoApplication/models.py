@@ -6,7 +6,8 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254, unique=True, null=False)
     is_banned = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True) 
+    updated_at = models.DateField(auto_now=True)
+    wpm = models.IntegerField(null=False, default=238)
     
     USERNAME_FIELD="email"
     REQUIRED_FIELDS=["username"]
