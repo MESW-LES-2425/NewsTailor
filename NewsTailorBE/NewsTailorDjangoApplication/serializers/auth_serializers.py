@@ -77,7 +77,7 @@ class UserLoginSerializer(serializers.Serializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('username', 'email', 'wpm')
 
     def get(self, instance):
         return instance

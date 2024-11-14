@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView ,UserUpdateView
 from .connections.fetch_news_view import FetchNewsView
-from .views import UserRegistrationView, UserLoginView, UserLogoutView
+from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
