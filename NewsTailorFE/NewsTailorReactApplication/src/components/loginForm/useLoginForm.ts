@@ -19,7 +19,6 @@ const useLoginForm = () => {
     const [errors, setErrors] = useState<{ [key: string]: string[] }>({});
 
     const route = "/api/login/";
-    const getTokensRoute = "/api/token/";
     const navigate = useNavigate();
 
     const toggleShowPassword = (show:boolean) => setShowPassword(show);
@@ -43,9 +42,8 @@ const useLoginForm = () => {
         try {
             const loginResponse = await api.post(route, formData);
             const userId = loginResponse.data.id;
-            const tokenResponse = await api.post(getTokensRoute, formData);
-            localStorage.setItem(ACCESS_TOKEN, tokenResponse.data.access);
-            localStorage.setItem(REFRESH_TOKEN, tokenResponse.data.refresh);
+            localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
+            localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
             navigate("/", {state: {userId}});
         } catch (error) {
 
