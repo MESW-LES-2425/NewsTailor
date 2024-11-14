@@ -18,7 +18,7 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId }) => {
         try {
             const response = await api.post(`api/check-news/${userId}/`);
             if (response.data.exists) {
-                setNews(response.data.news);
+                setNews(response.data.content);
                 setContentGenerated(true);
             }
         } catch (error) {

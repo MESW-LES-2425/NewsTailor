@@ -9,8 +9,8 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         model = Newspaper
         fields = '__all__'
 
-    @staticmethod
-    def create_news_paper(content, userid):
+    @classmethod
+    def create_news_paper(cls, content, userid):
         # Fetch user instance
         try:
             user_instance = User.objects.get(id=userid)
@@ -22,7 +22,8 @@ class NewsPaperSerializer(serializers.ModelSerializer):
             "title": "Sample Title",
             "content": content["dev_to"],
             "created_at": datetime.now(),
-            "user_newspaper": user_instance.id
+            "user_newspaper": user_instance.id,
+            "is_currently_reading": True
         })
 
         if serializer.is_valid():
@@ -34,11 +35,12 @@ class NewsPaperSerializer(serializers.ModelSerializer):
     @classmethod
     def get_news_paper_by_user(cls, user_id):
         """
-        Verifies if a newspaper exists for a given user ID.
+        Verifies if a newspaper exists for a given user ID with is_currently_reading=True.
         If found, returns the newspaper data; if not, returns None.
         """
         try:
-            newspaper_instance = Newspaper.objects.get(user_newspaper_id=user_id)
+            # Modify the query to check for `is_currently_reading=True`
+            newspaper_instance = Newspaper.objects.get(user_newspaper_id=user_id, is_currently_reading=True)
             return cls(newspaper_instance).data
         except Newspaper.DoesNotExist:
             return None

@@ -73,6 +73,7 @@ class Newspaper(models.Model):
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     user_newspaper = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_currently_reading = models.BooleanField(default=False)
 
     class Meta:
         db_table = "newspaper"
