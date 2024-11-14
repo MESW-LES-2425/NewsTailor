@@ -8,14 +8,18 @@ const useProfileForm = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [wpm, setWpm] = useState(0);
+    const [wpmString, setWpmString] = useState('');
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
                 const response = await api.get(`/api/user/${userId}/`);
-                const {username, email} = response.data;
+                const {username, email, wpm} = response.data;
                 setUsername(username);
                 setEmail(email);
+                setWpm(wpm);
+                setWpmString(wpm === '200' ? 'Slow ' : wpm === '250' ? 'Average ' : 'Fast ');
             } catch (error) {
                 if (axios.isAxiosError(error) && error.response) {
                     console.error(error.response.data);
@@ -38,13 +42,16 @@ const useProfileForm = () => {
             setUsername(value);
         } else if (name === 'email') {
             setEmail(value);
+        } else if (name === 'wpm') {
+            setWpm(parseInt(value));
+            setWpmString(value === '200' ? 'Slow ' : value === '250' ? 'Average ' : 'Fast ');
         }
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await api.put(`/api/user/update/${userId}/`, {username, email});
+            const response = await api.put(`/api/user/update/${userId}/`, {username, email, wpm});
             setIsEditing(false);
             console.log("User data updated successfully!", response.data);
         } catch (error) {
@@ -61,6 +68,8 @@ const useProfileForm = () => {
         isEditing,
         username,
         email,
+        wpm,
+        wpmString,
         handleEditClick,
         handleInputChange,
         handleSubmit,
