@@ -1,0 +1,31 @@
+.home-about-button{
+    background-color: #f8f9fa;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-about-button:hover{
+    background-color: #000;
+    color: #f8f9fa;
+}
+
+.home-faq-button{
+    background-color: #f8f9fa;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-faq-button:hover{
+    background-color: #000;
+    color: #f8f9fa;
+}
