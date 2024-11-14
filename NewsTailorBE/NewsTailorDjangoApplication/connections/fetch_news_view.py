@@ -6,6 +6,7 @@ from rest_framework import status
 from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
 from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, \
     obtain_news_from_new_york_times
+from NewsTailorDjangoApplication.serializers.newspaper_serializers import NewsPaperSerializer
 
 
 class FetchNewsView(APIView):
@@ -17,6 +18,7 @@ class FetchNewsView(APIView):
         category = data.get("category")
         language = data.get("language")
         sources = data.get("sources")  # This parameter is expecting a list of sources - will explode if it is not
+        userid = data.get("userid")
 
         if not all([category, language, sources]):
             return Response({"error": "Missing Category, Language, or Sources in the request."},
@@ -40,5 +42,7 @@ class FetchNewsView(APIView):
             else:
                 return Response({"error": f"Invalid source specified: {source}"},
                                 status=status.HTTP_400_BAD_REQUEST)
+
+        NewsPaperSerializer.create_news_paper(aggregated_response, userid)
 
         return Response(aggregated_response, status=status.HTTP_200_OK)

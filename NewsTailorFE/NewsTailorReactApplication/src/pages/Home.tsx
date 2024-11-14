@@ -1,14 +1,14 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Sidebar from '../components/contentPage/Sidebar';
 import NewsGeneration from '../components/contentPage/NewsGeneration';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import api from "../api";
 import Header from '../components/landingPage/Header';
+import { useParams } from "react-router-dom";
 
 function Home() {
     const navigate = useNavigate();
-    const location = useLocation();
-    const userId = location.state ? location.state.userId : null;
+    const { userId } = useParams<{ userId: string }>();
 
     const handleLogout = async () => {
         try {
@@ -35,14 +35,14 @@ function Home() {
     };
 
     const handleFaq = () => {
-      navigate('/faq')
+        navigate('/faq')
     };
 
     return (
         <div>
             <Header />
             <Sidebar userId={userId} />
-            <NewsGeneration />
+            <NewsGeneration userId={userId} />
             <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
             <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
             <button className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>

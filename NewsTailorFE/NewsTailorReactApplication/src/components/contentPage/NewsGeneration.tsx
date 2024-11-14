@@ -4,10 +4,28 @@ import api from '../../api';
 import SourceSelectionComponent from './SourceSelectionComponent';
 import NewsPresentation from './NewsPresentation';
 
-const NewsGeneration: React.FC = () => {
+interface NewsProperties {
+    userId?: string | undefined
+}
+
+
+const NewsGeneration: React.FC<NewsProperties> = ({ userId }) => {
     const [news, setNews] = useState<string | null>(null);
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
     const [contentGenerated, setContentGenerated] = useState(false);
+
+    const checkIfNewsExists = async () => {
+        try {
+            const response = await api.post(`api/check-news/${userId}/`);
+            if (response.data.exists) {
+                setNews(response.data.news);
+                setContentGenerated(true);
+            }
+        } catch (error) {
+            console.error("Error checking news existence. Please check your database connection.", error);
+        }
+    };
+
 
     const fetchNews = async () => {
         try {
@@ -16,6 +34,7 @@ const NewsGeneration: React.FC = () => {
                 category: 'technology',
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
+                userid: userId,
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,6 +52,9 @@ const NewsGeneration: React.FC = () => {
     const handleSourceChange = (sources: { label: string, value: string }[]) => {
         setSelectedSources(sources);
     };
+
+
+    checkIfNewsExists();
 
     // With this we can replace the news generation component by the component for reading the news.
     if (contentGenerated && news) {
