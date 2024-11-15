@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/setup/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/setup/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/AuthRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/AuthRoute.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/ProtectedRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/ProtectedRoute.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/utils/authUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/utils/authUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/loginForm/useLoginForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/loginForm/useLoginForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +65,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Jest.LoginForm.submits form with invalid email, catches errors, and displays error message">
+  <component name="RunManager" selected="Jest.LoginForm">
     <configuration name="LoginForm" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
@@ -136,10 +131,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.LoginForm" />
         <item itemvalue="Jest.LoginForm.submits form with invalid email, catches errors, and displays error message" />
         <item itemvalue="Jest.LoginForm.submits form with invalid credentials, catches errors, and displays error message" />
         <item itemvalue="Jest.LoginForm.submits form, logs in, retrieves tokens, and navigates" />
-        <item itemvalue="Jest.LoginForm" />
         <item itemvalue="Jest.useRegisterForm Hook" />
       </list>
     </recent_temporary>
@@ -166,7 +161,7 @@
       <workItem from="1731448272928" duration="6577000" />
       <workItem from="1731498413191" duration="8656000" />
       <workItem from="1731508374483" duration="19517000" />
-      <workItem from="1731661153322" duration="6949000" />
+      <workItem from="1731661153322" duration="8134000" />
     </task>
     <servers />
   </component>

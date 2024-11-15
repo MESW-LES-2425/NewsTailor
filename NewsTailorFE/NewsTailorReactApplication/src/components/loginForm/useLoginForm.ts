@@ -44,7 +44,7 @@ const useLoginForm = () => {
             const userId = loginResponse.data.id;
             localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
             localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
-            navigate("/", {state: {userId}});
+            navigate(`/${userId}`, { state: { userId } });
         } catch (error) {
 
             if (axios.isAxiosError(error) && error.response) {
