@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./contentTable.css";
 import api from '../../api';
 import SourceSelectionComponent from './SourceSelectionComponent';
+import DateSelectionComponent from './DateSelectionComponent';
 
 interface NewsProperties {
     userId?: string | undefined;
@@ -10,6 +11,7 @@ interface NewsProperties {
 
 const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -21,14 +23,19 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
                 category: 'technology',
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
+                timeline: selectedDate,
                 userid: userId,
             }, {
                 headers: { 'Content-Type': 'application/json' },
             });
-            if (onGenerate) onGenerate(response.data);
+
+            if (onGenerate) {
+                onGenerate(response.data);
+            }
 
             // This is a hack that has to be fixed
             window.location.reload();
+
         } catch (error) {
             setError('Error generating news.');
             console.error('Error fetching news:', error);
@@ -41,6 +48,10 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
         setSelectedSources(sources);
     };
 
+    const handleDateChange = (date: string | null) => {
+        setSelectedDate(date);
+    };
+
     return (
         <div className="content-table">
             <h1>Customize your newspaper</h1>
@@ -50,7 +61,12 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
             ) : (
                 <>
                     <SourceSelectionComponent onSourceChange={handleSourceChange} />
-                    <button className="blue-circle-button" onClick={fetchNews} disabled={loading}>
+                    <DateSelectionComponent onDateChange={handleDateChange} />
+                    <button
+                        className="blue-circle-button"
+                        onClick={fetchNews}
+                        disabled={loading || !selectedDate}
+                    >
                         {loading ? 'Generating...' : 'Generate'}
                     </button>
                 </>

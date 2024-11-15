@@ -12,7 +12,7 @@ guardian_api_key = os.getenv("GUARDIAN_API_KEY")
 new_york_times_api_key = os.getenv("NEW_YORK_TIMES_API_KEY")
 
 
-def obtain_news_from_news_api(category: str, user_language: str) -> requests:
+def obtain_news_from_news_api(category: str, user_language: str, timeline: str) -> requests:
     """Generic method to obtain news from news_api provider. Category and language should be provided via request."""
     params = {
         "category": category,
