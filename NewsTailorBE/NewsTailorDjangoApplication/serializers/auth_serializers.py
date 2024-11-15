@@ -77,10 +77,15 @@ class UserLoginSerializer(serializers.Serializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('username', 'email', 'wpm')
 
     def get(self, instance):
         return instance
 
     def update(self, instance, validated_data):
         return super().update(instance, validated_data)
+
+    def validate_email(self, value):
+        if '@' not in value:
+            raise serializers.ValidationError("Enter a valid email address.")
+        return value

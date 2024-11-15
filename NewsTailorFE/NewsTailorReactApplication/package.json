@@ -54,7 +54,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/setup-test.ts"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-test.ts"
+    ],
     "moduleNameMapper": {
       "\\.(css|less|scss|sass)$": "identity-obj-proxy",
       "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js"
@@ -80,7 +82,9 @@
         "ts-jest",
         {
           "diagnostics": {
-            "ignoreCodes": [1343]
+            "ignoreCodes": [
+              1343
+            ]
           },
           "astTransformers": {
             "before": [

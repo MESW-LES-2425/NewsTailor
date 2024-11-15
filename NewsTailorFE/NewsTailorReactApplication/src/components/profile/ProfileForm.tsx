@@ -10,6 +10,8 @@ function ProfileForm() {
         isEditing,
         username,
         email,
+        wpm,
+        wpmString,
         handleEditClick,
         handleInputChange,
         handleSubmit,
@@ -22,8 +24,8 @@ function ProfileForm() {
             <div className="container">
                 <h1 className="header">User Profile</h1>
                 <div className="card">
-                    <form onSubmit={handleSubmit}>
-                        <button type="button" onClick={handleEditClick}>
+                    <form role="form" onSubmit={handleSubmit}>
+                        <button type="button" onClick={handleEditClick} aria-label="edit">
                             <MdEdit className="icon" />
                         </button>
                         <div className="form-field">
@@ -54,8 +56,27 @@ function ProfileForm() {
                                 <p>{email || 'Enter your email'}</p>
                             )}
                         </div>
+                        <div className="form-field">
+                            <label htmlFor={"wpm"}>Words per minute:</label>
+                            {isEditing ? (
+                                <>
+                                    <select
+                                        id="wpm"
+                                        name="wpm"
+                                        value={wpm}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="300">Fast (300wpm)</option>
+                                        <option value="250">Average (250wpm)</option>
+                                        <option value="200">Slow (200wpm)</option>
+                                    </select>
+                                </>
+                            ) : (
+                                <p>{wpmString + "(" + wpm + "wpm)" || 'Enter your wpm'}</p>
+                            )}
+                        </div>
 
-                        {isEditing && <button type="submit">Update</button>}
+                        {isEditing && <button type="submit" className='blue-circle-button-submit'>Update</button>}
                     </form>
                 </div>
             </div>

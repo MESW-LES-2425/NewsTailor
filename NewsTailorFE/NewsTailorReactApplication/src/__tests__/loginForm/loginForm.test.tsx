@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
-import {render, renderHook, screen, waitFor} from "@testing-library/react";
+import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import LoginForm from "../../components/loginForm/LoginForm.tsx";
-import {MemoryRouter, useNavigate} from "react-router-dom";
-import UserEvent, {userEvent} from "@testing-library/user-event";
+import { MemoryRouter, useNavigate } from "react-router-dom";
+import UserEvent, { userEvent } from "@testing-library/user-event";
 import api from "../../api.ts";
-import {ACCESS_TOKEN, REFRESH_TOKEN} from "../../constants.ts";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants.ts";
 import useLoginForm from "../../components/loginForm/useLoginForm.ts";
 
 jest.mock("../../api.ts");
@@ -96,7 +96,7 @@ describe('LoginForm', () => {
             expect(localStorage.setItem).toHaveBeenCalledWith(ACCESS_TOKEN, "access_token");
             expect(localStorage.setItem).toHaveBeenCalledWith(REFRESH_TOKEN, "refresh_token");
 
-            expect(navigate).toHaveBeenCalledWith("/", { state: { userId: 1 } });
+            expect(navigate).toHaveBeenCalledWith(`/${1}`, { state: { userId: 1 } });
         });
     });
 
