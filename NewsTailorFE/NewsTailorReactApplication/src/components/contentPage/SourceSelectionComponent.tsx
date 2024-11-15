@@ -65,7 +65,7 @@ const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChan
                             onClick={() => handleRemoveSource(source.value)}
                             className="remove-source-btn"
                         >
-                            &times;
+                            X
                         </button>
                     </div>
                 ))}

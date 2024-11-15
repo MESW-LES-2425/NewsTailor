@@ -63,7 +63,7 @@ const TopicSelectionComponent: React.FC<TopicSelectionProps> = ({ onTopicChange 
                             onClick={() => handleRemoveTopics(topic.value)}
                             className="remove-source-btn"
                         >
-                            &times;
+                            X
                         </button>
                     </div>
                 ))}
