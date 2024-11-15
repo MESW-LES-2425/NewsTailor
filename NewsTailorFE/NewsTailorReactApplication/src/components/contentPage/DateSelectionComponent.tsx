@@ -13,6 +13,7 @@ const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) 
     const [selectedDate, setSelectedDate] = useState<DateOption | null>(null);
 
     const dateOptions: DateOption[] = [
+        { label: "Last Day", value: "24" },
         { label: "Last 3 days", value: "72" },
         { label: "Last Week", value: "168" },
         { label: "Last Month", value: "720" },
@@ -21,11 +22,6 @@ const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) 
     const handleDateSelection = (date: DateOption) => {
         setSelectedDate(date);
         onDateChange(date.value); // Pass ISO string
-    };
-
-    const handleRemoveDate = () => {
-        setSelectedDate(null);
-        onDateChange(null); // Notify parent
     };
 
     return (

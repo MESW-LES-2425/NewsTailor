@@ -23,7 +23,7 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
                 category: 'technology',
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
-                date: selectedDate,
+                timeline: selectedDate,
                 userid: userId,
             }, {
                 headers: { 'Content-Type': 'application/json' },

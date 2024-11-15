@@ -17,8 +17,9 @@ class FetchNewsView(APIView):
         data = request.data
         category = data.get("category")
         language = data.get("language")
-        sources = data.get("sources")  # This parameter is expecting a list of sources - will explode if it is not
+        sources = data.get("sources")
         userid = data.get("userid")
+        timeline = data.get("timeline")
 
         if not all([category, language, sources]):
             return Response({"error": "Missing Category, Language, or Sources in the request."},
@@ -32,13 +33,13 @@ class FetchNewsView(APIView):
 
         for source in sources:
             if source == "news_api":
-                aggregated_response["news_api"] = obtain_news_from_news_api(category, language)
+                aggregated_response["news_api"] = obtain_news_from_news_api(category, language, timeline)
             elif source == "guardian":
                 aggregated_response["guardian"] = obtain_news_from_guardian_api(category)
             elif source == "nyt":
                 aggregated_response["nyt"] = obtain_news_from_new_york_times()
             elif source == "dev_to":
-                aggregated_response["dev_to"] = obtain_news_from_dev_to(category)
+                aggregated_response["dev_to"] = obtain_news_from_dev_to(category, timeline)
             else:
                 return Response({"error": f"Invalid source specified: {source}"},
                                 status=status.HTTP_400_BAD_REQUEST)
