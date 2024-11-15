@@ -6,7 +6,7 @@ interface DateOption {
 }
 
 interface DateSelectionProps {
-    onDateChange: (date: string | null) => void; // Pass ISO string or null
+    onDateChange: (date: string | null) => void;
 }
 
 const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) => {
@@ -17,11 +17,11 @@ const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) 
         { label: "Last 3 days", value: "72" },
         { label: "Last Week", value: "168" },
         { label: "Last Month", value: "720" },
-    ];
+    ]
 
     const handleDateSelection = (date: DateOption) => {
         setSelectedDate(date);
-        onDateChange(date.value); // Pass ISO string
+        onDateChange(date.value);
     };
 
     return (
