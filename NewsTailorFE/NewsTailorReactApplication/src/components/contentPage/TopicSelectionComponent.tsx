@@ -13,29 +13,43 @@ interface TopicSelectionProps {
 
 const TopicSelectionComponent: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
     const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);
+    const [dropdownValue, setDropdownValue] = useState<string>("");
 
     // Add more options as we go along.
     const topicOptions = [
         { label: "Economy", value: "economy" },
         { label: "Politics", value: "politics" },
         { label: "Technology", value: "technology" },
-        { label: "Artificial Intelligence", value: "ai" }
+        { label: "Artificial Intelligence", value: "ai" },
+        { label: "Criptocurrency", value: "cryptocurrency" }
     ];
 
     const toggleTopicSelection = (topic: Topic) => {
-        const isAlreadySelected = selectedTopics.some(selected => selected.value == topic.value);
+        const isAlreadySelected = selectedTopics.some(selected => selected.value === topic.value);
 
         const updatedTopics = isAlreadySelected
-            ? selectedTopics.filter(selected => selected.value != topic.value)
+            ? selectedTopics.filter(selected => selected.value !== topic.value)
             : [...selectedTopics, topic];
         setSelectedTopics(updatedTopics);
         onTopicChange(updatedTopics);
     };
 
     const handleRemoveTopics = (value: string) => {
-        const updatedTopics = selectedTopics.filter(topic => topic.value != value);
+        const updatedTopics = selectedTopics.filter(topic => topic.value !== value);
         setSelectedTopics(updatedTopics);
         onTopicChange(updatedTopics);
+    };
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = e.target.value;
+        const selectedTopic = topicOptions.find(option => option.value === selectedValue);
+
+        if (selectedTopic) {
+            toggleTopicSelection(selectedTopic);
+        }
+
+        // Reset the dropdown value to keep "Category" displayed
+        setDropdownValue("");
     };
 
     return (
@@ -56,12 +70,8 @@ const TopicSelectionComponent: React.FC<TopicSelectionProps> = ({ onTopicChange 
             </div>
 
             <select
-                onChange={(e) => {
-                    const selectedValue = e.target.value;
-                    const selectedTopic = topicOptions.find(option => option.value == selectedValue);
-                    if (selectedTopic) toggleTopicSelection(selectedTopic);
-                    e.target.value = "";
-                }}
+                value={dropdownValue}
+                onChange={handleSelectChange}
                 className="source-select"
             >
                 <option value="" disabled>
