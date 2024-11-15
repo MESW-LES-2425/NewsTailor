@@ -1,6 +1,6 @@
 import React from 'react';
-import {MdHome, MdDescription, MdBookmark, MdPerson} from 'react-icons/md';
-import {Link} from 'react-router-dom';
+import { MdHome, MdDescription, MdBookmark, MdPerson } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import "./sidebar.css";
 
 
@@ -9,24 +9,24 @@ interface SidebarProps {
     userId?: string | undefined
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId}) => {
+const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
     return (
         <aside className="sidebar">
             <nav className="nav">
-                <Link className="navItem" to="/" state={{userId }}>
-                    <MdHome className="icon"/>
+                <Link className="navItem" to={`/${userId}`} state={{ userId }}>
+                    <MdHome className="icon" />
                     Home
                 </Link>
-                <Link className="navItem" to="/newspapers">
-                    <MdDescription className="icon"/>
+                <Link className="navItem" to={`/${userId}`}>
+                    <MdDescription className="icon" />
                     Your Newspapers
                 </Link>
                 <Link className="navItem" to="/templates">
-                    <MdBookmark className="icon"/>
+                    <MdBookmark className="icon" />
                     Templates
                 </Link>
                 <Link className="navItem" to={`/profile/${userId}`}>
-                    <MdPerson className="icon"/>
+                    <MdPerson className="icon" />
                     Profile
                 </Link>
             </nav>
