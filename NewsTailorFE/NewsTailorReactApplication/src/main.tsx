@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import Auth from "./components/auth/Auth"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import AuthRoute from "./components/AuthRoute.tsx";
 import AboutPage from './pages/AboutPage'
 import './index.css'
 import ProfileForm from "./components/profile/ProfileForm.tsx";
@@ -23,14 +24,12 @@ function App() {
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/landingPage" element={<LandingPage />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/" element={<Auth />} />
-                <Route path="/register" element={<Auth />} />
-                <Route path="/login" element={<Auth />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>}/>
                 <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/404" element={<NotFound />}></Route>
-                <Route path="/profile/:userId" element={<ProfileForm />} />
+                <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>

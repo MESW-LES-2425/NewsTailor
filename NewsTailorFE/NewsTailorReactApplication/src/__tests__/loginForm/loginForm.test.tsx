@@ -77,8 +77,7 @@ describe('LoginForm', () => {
 
     test("submits form, logs in, retrieves tokens, and navigates", async () => {
         mockedApi.post
-            .mockResolvedValueOnce({ data: { id: 1 } })
-            .mockResolvedValueOnce({ data: { access: "access_token", refresh: "refresh_token" } });
+            .mockResolvedValueOnce({ data: { id: 1 , tokens:{access:"access_token", refresh:"refresh_token" }} })
 
         const emailInput = screen.getByPlaceholderText(/email/i);
         const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -90,11 +89,6 @@ describe('LoginForm', () => {
 
         await waitFor(() => {
             expect(api.post).toHaveBeenNthCalledWith(1, "/api/login/", {
-                email: "test@example.com",
-                password: "password123",
-            });
-
-            expect(api.post).toHaveBeenNthCalledWith(2, "/api/token/", {
                 email: "test@example.com",
                 password: "password123",
             });

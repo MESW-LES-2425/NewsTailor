@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Sidebar from '../components/contentPage/Sidebar';
 import NewsGeneration from '../components/contentPage/NewsGeneration';
-import NewsPresentation from '../components/contentPage/NewsPresentation';
+import api from "../api";
 import Header from '../components/landingPage/Header';
+import {checkAuthStatus, clearAuthTokens} from "../utils/authUtils.ts";
+import NewsPresentation from '../components/contentPage/NewsPresentation';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import api from "../api";
-import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
+import { REFRESH_TOKEN} from "../constants";
 
 interface NewsType {
     content?: string;
@@ -45,16 +46,16 @@ function Home() {
     };
 
     const handleLogout = async () => {
-        try {
+        const route = "/api/logout/";
+        const isAuthenticated = await checkAuthStatus();
+        if(isAuthenticated){
             const refreshToken = localStorage.getItem(REFRESH_TOKEN);
-            if (refreshToken) {
-                await api.post("/api/logout/", { "refresh": refreshToken });
-                localStorage.removeItem(REFRESH_TOKEN);
-                localStorage.removeItem(ACCESS_TOKEN);
-                navigate("/landingPage");
-            }
-        } catch (error) {
-            console.log("Failed logout:", error);
+            await api.post(route, { "refresh": refreshToken });
+            clearAuthTokens();
+            navigate("/landingPage");
+        } else {
+            clearAuthTokens();
+            navigate("/landingPage");
         }
     };
 
