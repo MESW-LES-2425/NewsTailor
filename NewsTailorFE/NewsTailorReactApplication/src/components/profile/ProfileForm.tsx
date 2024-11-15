@@ -72,11 +72,11 @@ function ProfileForm() {
                                     </select>
                                 </>
                             ) : (
-                                <p>{wpmString +"(" + wpm + "wpm)" || 'Enter your wpm'}</p>
+                                <p>{wpmString + "(" + wpm + "wpm)" || 'Enter your wpm'}</p>
                             )}
                         </div>
 
-                        {isEditing && <button type="submit" >Update</button>}
+                        {isEditing && <button type="submit" className='blue-circle-button-submit'>Update</button>}
                     </form>
                 </div>
             </div>
