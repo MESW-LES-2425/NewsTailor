@@ -31,11 +31,11 @@ jobs:
       working-directory: NewsTailorFE/NewsTailorReactApplication
       run: |
         docker build -t newstailor_fe .
-        
+
     - name: Build Docker Image BE
       working-directory: NewsTailorBE
       run: |
-        docker build -t newstailor_be .    
+        docker build -t newstailor_be .
 
     - name: Build and Start Docker Containers
       run: |
@@ -46,6 +46,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install coverage
 
     - name: Run Tests
       working-directory: NewsTailorBE
@@ -61,7 +62,8 @@ jobs:
         NEW_YORK_TIMES_API_KEY: ${{ secrets.NEW_YORK_TIMES_API_KEY }}
         NUMBER_OF_NEWS_ARTICLES: ${{ secrets.NUMBER_OF_NEWS_ARTICLES }}
       run: |
-        python manage.py test
+        coverage run manage.py test
+        coverage report -m
 
     - name: Shut down Docker containers
       run: |
