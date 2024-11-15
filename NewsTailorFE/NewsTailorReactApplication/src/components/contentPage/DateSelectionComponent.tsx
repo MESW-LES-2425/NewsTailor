@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './configuration.css';
 
 interface DateOption {
     label: string;

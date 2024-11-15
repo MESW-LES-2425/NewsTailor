@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './sourceSelection.css';
+import './configuration.css';
 
 interface Source {
     label: string;
