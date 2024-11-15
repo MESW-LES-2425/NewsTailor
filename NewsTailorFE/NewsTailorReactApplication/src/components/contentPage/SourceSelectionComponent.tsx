@@ -43,6 +43,7 @@ const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChan
 
     return (
         <div className="source-selection">
+            <h3>News Sources</h3>
             <div className="selected-sources">
                 {selectedSources.map((source) => (
                     <div key={source.value} className="source-tag">
