@@ -10,6 +10,8 @@ function ProfileForm() {
         isEditing,
         username,
         email,
+        wpm,
+        wpmString,
         handleEditClick,
         handleInputChange,
         handleSubmit,
@@ -54,8 +56,27 @@ function ProfileForm() {
                                 <p>{email || 'Enter your email'}</p>
                             )}
                         </div>
+                        <div className="form-field">
+                            <label htmlFor={"wpm"}>Words per minute:</label>
+                            {isEditing ? (
+                                <>
+                                    <select
+                                        id="wpm"
+                                        name="wpm"
+                                        value={wpm}
+                                        onChange={handleInputChange}
+                                    >
+                                        <option value="300">Fast (300wpm)</option>
+                                        <option value="250">Average (250wpm)</option>
+                                        <option value="200">Slow (200wpm)</option>
+                                    </select>
+                                </>
+                            ) : (
+                                <p>{wpmString + "(" + wpm + "wpm)" || 'Enter your wpm'}</p>
+                            )}
+                        </div>
 
-                        {isEditing && <button type="submit" >Update</button>}
+                        {isEditing && <button type="submit" className='blue-circle-button-submit'>Update</button>}
                     </form>
                 </div>
             </div>

@@ -3,6 +3,7 @@ from .views import UserProfileView ,UserUpdateView
 from .connections.fetch_news_view import FetchNewsView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView, DeleteNewsPaperByIdView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView
+from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [

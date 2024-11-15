@@ -1,0 +1,31 @@
+name: Release
+
+on: 
+  pull_request_target:
+    types: [closed]
+    branches:
+      - Iteration_1
+      - Iteration_2
+      - Iteration_3
+      - Iteration_4
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install GitHub CLI
+        run: sudo apt-get install -y gh
+
+      - name: Extract iteration number
+        id: extract_iteration
+        run: echo "::set-output name=iteration::$(echo ${GITHUB_BASE_REF#Iteration_} | cut -d'_' -f2)"
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create v0.${{ steps.extract_iteration.outputs.iteration }} --title "Iteration ${{ steps.extract_iteration.outputs.iteration }}" --generate-notes

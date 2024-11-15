@@ -17,6 +17,8 @@ it('renders ProfileForm with user data', () => {
         handleEditClick: jest.fn(),
         handleInputChange: jest.fn(),
         handleSubmit: jest.fn(),
+        wpm: 100,
+        wpmString: "100",
     });
 
     render(
@@ -41,6 +43,8 @@ it('renders ProfileForm in editing mode', () => {
         handleEditClick: jest.fn(),
         handleInputChange: jest.fn(),
         handleSubmit: jest.fn(),
+        wpm: 100,
+        wpmString: "100",
     });
 
     render(
@@ -67,6 +71,8 @@ it('handles edit button click', () => {
         handleEditClick,
         handleInputChange: jest.fn(),
         handleSubmit: jest.fn(),
+        wpm: 100,
+        wpmString: "100",
     });
 
     render(
@@ -91,6 +97,8 @@ it('handles form submission', () => {
         handleEditClick: jest.fn(),
         handleInputChange: jest.fn(),
         handleSubmit,
+        wpm: 100,
+        wpmString: "100",
     });
 
     render(
