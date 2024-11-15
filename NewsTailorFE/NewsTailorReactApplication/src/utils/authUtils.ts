@@ -1,4 +1,3 @@
-
 import {jwtDecode} from "jwt-decode";
 import {ACCESS_TOKEN, REFRESH_TOKEN} from "../constants.ts";
 import api from "../api.ts";
@@ -25,13 +24,15 @@ export const refreshAuthToken = async (): Promise<string | null> => {
     }
 
     try {
-        const response = await api.post<{ access: string }>("/api/token/refresh/", {
+        const response = await api.post<{ access: string, refresh: string }>("/api/token/refresh/", {
             refresh: refreshToken,
         });
 
         if (response.status === 200) {
             const newAccessToken = response.data.access;
+            const newRefreshToken = response.data.refresh;
             localStorage.setItem(ACCESS_TOKEN, newAccessToken);
+            localStorage.setItem(REFRESH_TOKEN, newRefreshToken);
             return newAccessToken;
         }
         return null;
@@ -48,6 +49,26 @@ export const getAccessToken = (): string | null => {
 export const clearAuthTokens = (): void => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
+};
+
+export const checkAuthStatus = async (): Promise<boolean> => {
+    const accessToken = getAccessToken();
+
+    if (accessToken && !isTokenExpired(accessToken)) {
+        return true;
+    }
+
+    if (accessToken && isTokenExpired(accessToken)) {
+        const newAccessToken = await refreshAuthToken();
+        if (newAccessToken) {
+            return true;
+        } else {
+            clearAuthTokens();
+            return false;
+        }
+    }
+
+    return false;
 };
 
 

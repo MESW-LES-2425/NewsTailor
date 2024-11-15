@@ -4,7 +4,7 @@ import NewsGeneration from '../components/contentPage/NewsGeneration';
 import { REFRESH_TOKEN} from "../constants";
 import api from "../api";
 import Header from '../components/landingPage/Header';
-import {clearAuthTokens} from "../utils/authUtils.ts";
+import {checkAuthStatus, clearAuthTokens} from "../utils/authUtils.ts";
 
 function Home() {
     const navigate = useNavigate();
@@ -12,17 +12,16 @@ function Home() {
     const userId = location.state ? location.state.userId : null;
 
     const handleLogout = async () => {
-        try {
+        const route = "/api/logout/";
+        const isAuthenticated = await checkAuthStatus();
+        if(isAuthenticated){
             const refreshToken = localStorage.getItem(REFRESH_TOKEN);
-            const route = "/api/logout/";
-            if (refreshToken) {
-                clearAuthTokens();
-                await api.post(route, { "refresh": refreshToken });
-
-                navigate("/landingPage");
-            }
-        } catch (error) {
-            console.log("Failed logout! " + error);
+            await api.post(route, { "refresh": refreshToken });
+            clearAuthTokens();
+            navigate("/landingPage");
+        } else {
+            clearAuthTokens();
+            navigate("/landingPage");
         }
     };
 
