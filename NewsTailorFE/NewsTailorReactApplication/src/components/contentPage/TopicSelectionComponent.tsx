@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './configuration.css';
+import config from '../../appConfig.json';
 
 interface Topic {
     label: string;
@@ -15,14 +16,7 @@ const TopicSelectionComponent: React.FC<TopicSelectionProps> = ({ onTopicChange 
     const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);
     const [dropdownValue, setDropdownValue] = useState<string>("");
 
-    // Add more options as we go along.
-    const topicOptions = [
-        { label: "Economy", value: "economy" },
-        { label: "Politics", value: "politics" },
-        { label: "Technology", value: "technology" },
-        { label: "Artificial Intelligence", value: "ai" },
-        { label: "Criptocurrency", value: "cryptocurrency" }
-    ];
+    const topicOptions = config.topicOptions;
 
     const toggleTopicSelection = (topic: Topic) => {
         const isAlreadySelected = selectedTopics.some(selected => selected.value === topic.value);

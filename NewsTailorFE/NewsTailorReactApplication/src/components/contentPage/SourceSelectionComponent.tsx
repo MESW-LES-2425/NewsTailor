@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './configuration.css';
+import config from '../../appConfig.json';
 
 interface Source {
     label: string;
@@ -15,13 +16,7 @@ const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChan
     const [selectedSources, setSelectedSources] = useState<Source[]>([]);
     const [dropdownValue, setDropdownValue] = useState<string>("");
 
-    // Add more options as we go along.
-    const sourcesOptions = [
-        { label: "Guardian", value: "guardian" },
-        { label: "News API (Generic)", value: "news_api" },
-        { label: "Dev TO (Generic)", value: "dev_to" },
-        { label: "New York Times", value: "nyt" },
-    ];
+    const sourcesOptions = config.sourcesOptions;
 
     const toggleSourceSelection = (source: Source) => {
         const isAlreadySelected = selectedSources.some(selected => selected.value === source.value);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './configuration.css';
+import config from '../../appConfig.json';
 
 interface DateOption {
     label: string;
@@ -13,12 +14,7 @@ interface DateSelectionProps {
 const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) => {
     const [selectedDate, setSelectedDate] = useState<DateOption | null>(null);
 
-    const dateOptions: DateOption[] = [
-        { label: "Last Day", value: "24" },
-        { label: "Last 3 days", value: "72" },
-        { label: "Last Week", value: "168" },
-        { label: "Last Month", value: "720" },
-    ]
+    const dateOptions = config.dateOptions;
 
     const handleDateSelection = (date: DateOption) => {
         setSelectedDate(date);
