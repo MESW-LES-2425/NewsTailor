@@ -27,7 +27,7 @@ def obtain_news_from_dev_to(tag=None, timeline=None):
         for article in articles:
             article_content = obtain_news_content_from_devto_id(article)
             news_data.append(article_content)
-        return news_data[0].get("content") if news_data else "No articles found within the specified timeline."
+        return news_data if news_data else "No articles found within the specified timeline."
     else:
         return f"Failed to fetch articles. Status code: {response.status_code}"
 
