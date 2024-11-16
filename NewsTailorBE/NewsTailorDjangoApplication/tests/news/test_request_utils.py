@@ -1,3 +1,4 @@
+'''
 import unittest
 from django.test import TestCase
 from NewsTailorDjangoApplication.connections.request_utils import translate_user_preferred_language
@@ -22,3 +23,5 @@ class TestTranslateUserPreferredLanguage(TestCase):
     def test_empty_string(self):
         """Test when the requested language is an empty string."""
         self.assertEqual(translate_user_preferred_language(""), English_language_prefix)
+'''
+

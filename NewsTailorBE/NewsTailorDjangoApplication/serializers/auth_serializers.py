@@ -5,12 +5,10 @@ import re
 
 User = get_user_model()
 
-
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "password")
-
+        fields = ("id", "username", "email")
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
