@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework import status
 from rest_framework import generics
-from .serializers.auth_serializers import UserRegistrationSerializer, UserLoginSerializer, CustomUserSerializer, \
-    UserUpdateSerializer
+from .serializers.auth_serializers import *
+from .serializers.configuration_serializer import *
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
@@ -26,10 +26,11 @@ class UserLoginView(generics.GenericAPIView):
         user = serializer.validated_data
         serializer = CustomUserSerializer(user)
         token = RefreshToken.for_user(user)
+        access_token = token.access_token
         data = serializer.data
         data['tokens'] = {
             'refresh': str(token),
-            'access': str(token.access_token)
+            'access': str(access_token)
         }
         return Response(data, status=status.HTTP_200_OK)
 
@@ -70,3 +71,8 @@ class UserUpdateView(generics.UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+
+
+class CreateConfigurationView(generics.CreateAPIView):
+    serializer_class = ConfigurationSerializer
+    permission_classes = [IsAuthenticated]
