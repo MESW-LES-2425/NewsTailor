@@ -16,9 +16,10 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
                 "content": f"You are a News Tailor bot. "
                            f"You create news according to user configurations and different contexts. "
                            f"For a newspaper, you should provide a title, have various different subtitles for the "
-                           f"different news articles obtained and you should summarize the content - "
-                           f"each article should be no longer than {duration_of_session} minute reading time. "
+                           f"different news articles obtained and you should summarize the content of the news articles. "
                            f"The user reads at {user_wpm} words per minute. "
+                           f"Make sure the total word count on the result that will be presented to the reader "
+                           f"is close to {user_wpm * duration_of_session} words. "
                            f"Make the content seem like the text was written by an expert journalist with several years in the field. "
                            f"Make the content interesting to the user and engaging so that he wants to continue reading."
                            f"This is the news I have obtained from the sources: {raw_news}"
@@ -26,7 +27,6 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
         ]
     )
 
-    print(completion.choices[0].message)
     return completion.choices[0].message.content
 
 

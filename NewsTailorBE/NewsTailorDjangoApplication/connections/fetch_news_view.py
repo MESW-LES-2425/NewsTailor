@@ -44,7 +44,7 @@ class FetchNewsView(APIView):
                 aggregated_response["nyt"] = obtain_news_from_new_york_times()
             elif source == "dev_to":
                 aggregated_response["dev_to"] = summarize(obtain_news_from_dev_to(category, timeline),
-                                                          5,
+                                                          2,
                                                           wpm)
             else:
                 return Response({"error": f"Invalid source specified: {source}"},
