@@ -66,7 +66,6 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
     );
 
 };
-  
 
 function YourNewspapersPage() {
     const { userId, newspapers = [], setNewspapers } = userNewspapersForm();
