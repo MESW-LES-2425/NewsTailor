@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import api from '../../api';
 import "./contentTable.css";
+import { FaRegHeart, FaHeart, FaCheck} from "react-icons/fa";
+
 
 interface NewsPropertiesPresentation {
-    news?: { content?: string; title?: string; id?: string; userid?: string };
+    news?: { content?: string; title?: string; id?: string; userid?: string, is_saved?: boolean; };
     onConclude?: () => void;
 }
 
 const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclude }) => {
+
+    const [isSaved, setIsSaved] = useState(news?.is_saved || false); 
 
     const concludeReadingSession = async () => {
         if (!news?.id) {
@@ -33,6 +37,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             await api.post("api/save-newspaper/", { newspaperid: news.id }, {
                 headers: { 'Content-Type': 'application/json' },
             });
+            setIsSaved(true);
         } catch (error) {
             console.error('Error saving newspaper:', error);
         }
@@ -45,12 +50,22 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     <h2>Your Reading Session</h2>
                     {news?.title && <h3 className="news-title">{news.title}</h3>}
                     {news?.content && <p className="news-content">{news.content}</p>}
-                    <button className="SideButton" onClick={concludeReadingSession}>
-                        Conclude Reading Session
-                    </button>
-                    <button className="SaveNewsButton" onClick={saveNewspaper}>
-                        Save
-                    </button>   
+                    <div className="home-news-actions">
+                        <button className="conclude-reading-button" onClick={concludeReadingSession}>
+                            Conclude Reading Session  <FaCheck />
+                        </button>
+                        <button className="save-news-button" onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
+                            {isSaved ? (
+                                <>
+                                    Saved <FaHeart /> 
+                                </>
+                            ) : (
+                                <>
+                                    Save <FaRegHeart />
+                                </>
+                            )}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -99,3 +99,21 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         """
         newspapers = Newspaper.objects.filter(user_newspaper_id=user_id)
         return cls(newspapers, many=True).data
+    
+    @classmethod
+    def read_news_paper_by_id(cls, id):
+        """
+        Sets a Newspaper Instance's "is_currently_reading" value to True.
+        Raises an error if the instance does not exist.
+        """
+        try:
+            newspaper_instance = Newspaper.objects.get(id=id)
+        except Newspaper.DoesNotExist:
+            raise ValueError(f"Newspaper with id {id} does not exist.")
+        
+        if Newspaper.objects.filter(user_newspaper_id=newspaper_instance.user_newspaper_id, is_currently_reading=True).exclude(id=id).exists():
+            raise ValueError(f"Another newspaper is already being read by user with id {newspaper_instance.user_newspaper_id}.")
+
+        newspaper_instance.is_currently_reading = True
+        newspaper_instance.save()
+        return {"message": f"Newspaper with id {id} is now being read."}

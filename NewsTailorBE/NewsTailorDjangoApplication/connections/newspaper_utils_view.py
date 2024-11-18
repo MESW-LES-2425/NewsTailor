@@ -63,3 +63,14 @@ class ObtainUserNewsPapersView(APIView):
             return Response({'Newspapers': newspapers}, status=status.HTTP_200_OK)
         else:
             return Response({'Newspapers': []}, status=status.HTTP_200_OK)
+        
+class ReadNewsPaperByIdView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.read_news_paper_by_id(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)        

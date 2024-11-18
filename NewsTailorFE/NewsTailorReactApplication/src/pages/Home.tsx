@@ -14,6 +14,7 @@ interface NewsType {
     title?: string;
     id?: string;
     userid?: string;
+    is_saved?: boolean;
 }
 
 function Home() {

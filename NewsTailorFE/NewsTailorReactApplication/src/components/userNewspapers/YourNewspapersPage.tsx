@@ -3,10 +3,12 @@ import Header from '../landingPage/Header.tsx';
 import userNewspapersForm from "./userNewspapersForm.ts";
 import "./Newspapers.css";
 import api from '../../api';
+import { useNavigate } from "react-router-dom";
+import { FaArrowRightLong, FaRegTrashCan } from "react-icons/fa6";
 
 
 interface NewsPropertiesPresentation {
-    news?: { content?: string; title?: string; id?: string; userid?: string; created_at?: string; is_currently_reading?: boolean };
+    news?: { content?: string; title?: string; id?: string; created_at?: string; is_currently_reading?: boolean; is_saved?: boolean; user_newspaper?: string; };
     onDelete?: (id: string) => void;
 }
 
@@ -15,10 +17,26 @@ const truncateContent = (content: string, maxLength: number = 200) => {
 };
   
 const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete }) => {
-    const handleRead = () => {
-      console.log(`Reading news with ID: ${news?.id}`);
+
+    const navigate = useNavigate();
+
+    const handleRead = async () => {
+        if (!news?.id) {
+            console.error("News ID is missing.");
+            return;
+          }
+          try {
+            await api.post(
+              "api/start-reading-session/",
+              { newspaperid: news.id },
+              { headers: { "Content-Type": "application/json" } }
+            );
+            navigate(`/${news?.user_newspaper}`);
+          } catch (error) {
+            console.error("Error deleting news:", error);
+          }
     };
-  
+
     const handleDelete = async () => {
         if (!news?.id) {
           console.error("News ID is missing.");
@@ -30,7 +48,6 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
             { newspaperid: news.id },
             { headers: { "Content-Type": "application/json" } }
           );
-          console.log(`Deleted news with ID: ${news.id}`);
           if (onDelete) onDelete(news.id);
         } catch (error) {
           console.error("Error deleting news:", error);
@@ -38,9 +55,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
     };
   
     if (!news) return null;
-    
-    if (news.is_currently_reading) return null;
-    
+        
     return (
         <div className="news-item">
         {news.title && <h3 className="news-title">{news.title}</h3>}
@@ -56,10 +71,10 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
         )}
         <div className="news-actions">
             <button className="read-btn" onClick={handleRead}>
-            ➡ Read
+                <FaArrowRightLong /> Read
             </button>
             <button className="delete-btn" onClick={handleDelete}>
-            🗑 Delete
+                <FaRegTrashCan /> Delete
             </button>
         </div>
         </div>
@@ -74,7 +89,7 @@ function YourNewspapersPage() {
         setNewspapers((prev) => prev.filter((news) => news?.id !== id));
     };
 
-    const filteredNewspapers = newspapers.filter((news) => !news.is_currently_reading);
+    const filteredNewspapers = newspapers.filter((news) => ((!news.is_currently_reading && news.is_saved) || (news.is_currently_reading && news.is_saved)));
   
     return (
       <div>
@@ -82,9 +97,6 @@ function YourNewspapersPage() {
         <Header />
         <div className="your-newspapers-container">
           <h1 className="your-newspapers">Your Newspapers</h1>
-          {newspapers.length === 0 ? (
-            <p>No newspapers available.</p>
-          ) : (
             <div className="news-grid">
               {filteredNewspapers.map((news, index) => (
                 <div key={index} className="news-item-container">
@@ -92,7 +104,6 @@ function YourNewspapersPage() {
                 </div>
               ))}
             </div>
-          )}
         </div>
       </div>
     );

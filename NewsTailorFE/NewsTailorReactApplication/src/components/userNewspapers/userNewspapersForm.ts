@@ -10,6 +10,8 @@ interface NewsItem {
     userid?: string;
     created_at?: string;
     is_currently_reading?: boolean;
+    is_saved?: boolean;
+    user_newspaper?: string;
 }
 
 const userNewspapersForm = () => {
