@@ -25,6 +25,18 @@ class DeleteNewsPaperByIdView(APIView):
     def post(request):
         newspaper_id = request.data.get('newspaperid')
 
-        NewsPaperSerializer.delete_news_paper_by_id(newspaper_id)
+        NewsPaperSerializer.delete_news_paper_if_not_saved(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)
+
+class SaveNewsPaperByIdView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.save_news_paper_by_id(newspaper_id)
 
         return Response(status=status.HTTP_200_OK)

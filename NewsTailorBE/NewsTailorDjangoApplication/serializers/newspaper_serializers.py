@@ -23,7 +23,8 @@ class NewsPaperSerializer(serializers.ModelSerializer):
             "content": content["dev_to"],
             "created_at": datetime.now(),
             "user_newspaper": user_instance.id,
-            "is_currently_reading": True
+            "is_currently_reading": True,
+            "is_saved": False
         })
 
         if serializer.is_valid():
@@ -57,3 +58,35 @@ class NewsPaperSerializer(serializers.ModelSerializer):
             return {"message": f"Newspaper with id {id} has been deleted successfully."}
         except Newspaper.DoesNotExist:
             raise ValueError(f"Newspaper with id {id} does not exist.")
+        
+    @classmethod
+    def delete_news_paper_if_not_saved(cls, id):
+        """
+        Deletes a Newspaper instance by its newspaper if is_saved is False.
+        Raises an error if the instance does not exist.
+        """
+        try:
+            newspaper_instance = Newspaper.objects.get(id=id)
+        except Newspaper.DoesNotExist:
+            raise ValueError(f"Newspaper with id {id} does not exist.")
+
+        if newspaper_instance.is_saved:
+            newspaper_instance.is_currently_reading = False
+            newspaper_instance.save()  
+        else:
+            newspaper_instance.delete()  
+
+        
+    @classmethod
+    def save_news_paper_by_id(cls, id):
+        """
+        Sets a Newspaper Instance's "is_saved" value to True.
+        Raises an error if the instance does not exist.
+        """
+        try:
+            newspaper_instance = Newspaper.objects.get(id=id)
+        except Newspaper.DoesNotExist:
+            raise ValueError(f"Newspaper with id {id} does not exist.")
+
+        newspaper_instance.is_saved = True
+        newspaper_instance.save()

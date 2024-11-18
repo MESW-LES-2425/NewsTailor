@@ -24,6 +24,20 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
         }
     };
 
+    const saveNewspaper = async () => {
+        if (!news?.id) {
+            console.error('News ID is missing.');
+            return;
+        }
+        try {
+            await api.post("api/save-newspaper/", { newspaperid: news.id }, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } catch (error) {
+            console.error('Error saving newspaper:', error);
+        }
+    }
+
     return (
         <div className="content-table">
             <div className="news-container">
@@ -34,6 +48,9 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     <button className="SideButton" onClick={concludeReadingSession}>
                         Conclude Reading Session
                     </button>
+                    <button className="SaveNewsButton" onClick={saveNewspaper}>
+                        Save
+                    </button>   
                 </div>
             </div>
         </div>
