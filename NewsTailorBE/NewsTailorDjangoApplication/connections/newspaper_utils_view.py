@@ -25,6 +25,17 @@ class DeleteNewsPaperByIdView(APIView):
     def post(request):
         newspaper_id = request.data.get('newspaperid')
 
+        NewsPaperSerializer.delete_news_paper_by_id(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)
+
+class DeleteNewsPaperIfNotSavedView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        newspaper_id = request.data.get('newspaperid')
+
         NewsPaperSerializer.delete_news_paper_if_not_saved(newspaper_id)
 
         return Response(status=status.HTTP_200_OK)
@@ -48,7 +59,6 @@ class ObtainUserNewsPapersView(APIView):
     @staticmethod
     def get(request, user_id):
         newspapers = NewsPaperSerializer.get_user_newspapers(user_id)
-
         if newspapers:
             return Response({'Newspapers': newspapers}, status=status.HTTP_200_OK)
         else:

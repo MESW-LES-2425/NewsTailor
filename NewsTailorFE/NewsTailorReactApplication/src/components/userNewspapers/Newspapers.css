@@ -1,0 +1,95 @@
+/* Container for the entire section */
+.your-newspapers-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Title styling */
+  .your-newspapers {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #00264d;
+    font-size: 2rem;
+  }
+  
+  /* Grid container for news items */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Individual news item styling */
+  .news-item-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .news-item-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Styling for content inside news items */
+  .news-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #022B48;
+    margin-bottom: 10px;
+  }
+  
+  .news-content {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .news-date {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+/* Action buttons container */
+.news-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  /* Read Button */
+  .read-btn {
+    background-color: white;
+    color: #022B48;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  
+  /* Delete Button */
+  .delete-btn {
+    background-color: white;
+    color: #022B48;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+
+  
+  
