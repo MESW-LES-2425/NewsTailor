@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import UserProfileView ,UserUpdateView
 from .connections.fetch_news_view import FetchNewsView
-from .connections.newspaper_utils_view import ObtainNewsPaperByIdView, DeleteNewsPaperByIdView, SaveNewsPaperByIdView
+from .connections.newspaper_utils_view import ObtainNewsPaperByIdView, DeleteNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
@@ -16,5 +16,6 @@ urlpatterns = [
     path('fetch-news/', FetchNewsView.as_view(), name='fetch-news'),
     path('check-news/<int:user_id>/', ObtainNewsPaperByIdView.as_view(), name='check-news'),
     path('conclude-reading-session/', DeleteNewsPaperByIdView.as_view(), name='delete-newspaper'),
-    path('save-newspaper/', SaveNewsPaperByIdView.as_view(), name='save-newspaper')
+    path('save-newspaper/', SaveNewsPaperByIdView.as_view(), name='save-newspaper'),
+    path('newspapers/<int:user_id>/', ObtainUserNewsPapersView.as_view(), name='user-newspapers'),
 ]

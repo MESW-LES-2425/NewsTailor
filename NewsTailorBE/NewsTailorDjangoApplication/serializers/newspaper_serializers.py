@@ -91,3 +91,11 @@ class NewsPaperSerializer(serializers.ModelSerializer):
 
         newspaper_instance.is_saved = True
         newspaper_instance.save()
+
+    @classmethod
+    def get_user_newspapers(cls, user_id):
+        """
+        Returns a list of all newspapers for a given user ID.
+        """
+        newspapers = Newspaper.objects.filter(user_newspaper_id=user_id)
+        return cls(newspapers, many=True).data

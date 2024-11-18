@@ -40,3 +40,16 @@ class SaveNewsPaperByIdView(APIView):
         NewsPaperSerializer.save_news_paper_by_id(newspaper_id)
 
         return Response(status=status.HTTP_200_OK)
+    
+
+class ObtainUserNewsPapersView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def get(request, user_id):
+        newspapers = NewsPaperSerializer.get_user_newspapers(user_id)
+
+        if newspapers:
+            return Response({'Newspapers': newspapers}, status=status.HTTP_200_OK)
+        else:
+            return Response({'Newspapers': []}, status=status.HTTP_200_OK)
