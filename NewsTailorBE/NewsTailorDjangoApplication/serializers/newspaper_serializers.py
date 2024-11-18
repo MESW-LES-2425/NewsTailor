@@ -63,6 +63,7 @@ class NewsPaperSerializer(serializers.ModelSerializer):
     def delete_news_paper_if_not_saved(cls, id):
         """
         Deletes a Newspaper instance by its newspaper if is_saved is False.
+        Otherwise, sets the "is_currently_reading" value to False.
         Raises an error if the instance does not exist.
         """
         try:
