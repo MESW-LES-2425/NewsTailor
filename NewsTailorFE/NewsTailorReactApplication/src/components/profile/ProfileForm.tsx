@@ -3,6 +3,7 @@ import Header from '../landingPage/Header.tsx';
 import useProfileForm from './useProfileForm';
 import './Profile.css';
 import Sidebar from "../contentPage/Sidebar.tsx";
+import config from "../../appConfig.json";
 
 function ProfileForm() {
     const {
@@ -57,22 +58,22 @@ function ProfileForm() {
                             )}
                         </div>
                         <div className="form-field">
-                            <label htmlFor={"wpm"}>Words per minute:</label>
+                            <label htmlFor="wpm">Words per minute:</label>
                             {isEditing ? (
-                                <>
-                                    <select
-                                        id="wpm"
-                                        name="wpm"
-                                        value={wpm}
-                                        onChange={handleInputChange}
-                                    >
-                                        <option value="300">Fast (300wpm)</option>
-                                        <option value="250">Average (250wpm)</option>
-                                        <option value="200">Slow (200wpm)</option>
-                                    </select>
-                                </>
+                                <select
+                                    id="wpm"
+                                    name="wpm"
+                                    value={wpm}
+                                    onChange={handleInputChange}
+                                >
+                                    {config.readingSpeedOptions.map((option) => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label} ({option.value}wpm)
+                                        </option>
+                                    ))}
+                                </select>
                             ) : (
-                                <p>{wpmString + "(" + wpm + "wpm)" || 'Enter your wpm'}</p>
+                                <p>{wpmString + " (" + wpm + "wpm)" || 'Enter your wpm'}</p>
                             )}
                         </div>
 

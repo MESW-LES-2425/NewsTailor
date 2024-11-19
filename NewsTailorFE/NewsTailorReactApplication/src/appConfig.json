@@ -1,0 +1,26 @@
+{
+    "topicOptions": [
+        { "label": "Economy", "value": "economy" },
+        { "label": "Politics", "value": "politics" },
+        { "label": "Technology", "value": "technology" },
+        { "label": "Artificial Intelligence", "value": "ai" },
+        { "label": "Criptocurrency", "value": "cryptocurrency" }
+    ],
+    "sourcesOptions": [
+        { "label": "Guardian", "value": "guardian" },
+        { "label": "News API (Generic)", "value": "news_api" },
+        { "label": "Dev TO (Generic)", "value": "dev_to" },
+        { "label": "New York Times", "value": "nyt" }
+    ],
+    "readingSpeedOptions": [
+        { "label": "Fast", "value": 300 },
+        { "label": "Average", "value": 250 },
+        { "label": "Slow", "value": 200 }
+    ],
+    "dateOptions": [
+        { "label": "Last Day", "value": "24" },
+        { "label": "Last 3 days", "value": "72" },
+        { "label": "Last Week", "value": "168" },
+        { "label": "Last Month", "value": "720" }
+    ]
+}

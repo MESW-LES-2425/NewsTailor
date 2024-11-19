@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './sourceSelection.css';
+import './configuration.css';
+import config from '../../appConfig.json';
 
 interface Source {
     label: string;
@@ -13,21 +14,16 @@ interface SourceSelectionProps {
 
 const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChange }) => {
     const [selectedSources, setSelectedSources] = useState<Source[]>([]);
+    const [dropdownValue, setDropdownValue] = useState<string>("");
 
-    // Add more options as we go along.
-    const sourcesOptions = [
-        { label: "Guardian", value: "guardian" },
-        { label: "News API (Generic)", value: "news_api" },
-        { label: "Dev TO (Generic)", value: "dev_to" },
-        { label: "New York Times", value: "nyt" },
-    ];
+    const sourcesOptions = config.sourcesOptions;
 
     const toggleSourceSelection = (source: Source) => {
-        const isAlreadySelected = selectedSources.some(selected => selected.value == source.value);
+        const isAlreadySelected = selectedSources.some(selected => selected.value === source.value);
 
         // Check to see if the source is already selected by going over the selected sources and checking values.
         const updatedSources = isAlreadySelected
-            ? selectedSources.filter(selected => selected.value != source.value)
+            ? selectedSources.filter(selected => selected.value !== source.value)
             : [...selectedSources, source];
         // Update the selected sources and call the onSourceChange function to notify the NewsGeneration component.
         setSelectedSources(updatedSources);
@@ -35,10 +31,22 @@ const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChan
     };
 
     const handleRemoveSource = (value: string) => {
-        const updatedSources = selectedSources.filter(source => source.value != value);
+        const updatedSources = selectedSources.filter(source => source.value !== value);
         // Update the selected sources and call the onSourceChange function to notify the NewsGeneration component.
         setSelectedSources(updatedSources);
         onSourceChange(updatedSources);
+    };
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedValue = e.target.value;
+        const selectedSource = sourcesOptions.find(option => option.value === selectedValue);
+
+        if (selectedSource) {
+            toggleSourceSelection(selectedSource);
+        }
+
+        // Reset the dropdown value to keep "Sources" displayed
+        setDropdownValue("");
     };
 
     return (
@@ -52,19 +60,15 @@ const SourceSelectionComponent: React.FC<SourceSelectionProps> = ({ onSourceChan
                             onClick={() => handleRemoveSource(source.value)}
                             className="remove-source-btn"
                         >
-                            &times;
+                            X
                         </button>
                     </div>
                 ))}
             </div>
 
             <select
-                onChange={(e) => {
-                    const selectedValue = e.target.value;
-                    const selectedSource = sourcesOptions.find(option => option.value == selectedValue);
-                    if (selectedSource) toggleSourceSelection(selectedSource);
-                    e.target.value = "";
-                }}
+                value={dropdownValue}
+                onChange={handleSelectChange}
                 className="source-select"
             >
                 <option value="" disabled>

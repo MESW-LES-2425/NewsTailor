@@ -3,6 +3,7 @@ import "./contentTable.css";
 import api from '../../api';
 import SourceSelectionComponent from './SourceSelectionComponent';
 import DateSelectionComponent from './DateSelectionComponent';
+import TopicSelectionComponent from './TopicSelectionComponent';
 
 interface NewsProperties {
     userId?: string | undefined;
@@ -11,6 +12,7 @@ interface NewsProperties {
 
 const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
+    const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string }[]>([]);
     const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -20,7 +22,7 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
         setError(null);
         try {
             const response = await api.post("api/fetch-news/", {
-                category: 'technology',
+                categories: selectedTopics.map(topic => topic.value),
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
                 timeline: selectedDate,
@@ -52,6 +54,10 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
         setSelectedDate(date);
     };
 
+    const handleTopicChange = (topics: { label: string, value: string }[]) => {
+        setSelectedTopics(topics);
+    };
+
     return (
         <div className="content-table">
             <h1>Customize your newspaper</h1>
@@ -61,6 +67,7 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
             ) : (
                 <>
                     <SourceSelectionComponent onSourceChange={handleSourceChange} />
+                    <TopicSelectionComponent onTopicChange={handleTopicChange} />
                     <DateSelectionComponent onDateChange={handleDateChange} />
                     <button
                         className="blue-circle-button"
