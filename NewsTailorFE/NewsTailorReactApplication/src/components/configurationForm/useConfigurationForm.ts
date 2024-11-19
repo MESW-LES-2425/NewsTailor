@@ -37,7 +37,7 @@ const useConfigurationForm = () => {
 
         try {
             await api.post(route, formData);
-            navigate("/");
+            navigate("/${user.id}");
         } catch (error) {
             console.log(error);
         }
