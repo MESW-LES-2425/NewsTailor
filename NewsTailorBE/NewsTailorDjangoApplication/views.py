@@ -57,6 +57,10 @@ class UserProfileView(generics.RetrieveAPIView):
         except User.DoesNotExist:
             raise NotFound(detail="User not found", code=status.HTTP_404_NOT_FOUND)
 
+    def get_wpm(user_id):
+        user = User.objects.get(id=user_id)
+        return user.wpm
+
 class UserUpdateView(generics.UpdateAPIView):
     serializer_class = UserUpdateSerializer
     permission_classes = (IsAuthenticated,)

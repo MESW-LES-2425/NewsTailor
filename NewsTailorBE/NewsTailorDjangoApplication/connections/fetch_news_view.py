@@ -6,7 +6,9 @@ from rest_framework import status
 from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
 from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, \
     obtain_news_from_new_york_times
+from NewsTailorDjangoApplication.connections.summarizer_api import summarize
 from NewsTailorDjangoApplication.serializers.newspaper_serializers import NewsPaperSerializer
+from NewsTailorDjangoApplication.views import UserProfileView
 
 
 class FetchNewsView(APIView):
@@ -32,6 +34,8 @@ class FetchNewsView(APIView):
 
         aggregated_response = {}
 
+        wpm = UserProfileView.get_wpm(userid)
+
         for source in sources:
             if source == "news_api":
                 aggregated_response["news_api"] = obtain_news_from_news_api(categories, language, timeline)
@@ -40,7 +44,9 @@ class FetchNewsView(APIView):
             elif source == "nyt":
                 aggregated_response["nyt"] = obtain_news_from_new_york_times()
             elif source == "dev_to":
-                aggregated_response["dev_to"] = obtain_news_from_dev_to(categories, timeline)
+                aggregated_response["dev_to"] = summarize(obtain_news_from_dev_to(categories, timeline),
+                                                          2,
+                                                          wpm)
             else:
                 return Response({"error": f"Invalid source specified: {source}"},
                                 status=status.HTTP_400_BAD_REQUEST)

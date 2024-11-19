@@ -1,7 +1,8 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import api from '../../api';
 import "./contentTable.css";
-import { FaRegHeart, FaHeart, FaCheck} from "react-icons/fa";
+import { FaRegHeart, FaHeart, FaCheck } from "react-icons/fa";
+import MarkdownReader from "../../utils/MarkdownReader.tsx";
 
 
 export interface NewsPropertiesPresentation {
@@ -12,7 +13,7 @@ export interface NewsPropertiesPresentation {
 
 const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclude }) => {
 
-    const [isSaved, setIsSaved] = useState(news?.is_saved || false); 
+    const [isSaved, setIsSaved] = useState(news?.is_saved || false);
 
     const concludeReadingSession = async () => {
         if (!news?.id) {
@@ -53,7 +54,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                 <button className="save-news-button" onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
                     {isSaved ? (
                         <>
-                            Saved <FaHeart /> 
+                            Saved <FaHeart />
                         </>
                     ) : (
                         <>
@@ -67,7 +68,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     <div className="news-item">
                         <h2>Your Reading Session</h2>
                         {news?.title && <h3 className="news-title">{news.title}</h3>}
-                        {news?.content && <p className="news-content">{news.content}</p>}
+                        {news?.content && <MarkdownReader initialContent={news.content} />}
                     </div>
                 </div>
             </div>
