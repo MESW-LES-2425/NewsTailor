@@ -17,14 +17,48 @@ class ObtainNewsPaperByIdView(APIView):
         else:
             return Response({'exists': False}, status=status.HTTP_200_OK)
 
-
-class DeleteNewsPaperByIdView(APIView):
+class DeleteNewsPaperIfNotSavedView(APIView):
     permission_classes = [AllowAny]
 
     @staticmethod
     def post(request):
         newspaper_id = request.data.get('newspaperid')
 
-        NewsPaperSerializer.delete_news_paper_by_id(newspaper_id)
+        NewsPaperSerializer.delete_news_paper_if_not_saved(newspaper_id)
 
         return Response(status=status.HTTP_200_OK)
+
+class SaveNewsPaperByIdView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.save_news_paper_by_id(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)
+    
+
+class ObtainUserNewsPapersView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def get(request, user_id):
+        newspapers = NewsPaperSerializer.get_user_newspapers(user_id)
+        if newspapers:
+            return Response({'Newspapers': newspapers}, status=status.HTTP_200_OK)
+        else:
+            return Response({'Newspapers': []}, status=status.HTTP_200_OK)
+        
+class ReadNewsPaperByIdView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.read_news_paper_by_id(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)        
