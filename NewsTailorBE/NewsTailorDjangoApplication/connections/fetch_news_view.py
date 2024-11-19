@@ -16,6 +16,7 @@ class FetchNewsView(APIView):
 
     @staticmethod
     def post(request):
+
         data = request.data
         categories = data.get("categories")
         language = data.get("language")

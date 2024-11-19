@@ -11,6 +11,7 @@ import './index.css'
 import ProfileForm from "./components/profile/ProfileForm.tsx";
 import LandingPage from './pages/LandingPage.tsx'
 import FaqPage from './pages/FaqPage.tsx'
+import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
+                <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>

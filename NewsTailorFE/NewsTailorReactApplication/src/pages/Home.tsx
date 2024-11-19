@@ -9,11 +9,15 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { REFRESH_TOKEN} from "../constants";
 
-interface NewsType {
+export interface NewsType {
     content?: string;
     title?: string;
     id?: string;
     userid?: string;
+    created_at?: string;
+    is_currently_reading?: boolean;
+    is_saved?: boolean;
+    user_newspaper?: string;
 }
 
 function Home() {
