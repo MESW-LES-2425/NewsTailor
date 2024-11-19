@@ -17,18 +17,6 @@ class ObtainNewsPaperByIdView(APIView):
         else:
             return Response({'exists': False}, status=status.HTTP_200_OK)
 
-
-class DeleteNewsPaperByIdView(APIView):
-    permission_classes = [AllowAny]
-
-    @staticmethod
-    def post(request):
-        newspaper_id = request.data.get('newspaperid')
-
-        NewsPaperSerializer.delete_news_paper_by_id(newspaper_id)
-
-        return Response(status=status.HTTP_200_OK)
-
 class DeleteNewsPaperIfNotSavedView(APIView):
     permission_classes = [AllowAny]
 

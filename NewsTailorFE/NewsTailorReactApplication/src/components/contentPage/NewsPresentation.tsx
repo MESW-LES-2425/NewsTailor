@@ -20,7 +20,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             return;
         }
         try {
-            await api.post("api/conclude-reading-session/", { newspaperid: news.id }, {
+            await api.post("api/delete-newspaper/", { newspaperid: news.id }, {
                 headers: { 'Content-Type': 'application/json' },
             });
             if (onConclude) onConclude();
