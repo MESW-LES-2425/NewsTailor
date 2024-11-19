@@ -13,6 +13,7 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("user/<int:user_id>/", UserProfileView.as_view(), name="profile"),
     path("user/update/<int:id>/", UserUpdateView.as_view(), name='user-update'),
+    path("user/delete/<int:id>/", UserUpdateView.as_view(), name='user-delete'),
     path('fetch-news/', FetchNewsView.as_view(), name='fetch-news'),
     path('check-news/<int:user_id>/', ObtainNewsPaperByIdView.as_view(), name='check-news'),
     path('start-reading-session/', ReadNewsPaperByIdView.as_view(), name='save-newspaper'),

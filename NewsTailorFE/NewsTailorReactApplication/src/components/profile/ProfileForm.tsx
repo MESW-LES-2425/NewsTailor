@@ -16,6 +16,7 @@ function ProfileForm() {
         handleEditClick,
         handleInputChange,
         handleSubmit,
+        handleDeleteAccount,
     } = useProfileForm();
 
     return (
@@ -79,6 +80,11 @@ function ProfileForm() {
 
                         {isEditing && <button type="submit" className='blue-circle-button-submit'>Update</button>}
                     </form>
+                    <div className="delete-acc-container">
+                        <button type="button"  onClick={handleDeleteAccount} className="delete-acc-btn">
+                            Delete Account
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
