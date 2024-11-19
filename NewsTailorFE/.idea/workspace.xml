@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/ProfileForm/profileForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/ProfileForm/profileForm.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/registerForm/registerForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/registerForm/registerForm.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/DateSelectionComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/SourceSelectionComponent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/TopicSelectionComponent.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/readingTimeSelection/ReadingTimeSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/readingTimeSelection/ReadingTimeSelection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/sourceSelection/SourceSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/sourceSelection/SourceSelection.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/timelineSelection/TimelineSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/timelineSelection/TimelineSelection.tsx" afterDir="false" />
@@ -190,7 +190,7 @@
       <workItem from="1731498413191" duration="8656000" />
       <workItem from="1731508374483" duration="19517000" />
       <workItem from="1731661153322" duration="10499000" />
-      <workItem from="1731773585347" duration="64691000" />
+      <workItem from="1731773585347" duration="66099000" />
     </task>
     <servers />
   </component>

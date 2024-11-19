@@ -1,7 +1,6 @@
 import React from "react";
 import useSourceSelection from "./useSourceSelection.ts";
 import './sourceSelection.css'
-//import '../contentPage/configuration.css';
 
 interface Source {
     label: string;

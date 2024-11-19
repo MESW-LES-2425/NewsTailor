@@ -1,6 +1,5 @@
 import React from "react";
 import useReadingTimeSelection from "./useReadingTimeSelection";
-//import "../contentPage/configuration.css";
 import './readingTimeSelection.css';
 
 interface ReadingTimeSelectionProps {

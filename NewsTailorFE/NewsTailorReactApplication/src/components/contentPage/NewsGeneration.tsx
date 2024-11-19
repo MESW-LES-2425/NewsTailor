@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import "./contentTable.css";
 import api from '../../api';
-import SourceSelectionComponent from './SourceSelectionComponent';
-import DateSelectionComponent from './DateSelectionComponent';
-import TopicSelectionComponent from './TopicSelectionComponent';
+import SourceSelection from "../sourceSelection/SourceSelection.tsx";
+import TopicSelection from "../topicSelection/TopicSelection.tsx";
+import TimelineSelection from "../timelineSelection/TimelineSelection.tsx";
 
 interface NewsProperties {
     userId?: string | undefined;
@@ -66,9 +66,9 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
                 <div className="spinner"></div>
             ) : (
                 <>
-                    <SourceSelectionComponent onSourceChange={handleSourceChange} />
-                    <TopicSelectionComponent onTopicChange={handleTopicChange} />
-                    <DateSelectionComponent onDateChange={handleDateChange} />
+                    <SourceSelection onSourceChange={handleSourceChange}/>
+                    <TopicSelection onTopicChange={handleTopicChange}/>
+                    <TimelineSelection onDateChange={handleDateChange}/>
                     <button
                         className="blue-circle-button"
                         onClick={fetchNews}

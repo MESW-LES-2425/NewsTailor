@@ -1,7 +1,6 @@
 import React from "react";
 import useTopicSelection from "./useTopicSelection.ts";
 import './topicSelection.css'
-//import '../contentPage/configuration.css';
 
 interface Topic {
     label: string;
