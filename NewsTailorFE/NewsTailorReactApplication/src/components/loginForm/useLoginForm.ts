@@ -2,7 +2,8 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import api from "../../api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
+import {ACCESS_TOKEN, REFRESH_TOKEN, USER_INFO} from "../../constants";
+import {useUserContext} from "../../context/useUserContext.ts";
 
 interface FormData {
     email: string;
@@ -20,6 +21,7 @@ const useLoginForm = () => {
 
     const route = "/api/login/";
     const navigate = useNavigate();
+    const {setUser}= useUserContext();
 
     const toggleShowPassword = (show:boolean) => setShowPassword(show);
 
@@ -42,8 +44,18 @@ const useLoginForm = () => {
         try {
             const loginResponse = await api.post(route, formData);
             const userId = loginResponse.data.id;
+            const { id, username, email } = loginResponse.data;
+
             localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
             localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
+            localStorage.setItem(USER_INFO, JSON.stringify({ id, username, email }));
+
+            setUser({
+                id:id,
+                username:username,
+                email:email,
+            })
+
             navigate(`/${userId}`, { state: { userId } });
         } catch (error) {
 

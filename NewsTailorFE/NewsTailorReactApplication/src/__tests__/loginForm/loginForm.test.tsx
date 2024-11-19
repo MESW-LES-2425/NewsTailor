@@ -4,8 +4,9 @@ import LoginForm from "../../components/loginForm/LoginForm.tsx";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import UserEvent, { userEvent } from "@testing-library/user-event";
 import api from "../../api.ts";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants.ts";
+import {ACCESS_TOKEN, REFRESH_TOKEN, USER_INFO} from "../../constants.ts";
 import useLoginForm from "../../components/loginForm/useLoginForm.ts";
+import {UserProvider} from "../../context/UserContext.tsx";
 
 jest.mock("../../api.ts");
 
@@ -20,6 +21,7 @@ const localStorageMock = (() => {
         setItem: jest.fn((key, value) => {
             store[key] = value;
         }),
+        getItem: jest.fn((key) => store[key]),
     };
 })();
 
@@ -35,7 +37,9 @@ describe('LoginForm', () => {
         (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
             <MemoryRouter>
-                <LoginForm />
+                <UserProvider>
+                    <LoginForm />
+                </UserProvider>
             </MemoryRouter>
         );
     });
@@ -77,7 +81,8 @@ describe('LoginForm', () => {
 
     test("submits form, logs in, retrieves tokens, and navigates", async () => {
         mockedApi.post
-            .mockResolvedValueOnce({ data: { id: 1 , tokens:{access:"access_token", refresh:"refresh_token" }} })
+            .mockResolvedValueOnce({ data: { id: 1 , username:"test", email:"test@example.com",
+                    tokens:{access:"access_token", refresh:"refresh_token" }} })
 
         const emailInput = screen.getByPlaceholderText(/email/i);
         const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -95,6 +100,14 @@ describe('LoginForm', () => {
 
             expect(localStorage.setItem).toHaveBeenCalledWith(ACCESS_TOKEN, "access_token");
             expect(localStorage.setItem).toHaveBeenCalledWith(REFRESH_TOKEN, "refresh_token");
+            expect(localStorage.setItem).toHaveBeenCalledWith(
+                USER_INFO,
+                JSON.stringify({
+                    id: 1,
+                    username: "test",
+                    email: "test@example.com",
+                })
+            );
 
             expect(navigate).toHaveBeenCalledWith(`/${1}`, { state: { userId: 1 } });
         });
@@ -159,7 +172,9 @@ describe('LoginForm', () => {
 describe('useLoginForm Hook', () => {
 
     test('initializes with correct initial state', () => {
-        const { result } = renderHook(() => useLoginForm());
+        const { result } = renderHook(() => useLoginForm(), {
+            wrapper: UserProvider,
+        });
         expect(result.current.formData).toEqual({ email: '', password: '' });
         expect(result.current.isLoading).toBe(false);
         expect(result.current.showPassword).toBe(false);
