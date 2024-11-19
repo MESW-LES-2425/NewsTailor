@@ -65,12 +65,18 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
             </p>
         )}
         <div className="news-actions">
-            <button className="read-btn" onClick={handleRead}>
-                <FaArrowRightLong /> Read
-            </button>
-            <button className="delete-btn" onClick={handleDelete}>
-                <FaRegTrashCan /> Delete
-            </button>
+            {news.is_currently_reading ? (
+                <span className="currently-reading-indication">Currently Reading</span>
+            ) : (
+                <>
+                    <button className="read-btn" onClick={handleRead}>
+                        <FaArrowRightLong /> Read
+                    </button>
+                    <button className="delete-btn" onClick={handleDelete}>
+                        <FaRegTrashCan /> Delete
+                    </button>
+                </>
+            )}
         </div>
         </div>
     );
