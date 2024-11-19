@@ -5,12 +5,7 @@ import "./Newspapers.css";
 import api from '../../api';
 import { useNavigate } from "react-router-dom";
 import { FaArrowRightLong, FaRegTrashCan } from "react-icons/fa6";
-
-
-interface NewsPropertiesPresentation {
-    news?: { content?: string; title?: string; id?: string; created_at?: string; is_currently_reading?: boolean; is_saved?: boolean; user_newspaper?: string; };
-    onDelete?: (id: string) => void;
-}
+import { NewsPropertiesPresentation } from "../contentPage/NewsPresentation.tsx";
 
 const truncateContent = (content: string, maxLength: number = 200) => {
     return content.length > maxLength ? `${content.substring(0, maxLength)}...` : content;

@@ -2,21 +2,11 @@ import { useState, useEffect } from "react";
 import api from "../../api";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
-interface NewsItem {
-    content?: string;
-    title?: string;
-    id?: string;
-    userid?: string;
-    created_at?: string;
-    is_currently_reading?: boolean;
-    is_saved?: boolean;
-    user_newspaper?: string;
-}
+import {NewsType} from "../../pages/Home";
 
 const userNewspapersForm = () => {
     const { userId } = useParams<{ userId: string }>();
-    const [newspapers, setNewspapers] = useState<NewsItem[]>([]);
+    const [newspapers, setNewspapers] = useState<NewsType[]>([]);
 
     useEffect(() => {
         const fetchNewspaper = async () => {

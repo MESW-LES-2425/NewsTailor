@@ -4,8 +4,9 @@ import "./contentTable.css";
 import { FaRegHeart, FaHeart, FaCheck} from "react-icons/fa";
 
 
-interface NewsPropertiesPresentation {
-    news?: { content?: string; title?: string; id?: string; userid?: string, is_saved?: boolean; };
+export interface NewsPropertiesPresentation {
+    news?: { content?: string; title?: string; id?: string; created_at?: string; is_currently_reading?: boolean; is_saved?: boolean; user_newspaper?: string; };
+    onDelete?: (id: string) => void;
     onConclude?: () => void;
 }
 
