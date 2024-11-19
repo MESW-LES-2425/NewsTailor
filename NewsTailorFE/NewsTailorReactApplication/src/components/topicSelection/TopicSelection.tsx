@@ -1,7 +1,6 @@
 import React from "react";
 import useTopicSelection from "./useTopicSelection.ts";
-import './topicSelection.css'
-
+import '../../styles/news-content/configuration.css';
 interface Topic {
     label: string;
     value: string;
@@ -12,7 +11,7 @@ interface TopicSelectionProps {
     onTopicChange: (topics: Topic[]) => void;
 }
 
-const TopicSelection : React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
+const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
 
     const {
         topicOptions,

@@ -60,15 +60,15 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
 
     return (
         <div className="content-table">
-            <h1>Customize your newspaper</h1>
+            <h1 className='customizeTitle'>Customize your newspaper</h1>
             {error && <div className="error">{error}</div>}
             {loading ? (
                 <div className="spinner"></div>
             ) : (
                 <>
-                    <SourceSelection onSourceChange={handleSourceChange}/>
-                    <TopicSelection onTopicChange={handleTopicChange}/>
-                    <TimelineSelection onDateChange={handleDateChange}/>
+                    <SourceSelection onSourceChange={handleSourceChange} />
+                    <TopicSelection onTopicChange={handleTopicChange} />
+                    <TimelineSelection onDateChange={handleDateChange} />
                     <button
                         className="blue-circle-button"
                         onClick={fetchNews}

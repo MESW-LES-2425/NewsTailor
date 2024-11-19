@@ -27,7 +27,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                <Route path="/config" element={<ConfigPage />} />
+                <Route path="/config/:userId" element={<ConfigPage />} />
                 <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />

@@ -4,7 +4,9 @@ import SourceSelection from "../sourceSelection/SourceSelection.tsx";
 import TopicSelection from "../topicSelection/TopicSelection.tsx";
 import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.tsx";
 import useConfigurationForm from "./useConfigurationForm.ts";
-import './configurationForm.css';
+import Header from '../../components/landingPage/Header';
+import Sidebar from '../../components/contentPage/Sidebar';
+import '../../styles/news-content/configuration.css';
 
 const ConfigurationForm: React.FC = () => {
 
@@ -19,36 +21,38 @@ const ConfigurationForm: React.FC = () => {
     } = useConfigurationForm()
 
     return (
-        <div className="form-wrapper">
-
-            <form onSubmit={handleSubmit} className="configuration-form">
-                <div className="configuration-form-header">
-                    <h2>Create your Template</h2>
-                    <button className="configuration-form-button" type="submit">Create</button>
-                </div>
-                <div className="configuration-form-field">
-                    <div className="form-name-input">
-                        <label htmlFor="template-name">
-                            <h3>Name</h3>
-                        </label>
-                        <input
-                            className="configuration-form-input"
-                            type="text"
-                            id="template-name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Enter template name"
-                            required
-                        />
+        <div>
+            <Header />
+            <div className="form-wrapper">
+                <form onSubmit={handleSubmit} className="configuration-form">
+                    <div className="configuration-form-header">
+                        <h2>Create your Template</h2>
+                        <button className="configuration-form-button" type="submit">Create</button>
                     </div>
+                    <div className="configuration-form-field">
+                        <div className="form-name-input">
+                            <label htmlFor="template-name">
+                                <h3>Name</h3>
+                            </label>
+                            <input
+                                className="configuration-form-input"
+                                type="text"
+                                id="template-name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Enter template name"
+                                required
+                            />
+                        </div>
 
-                    <TimelineSelection onDateChange={setTimeline}/>
-                    <ReadingTimeSelection onReadingTimeChange={setReadingTime}/>
-                    <SourceSelection onSourceChange={setSources}/>
-                </div>
-                <TopicSelection onTopicChange={setTopics}/>
-            </form>
+                        <TimelineSelection onDateChange={setTimeline} />
+                        <ReadingTimeSelection onReadingTimeChange={setReadingTime} />
+                        <SourceSelection onSourceChange={setSources} />
+                    </div>
+                    <TopicSelection onTopicChange={setTopics} />
+                </form>
 
+            </div>
         </div>
 
     );

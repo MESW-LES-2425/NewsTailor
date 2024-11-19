@@ -1,6 +1,6 @@
 import React from "react";
 import useSourceSelection from "./useSourceSelection.ts";
-import './sourceSelection.css'
+import '../../styles/news-content/configuration.css';
 
 interface Source {
     label: string;
@@ -11,7 +11,7 @@ interface SourceSelectionProps {
     onSourceChange: (sources: Source[]) => void;
 }
 
-const SourceSelection : React.FC<SourceSelectionProps> = ({ onSourceChange }) => {
+const SourceSelection: React.FC<SourceSelectionProps> = ({ onSourceChange }) => {
     const {
         sourcesOptions,
         selectedSources,

@@ -1,6 +1,6 @@
 import React from 'react';
 import useTimelineSelection from "./useTimelineSelection.ts";
-import './timelineSelection.css'
+import '../../styles/news-content/configuration.css';
 
 interface DateSelectionProps {
     onDateChange: (date: string | null) => void;
