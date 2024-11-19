@@ -45,27 +45,29 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     }
 
     return (
-        <div className="content-table">
-            <div className="news-container">
-                <div className="news-item">
-                    <h2>Your Reading Session</h2>
-                    {news?.title && <h3 className="news-title">{news.title}</h3>}
-                    {news?.content && <p className="news-content">{news.content}</p>}
-                    <div className="home-news-actions">
-                        <button className="conclude-reading-button" onClick={concludeReadingSession}>
-                            Conclude Reading Session  <FaCheck />
-                        </button>
-                        <button className="save-news-button" onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
-                            {isSaved ? (
-                                <>
-                                    Saved <FaHeart /> 
-                                </>
-                            ) : (
-                                <>
-                                    Save <FaRegHeart />
-                                </>
-                            )}
-                        </button>
+        <div className="content-and-buttons">
+            <div className="home-news-actions">
+                <button className="conclude-reading-button" onClick={concludeReadingSession}>
+                    Conclude Reading Session  <FaCheck />
+                </button>
+                <button className="save-news-button" onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
+                    {isSaved ? (
+                        <>
+                            Saved <FaHeart /> 
+                        </>
+                    ) : (
+                        <>
+                            Save <FaRegHeart />
+                        </>
+                    )}
+                </button>
+            </div>
+            <div className="content-table">
+                <div className="news-container">
+                    <div className="news-item">
+                        <h2>Your Reading Session</h2>
+                        {news?.title && <h3 className="news-title">{news.title}</h3>}
+                        {news?.content && <p className="news-content">{news.content}</p>}
                     </div>
                 </div>
             </div>

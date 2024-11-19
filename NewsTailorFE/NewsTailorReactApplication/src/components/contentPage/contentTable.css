@@ -38,12 +38,14 @@
 }
 
 .home-news-actions {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
     display: flex;
-    justify-content: flex-end; 
     gap: 15px;
-    margin-top: 20px;
+    border-top-left-radius: 20px;
 }
-
 
 .save-news-button {
     background-color:#d1d1d1;
