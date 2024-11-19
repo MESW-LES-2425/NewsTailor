@@ -1,6 +1,7 @@
 import React from "react";
 import useSourceSelection from "./useSourceSelection.ts";
-import '../contentPage/configuration.css';
+import './sourceSelection.css'
+//import '../contentPage/configuration.css';
 
 interface Source {
     label: string;
@@ -21,9 +22,9 @@ const SourceSelection : React.FC<SourceSelectionProps> = ({ onSourceChange }) =>
     } = useSourceSelection(onSourceChange)
 
     return (
-        <div className="source-selection">
+        <div className="form-source-selection">
             <h3>News Sources</h3>
-            <div className="selected-sources">
+            <div className="selected-news-sources">
                 {selectedSources.map((source) => (
                     <div key={source.value} className="source-tag">
                         {source.label}
@@ -40,7 +41,8 @@ const SourceSelection : React.FC<SourceSelectionProps> = ({ onSourceChange }) =>
             <select
                 value={dropdownValue}
                 onChange={handleSelectChange}
-                className="source-select"
+                className="configuration-form-input"
+                aria-label="Select a source"
             >
                 <option value="" disabled>
                     Sources

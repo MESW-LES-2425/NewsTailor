@@ -1,0 +1,8 @@
+.selected-sources-2 {
+    display: flex;
+    gap: 10px;
+    flex-wrap:wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+  }

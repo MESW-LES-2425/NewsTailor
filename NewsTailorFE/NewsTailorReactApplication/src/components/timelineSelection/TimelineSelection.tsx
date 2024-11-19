@@ -1,6 +1,7 @@
 import React from 'react';
 import useTimelineSelection from "./useTimelineSelection.ts";
-import '../contentPage/configuration.css';
+import './timelineSelection.css'
+//import '../contentPage/configuration.css';
 
 interface DateSelectionProps {
     onDateChange: (date: string | null) => void;
@@ -15,7 +16,7 @@ const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange }) => {
     } = useTimelineSelection(onDateChange);
 
     return (
-        <div className="source-selection">
+        <div className="timeline-selection">
             <h3>Timeline</h3>
 
             <select
@@ -25,7 +26,8 @@ const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange }) => {
                     const selectedOption = dateOptions.find(option => option.value === selectedValue);
                     if (selectedOption) handleDateSelection(selectedOption);
                 }}
-                className="source-select"
+                className="configuration-form-input"
+                aria-label="Select a timeline"
             >
                 <option value="" disabled>
                     Select a timeline

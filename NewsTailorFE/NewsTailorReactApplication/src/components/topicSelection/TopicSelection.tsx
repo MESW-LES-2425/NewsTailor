@@ -1,6 +1,7 @@
 import React from "react";
 import useTopicSelection from "./useTopicSelection.ts";
-import '../contentPage/configuration.css';
+import './topicSelection.css'
+//import '../contentPage/configuration.css';
 
 interface Topic {
     label: string;
@@ -25,7 +26,7 @@ const TopicSelection : React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
     return (
         <div className="source-selection">
             <h3>Categories</h3>
-            <div className="selected-sources">
+            <div className="selected-sources-2">
                 {selectedTopics.map((topic) => (
                     <div key={topic.value} className="source-tag">
                         {topic.label}
@@ -43,6 +44,7 @@ const TopicSelection : React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
                 value={dropdownValue}
                 onChange={handleSelectChange}
                 className="source-select"
+                aria-label="Select a category"
             >
                 <option value="" disabled>
                     Category

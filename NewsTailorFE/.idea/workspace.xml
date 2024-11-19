@@ -6,11 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/loginForm/useLoginForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/loginForm/useLoginForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/utils/authUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/utils/authUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/ProfileForm/profileForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/ProfileForm/profileForm.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/registerForm/registerForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/registerForm/registerForm.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/readingTimeSelection/ReadingTimeSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/readingTimeSelection/ReadingTimeSelection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/sourceSelection/SourceSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/sourceSelection/SourceSelection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/timelineSelection/TimelineSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/timelineSelection/TimelineSelection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +33,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Jest.Configuration Form.renders configuration form correctly.executor": "Run",
+    "Jest.Handles user interaction correctly.executor": "Run",
+    "Jest.Handles user interaction correctly.selects and removes a source.executor": "Run",
+    "Jest.Handles user interaction correctly.selects and removes a topic.executor": "Run",
+    "Jest.Handles user interaction correctly.updates reading time slider correctly.executor": "Run",
     "Jest.LoginForm.displays API error messages correctly.executor": "Run",
     "Jest.LoginForm.displays error message for Axios error.executor": "Run",
     "Jest.LoginForm.displays error message for invalid credentials.executor": "Run",
@@ -51,6 +59,17 @@
     "Jest.RegisterForm.submits form and register with success.executor": "Run",
     "Jest.RegisterForm.submits form with taken email or username.executor": "Run",
     "Jest.RegisterForm.submits form, registers user, and calls onRegisterSuccess.executor": "Run",
+    "Jest.Render Configuration Form components.renders configuration form correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders readingTime component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders readingtTime component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders sourceSelection component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders timeline selection component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders topic selection component correctly.executor": "Run",
+    "Jest.handles edit button click.executor": "Run",
+    "Jest.handles form submission.executor": "Run",
+    "Jest.renders ProfileForm in editing mode.executor": "Run",
+    "Jest.renders ProfileForm with user data.executor": "Run",
+    "Jest.useLoginForm Hook.executor": "Run",
     "Jest.useLoginForm Hook.initializes with correct initial state.executor": "Run",
     "Jest.useLoginForm Hook.toggles password visibility.executor": "Run",
     "Jest.useLoginForm Hook.updates formData on handleChange.executor": "Run",
@@ -73,77 +92,78 @@
       <recent name="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.LoginForm">
-    <configuration name="LoginForm" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Jest.Handles user interaction correctly.selects and removes a topic">
+    <configuration name="Handles user interaction correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$/NewsTailorReactApplication" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" />
+      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/configuration/createConfiguration.test.tsx" />
       <test-names>
-        <test-name value="LoginForm" />
+        <test-name value="Handles user interaction correctly" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="LoginForm.submits form with invalid credentials, catches errors, and displays error message" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Handles user interaction correctly.selects and removes a source" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$/NewsTailorReactApplication" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" />
+      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/configuration/createConfiguration.test.tsx" />
       <test-names>
-        <test-name value="LoginForm" />
-        <test-name value="submits form with invalid credentials, catches errors, and displays error message" />
+        <test-name value="Handles user interaction correctly" />
+        <test-name value="selects and removes a source" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="LoginForm.submits form with invalid email, catches errors, and displays error message" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Handles user interaction correctly.selects and removes a topic" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$/NewsTailorReactApplication" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" />
+      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/configuration/createConfiguration.test.tsx" />
       <test-names>
-        <test-name value="LoginForm" />
-        <test-name value="submits form with invalid email, catches errors, and displays error message" />
+        <test-name value="Handles user interaction correctly" />
+        <test-name value="selects and removes a topic" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="LoginForm.submits form, logs in, retrieves tokens, and navigates" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Handles user interaction correctly.updates reading time slider correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$/NewsTailorReactApplication" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/loginForm/loginForm.test.tsx" />
+      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/configuration/createConfiguration.test.tsx" />
       <test-names>
-        <test-name value="LoginForm" />
-        <test-name value="submits form, logs in, retrieves tokens, and navigates" />
+        <test-name value="Handles user interaction correctly" />
+        <test-name value="updates reading time slider correctly" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="useRegisterForm Hook" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Render Configuration Form components.renders readingtTime component correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/NewsTailorReactApplication/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$/NewsTailorReactApplication" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/registerForm/registerForm.test.tsx" />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/NewsTailorReactApplication/src/__tests__/configuration/createConfiguration.test.tsx" />
       <test-names>
-        <test-name value="useRegisterForm Hook" />
+        <test-name value="Render Configuration Form components" />
+        <test-name value="renders readingtTime component correctly" />
       </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.LoginForm" />
-        <item itemvalue="Jest.LoginForm.submits form with invalid email, catches errors, and displays error message" />
-        <item itemvalue="Jest.LoginForm.submits form with invalid credentials, catches errors, and displays error message" />
-        <item itemvalue="Jest.LoginForm.submits form, logs in, retrieves tokens, and navigates" />
-        <item itemvalue="Jest.useRegisterForm Hook" />
+        <item itemvalue="Jest.Handles user interaction correctly.selects and removes a topic" />
+        <item itemvalue="Jest.Handles user interaction correctly.selects and removes a source" />
+        <item itemvalue="Jest.Handles user interaction correctly.updates reading time slider correctly" />
+        <item itemvalue="Jest.Render Configuration Form components.renders readingtTime component correctly" />
+        <item itemvalue="Jest.Handles user interaction correctly" />
       </list>
     </recent_temporary>
   </component>
@@ -170,7 +190,7 @@
       <workItem from="1731498413191" duration="8656000" />
       <workItem from="1731508374483" duration="19517000" />
       <workItem from="1731661153322" duration="10499000" />
-      <workItem from="1731773585347" duration="41941000" />
+      <workItem from="1731773585347" duration="64691000" />
     </task>
     <servers />
   </component>

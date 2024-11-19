@@ -1,0 +1,21 @@
+.reading-time-selection {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.slider {
+    width: 100%;
+}
+
+.reading-time-slider {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.reading-time-slider-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
