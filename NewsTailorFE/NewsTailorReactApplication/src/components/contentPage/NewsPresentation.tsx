@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../../api';
 import "./contentTable.css";
+import MarkdownReader from "../../utils/MarkdownReader.tsx";
 
 interface NewsPropertiesPresentation {
     news?: { content?: string; title?: string; id?: string; userid?: string };
@@ -29,8 +30,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             <div className="news-container">
                 <div className="news-item">
                     <h2>Your Reading Session</h2>
-                    {news?.title && <h3 className="news-title">{news.title}</h3>}
-                    {news?.content && <p className="news-content">{news.content}</p>}
+                    {news?.content && <MarkdownReader initialContent={news.content} />}
                     <button className="SideButton" onClick={concludeReadingSession}>
                         Conclude Reading Session
                     </button>
