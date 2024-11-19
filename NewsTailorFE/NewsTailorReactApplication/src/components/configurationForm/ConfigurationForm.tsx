@@ -5,7 +5,6 @@ import TopicSelection from "../topicSelection/TopicSelection.tsx";
 import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.tsx";
 import useConfigurationForm from "./useConfigurationForm.ts";
 import Header from '../../components/landingPage/Header';
-import Sidebar from '../../components/contentPage/Sidebar';
 import '../../styles/news-content/configuration.css';
 
 const ConfigurationForm: React.FC = () => {
