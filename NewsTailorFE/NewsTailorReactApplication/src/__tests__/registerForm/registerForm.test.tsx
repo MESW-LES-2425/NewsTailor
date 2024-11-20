@@ -5,6 +5,7 @@ import RegisterForm from "../../components/registerForm/RegisterForm.tsx";
 import UserEvent from "@testing-library/user-event";
 import api from "../../api.ts";
 import useRegisterForm from "../../components/registerForm/useRegisterForm.ts";
+import {UserProvider} from "../../context/UserContext.tsx";
 
 jest.mock("../../api.ts");
 
@@ -22,7 +23,9 @@ describe('RegisterForm', () => {
         (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
             <MemoryRouter>
-                <RegisterForm onRegisterSuccess={onRegisterSuccessMock} />
+                <UserProvider>
+                    <RegisterForm onRegisterSuccess={onRegisterSuccessMock} />
+                </UserProvider>
             </MemoryRouter>
         );
     });

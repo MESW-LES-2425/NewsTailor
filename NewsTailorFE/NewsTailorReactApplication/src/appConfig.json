@@ -1,10 +1,10 @@
 {
     "topicOptions": [
-        { "label": "Economy", "value": "economy" },
-        { "label": "Politics", "value": "politics" },
-        { "label": "Technology", "value": "technology" },
-        { "label": "Artificial Intelligence", "value": "ai" },
-        { "label": "Criptocurrency", "value": "cryptocurrency" }
+        { "label": "Economy", "value": "economy" , "id": 1},
+        { "label": "Politics", "value": "politics", "id": 2 },
+        { "label": "Technology", "value": "technology", "id": 3},
+        { "label": "Artificial Intelligence", "value": "ai", "id": 4},
+        { "label": "Criptocurrency", "value": "cryptocurrency", "id": 5}
     ],
     "sourcesOptions": [
         { "label": "Guardian", "value": "guardian" },

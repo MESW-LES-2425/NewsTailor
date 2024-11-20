@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
-import './configuration.css';
-import config from '../../appConfig.json';
-
-interface DateOption {
-    label: string;
-    value: string;
-}
+import React from 'react';
+import useTimelineSelection from "./useTimelineSelection.ts";
+import '../../styles/news-content/configuration.css';
 
 interface DateSelectionProps {
     onDateChange: (date: string | null) => void;
 }
 
-const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) => {
-    const [selectedDate, setSelectedDate] = useState<DateOption | null>(null);
+const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange }) => {
 
-    const dateOptions = config.dateOptions;
-
-    const handleDateSelection = (date: DateOption) => {
-        setSelectedDate(date);
-        onDateChange(date.value);
-    };
+    const {
+        selectedDate,
+        dateOptions,
+        handleDateSelection
+    } = useTimelineSelection(onDateChange);
 
     return (
-        <div className="source-selection">
+        <div className="timeline-selection">
             <h3>Timeline</h3>
 
             <select
@@ -32,7 +25,8 @@ const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) 
                     const selectedOption = dateOptions.find(option => option.value === selectedValue);
                     if (selectedOption) handleDateSelection(selectedOption);
                 }}
-                className="source-select"
+                className="configuration-form-input"
+                aria-label="Select a timeline"
             >
                 <option value="" disabled>
                     Select a timeline
@@ -47,4 +41,4 @@ const DateSelectionComponent: React.FC<DateSelectionProps> = ({ onDateChange }) 
     );
 };
 
-export default DateSelectionComponent;
+export default TimelineSelection;
