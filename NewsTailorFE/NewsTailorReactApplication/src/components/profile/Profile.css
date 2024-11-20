@@ -34,3 +34,27 @@ form button[type="button"] {
 form button[type="button"]:hover {
     border : 1px solid #02263f;
 }
+
+.delete-acc-btn {
+    width: 150px;
+    background-color: #AA0000;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    float: right;
+}
+
+.delete-acc-btn:hover {
+    background-color: #660000;
+}
+
+.delete-acc-container {
+    width: 100%;
+}

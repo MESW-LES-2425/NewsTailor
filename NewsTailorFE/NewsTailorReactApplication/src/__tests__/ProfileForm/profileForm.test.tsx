@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ProfileForm from '../../components/profile/ProfileForm';
 import useProfileForm from '../../components/profile/useProfileForm';
-import {UserProvider} from "../../context/UserContext.tsx";
+import { UserProvider } from "../../context/UserContext.tsx";
 
 jest.mock('../../components/profile/useProfileForm');
 
@@ -20,6 +20,7 @@ it('renders ProfileForm with user data', () => {
         handleSubmit: jest.fn(),
         wpm: 100,
         wpmString: "100",
+        handleDeleteAccount: jest.fn(),
     });
 
     render(
@@ -48,6 +49,7 @@ it('renders ProfileForm in editing mode', () => {
         handleSubmit: jest.fn(),
         wpm: 100,
         wpmString: "100",
+        handleDeleteAccount: jest.fn(),
     });
 
     render(
@@ -78,6 +80,7 @@ it('handles edit button click', () => {
         handleSubmit: jest.fn(),
         wpm: 100,
         wpmString: "100",
+        handleDeleteAccount: jest.fn(),
     });
 
     render(
@@ -106,6 +109,7 @@ it('handles form submission', () => {
         handleSubmit,
         wpm: 100,
         wpmString: "100",
+        handleDeleteAccount: jest.fn(),
     });
 
     render(
