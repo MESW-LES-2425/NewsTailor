@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import ProfileForm from '../../components/profile/ProfileForm';
 import useProfileForm from '../../components/profile/useProfileForm';
+import {UserProvider} from "../../context/UserContext.tsx";
 
 jest.mock('../../components/profile/useProfileForm');
 
@@ -23,9 +24,11 @@ it('renders ProfileForm with user data', () => {
 
     render(
         <MemoryRouter initialEntries={[{ pathname: '/profile', state: { userId: '123' } }]}>
-            <Routes>
-                <Route path="/profile" element={<ProfileForm />} />
-            </Routes>
+            <UserProvider>
+                <Routes>
+                    <Route path="/profile" element={<ProfileForm />} />
+                </Routes>
+            </UserProvider>
         </MemoryRouter>
     );
 
@@ -49,9 +52,11 @@ it('renders ProfileForm in editing mode', () => {
 
     render(
         <MemoryRouter initialEntries={[{ pathname: '/profile', state: { userId: '123' } }]}>
-            <Routes>
-                <Route path="/profile" element={<ProfileForm />} />
-            </Routes>
+            <UserProvider>
+                <Routes>
+                    <Route path="/profile" element={<ProfileForm />} />
+                </Routes>
+            </UserProvider>
         </MemoryRouter>
     );
 
@@ -77,9 +82,11 @@ it('handles edit button click', () => {
 
     render(
         <MemoryRouter initialEntries={[{ pathname: '/profile', state: { userId: '123' } }]}>
-            <Routes>
-                <Route path="/profile" element={<ProfileForm />} />
-            </Routes>
+            <UserProvider>
+                <Routes>
+                    <Route path="/profile" element={<ProfileForm />} />
+                </Routes>
+            </UserProvider>
         </MemoryRouter>
     );
 
@@ -103,9 +110,11 @@ it('handles form submission', () => {
 
     render(
         <MemoryRouter initialEntries={[{ pathname: '/profile', state: { userId: '123' } }]}>
-            <Routes>
-                <Route path="/profile" element={<ProfileForm />} />
-            </Routes>
+            <UserProvider>
+                <Routes>
+                    <Route path="/profile" element={<ProfileForm />} />
+                </Routes>
+            </UserProvider>
         </MemoryRouter>
     );
 

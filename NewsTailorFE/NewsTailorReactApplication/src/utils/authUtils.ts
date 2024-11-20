@@ -1,5 +1,5 @@
 import {jwtDecode} from "jwt-decode";
-import {ACCESS_TOKEN, REFRESH_TOKEN} from "../constants.ts";
+import {ACCESS_TOKEN, REFRESH_TOKEN, USER_INFO} from "../constants.ts";
 import api from "../api.ts";
 
 interface JwtPayload {
@@ -49,6 +49,7 @@ export const getAccessToken = (): string | null => {
 export const clearAuthTokens = (): void => {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(REFRESH_TOKEN);
+    localStorage.removeItem(USER_INFO);
 };
 
 export const checkAuthStatus = async (): Promise<boolean> => {

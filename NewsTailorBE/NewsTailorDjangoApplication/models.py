@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.postgres.fields import ArrayField
 
 class User(AbstractUser):
     username = models.CharField(max_length=256, unique=True, null=False)
@@ -23,26 +24,21 @@ class Category(models.Model):
         db_table = "category"
 
 
-class Source(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=256, null=False)
-    url = models.URLField(max_length=256, unique=True, null=False)
-
-    class Meta:
-        db_table = "source"
-
-
 class Configuration(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, null=False)
     read_time = models.IntegerField(null=False)
     fetch_period = models.IntegerField(null=False)
-    user_configuration = models.ForeignKey(User, on_delete=models.CASCADE)
+    sources = ArrayField(models.CharField(max_length=200), blank=False, null=False, default=list)
+    user_configuration = models.ForeignKey(User, on_delete=models.CASCADE, db_column="user_configuration")
+
+    class Meta:
+        db_table = "configuration"
 
 
 class Configuration_Category(models.Model):
-    configuration_id = models.ForeignKey(Configuration, on_delete=models.CASCADE)
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
+    configuration = models.ForeignKey(Configuration, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     percentage = models.IntegerField(null=False)
 
     class Meta:
@@ -54,20 +50,6 @@ class Configuration_Category(models.Model):
             )
         ]
 
-
-class Configuration_Source(models.Model):
-    configuration_id = models.ForeignKey(Configuration, on_delete=models.CASCADE)
-    source_id = models.ForeignKey(Source, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "configuration_source"
-        constraints = [
-            models.UniqueConstraint(
-                fields=["configuration_id", "source_id"],
-                name="unique_configuration_source",
-            )
-        ]
-
 class Newspaper(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)
@@ -75,6 +57,7 @@ class Newspaper(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     user_newspaper = models.ForeignKey(User, on_delete=models.CASCADE)
     is_currently_reading = models.BooleanField(default=False)
+    is_saved = models.BooleanField(default=False)
 
     class Meta:
         db_table = "newspaper"

@@ -17,11 +17,11 @@ const Sidebar: React.FC<SidebarProps> = ({ userId }) => {
                     <MdHome className="icon" />
                     Home
                 </Link>
-                <Link className="navItem" to={`/${userId}`}>
+                <Link className="navItem" to={`/newspapers/${userId}`}>
                     <MdDescription className="icon" />
                     Your Newspapers
                 </Link>
-                <Link className="navItem" to="/templates">
+                <Link className="navItem" to={`/config/${userId}`}>
                     <MdBookmark className="icon" />
                     Templates
                 </Link>
