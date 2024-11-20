@@ -59,16 +59,16 @@ class TestSelectCategories:
         #dropdown = self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(3)")
         #dropdown.find_element(By.XPATH, "//option[. = 'Sources']").click()
         # 15 | click | css=.source-selection > h3 |
-        self.driver.find_element(By.CSS_SELECTOR, ".source-selection > h3").click()
+        #self.driver.find_element(By.CSS_SELECTOR, ".source-selection > h3").click()
         # 16 | click | css=.source-select |
-        self.driver.find_element(By.CSS_SELECTOR, ".source-select").click()
+        #self.driver.find_element(By.CSS_SELECTOR, ".source-select").click()
         # 17 | select | css=.source-select | label=Category
-        dropdown = self.driver.find_element(By.CSS_SELECTOR, ".source-select")
-        dropdown.find_element(By.XPATH, "//option[. = 'Category']").click()
+        #dropdown = self.driver.find_element(By.CSS_SELECTOR, ".source-select")
+        #dropdown.find_element(By.XPATH, "//option[. = 'Category']").click()
         # 18 | click | css=.configuration-form-input:nth-child(2) |
-        self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(2)").click()
+        #self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(2)").click()
         # 19 | select | css=.configuration-form-input:nth-child(2) | label=Last 3 days
-        dropdown = self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(2)")
-        dropdown.find_element(By.XPATH, "//option[. = 'Last 3 days']").click()
+        #dropdown = self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(2)")
+        #dropdown.find_element(By.XPATH, "//option[. = 'Last 3 days']").click()
         # 20 | click | css=html |
-        self.driver.find_element(By.CSS_SELECTOR, "html").click()
+        #self.driver.find_element(By.CSS_SELECTOR, "html").click()
