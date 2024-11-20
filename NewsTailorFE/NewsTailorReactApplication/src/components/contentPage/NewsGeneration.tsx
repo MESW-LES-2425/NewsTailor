@@ -1,41 +1,85 @@
 import React, { useState } from 'react';
-import "./newsGeneration.css";
+import "./contentTable.css";
 import api from '../../api';
+import SourceSelection from "../sourceSelection/SourceSelection.tsx";
+import TopicSelection from "../topicSelection/TopicSelection.tsx";
+import TimelineSelection from "../timelineSelection/TimelineSelection.tsx";
 
-const NewsGeneration: React.FC = () => {
-  const [news, setNews] = useState<string | null>(null);
+interface NewsProperties {
+    userId?: string | undefined;
+    onGenerate?: (newsData: { content?: string; title?: string; id?: string; userid?: string }) => void;
+}
 
-  const fetchNews = async () => {
-    try {
-      const route = "api/fetch-news/";
-      const response = await api.post(route, {
-        category: 'technology',
-        language: 'English',
-        source: 'news_api',
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // Setting news values to the state variable
-      setNews(response.data);
-    } catch (error) {
-      console.error('Error fetching news:', error);
-    }
-  };
+const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
+    const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
+    const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string }[]>([]);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-  return (
-    <div className="news-generation">
-      <h1>Customize your newspaper</h1>
-      <button onClick={fetchNews}>Generate</button>
-      {news && (
-        <div className='news-content-container'>
-          <h2>Obtained News</h2>
-          <p>{news}</p>
+    const fetchNews = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await api.post("api/fetch-news/", {
+                categories: selectedTopics.map(topic => topic.value),
+                language: 'English',
+                sources: selectedSources.map(source => source.value),
+                timeline: selectedDate,
+                userid: userId,
+            }, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (onGenerate) {
+                onGenerate(response.data);
+            }
+
+            // This is a hack that has to be fixed
+            window.location.reload();
+
+        } catch (error) {
+            setError('Error generating news.');
+            console.error('Error fetching news:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSourceChange = (sources: { label: string, value: string }[]) => {
+        setSelectedSources(sources);
+    };
+
+    const handleDateChange = (date: string | null) => {
+        setSelectedDate(date);
+    };
+
+    const handleTopicChange = (topics: { label: string, value: string }[]) => {
+        setSelectedTopics(topics);
+    };
+
+    return (
+        <div className="content-table">
+            <h1 className='customizeTitle'>Customize your newspaper</h1>
+            {error && <div className="error">{error}</div>}
+            {loading ? (
+                <div className="spinner"></div>
+            ) : (
+                <>
+                    <SourceSelection onSourceChange={handleSourceChange} />
+                    <TopicSelection onTopicChange={handleTopicChange} />
+                    <TimelineSelection onDateChange={handleDateChange} />
+                    <button
+                        className="blue-circle-button"
+                        onClick={fetchNews}
+                        disabled={loading || !selectedDate}
+                    >
+                        {loading ? 'Generating...' : 'Generate'}
+                    </button>
+                </>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default NewsGeneration;

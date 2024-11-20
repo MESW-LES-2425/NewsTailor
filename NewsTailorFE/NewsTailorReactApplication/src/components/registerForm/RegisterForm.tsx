@@ -50,13 +50,13 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
                     onChange={handleChange} placeholder="Password" required
                 />
                 <FontAwesomeIcon icon={showPassword1 ? faEyeSlash : faEye} className="toggle-password-icon"
-                    onClick={() => toggleShowPassword1(!showPassword1)}
+                    onClick={() => toggleShowPassword1(!showPassword1)} data-testid="toggle-password-icon"
                 />
-                <FontAwesomeIcon icon={faQuestionCircle} className="password-info-icon"
+                <FontAwesomeIcon icon={faQuestionCircle} className="password-info-icon" data-testid="password-info-icon"
                     onMouseEnter={() => toggleShowPasswordCheckList(true)}
                     onMouseLeave={() => toggleShowPasswordCheckList(false)}
                 />
-                <div className="password-checklist" style={{ visibility: showPasswordCheckList ? "visible" : "hidden" }}>
+                <div className="password-checklist" style={{ visibility: showPasswordCheckList ? "visible" : "hidden" }} data-testid="password-checklist">
                     <PasswordChecklist
                         rules={["minLength", "specialChar", "number", "capital", "match"]}
                         minLength={8}
@@ -73,7 +73,7 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
                     onChange={handleChange} placeholder="Confirm Password" required
                 />
                 <FontAwesomeIcon icon={showPassword2 ? faEyeSlash : faEye} className="toggle-password-icon"
-                    onClick={() => toggleShowPassword2(!showPassword2)}
+                    onClick={() => toggleShowPassword2(!showPassword2)} data-testid="toggle-password-icon"
                 />
             </div>
             <button className="auth-btn" type="submit" disabled={isLoading}>
@@ -81,16 +81,16 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
             </button>
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="facebook-icon">
                     <FontAwesomeIcon icon={faFacebookF} />
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="twitter-icon">
                     <FontAwesomeIcon icon={faTwitter} />
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="google-icon">
                     <FontAwesomeIcon icon={faGoogle} />
                 </a>
-                <a href="#" className="social-icon">
+                <a href="#" className="social-icon" data-testid="linkedin-icon">
                     <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
             </div>
