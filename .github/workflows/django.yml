@@ -75,7 +75,8 @@ jobs:
           echo 'Pin: release o=LP-PPA-mozillateam' | sudo tee -a /etc/apt/preferences.d/99firefox
           echo 'Pin-Priority: 1001' | sudo tee -a /etc/apt/preferences.d/99firefox
           sudo apt-get update
-          NEEDRESTART_MODE=a sudo apt-get install -y firefox  # Suppress needrestart
+          pkill firefox
+          firefox &
           wget -q https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
           tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
           chmod +x geckodriver
