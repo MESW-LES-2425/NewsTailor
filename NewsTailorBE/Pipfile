@@ -23,6 +23,7 @@ document = "*"
 pytest = "*"
 selenium = "*"
 openai = "*"
+webdriver-manager = "*"
 
 [dev-packages]
 
