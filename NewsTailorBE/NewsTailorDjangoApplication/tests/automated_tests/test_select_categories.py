@@ -56,8 +56,8 @@ class TestSelectCategories:
         # 13 | click | css=.configuration-form-input:nth-child(3) |
         #self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(3)").click()
         # 14 | select | css=.configuration-form-input:nth-child(3) | label=Sources
-        dropdown = self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(3)")
-        dropdown.find_element(By.XPATH, "//option[. = 'Sources']").click()
+        #dropdown = self.driver.find_element(By.CSS_SELECTOR, ".configuration-form-input:nth-child(3)")
+        #dropdown.find_element(By.XPATH, "//option[. = 'Sources']").click()
         # 15 | click | css=.source-selection > h3 |
         self.driver.find_element(By.CSS_SELECTOR, ".source-selection > h3").click()
         # 16 | click | css=.source-select |
