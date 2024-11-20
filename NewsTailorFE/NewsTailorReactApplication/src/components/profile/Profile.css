@@ -1,0 +1,60 @@
+/* Profile.css */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    width: 100%;
+    font-size: medium;
+}
+
+form button[type="button"] {
+    background-color: #fff;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 400px;
+}
+
+form button[type="button"]:hover {
+    border : 1px solid #02263f;
+}
+
+.delete-acc-btn {
+    width: 150px;
+    background-color: #AA0000;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    float: right;
+}
+
+.delete-acc-btn:hover {
+    background-color: #660000;
+}
+
+.delete-acc-container {
+    width: 100%;
+}

@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:17
+    image: postgres:latest
     container_name: postgres_db
     environment:
       POSTGRES_USER: admin
@@ -28,14 +26,20 @@ services:
     image: newstailor_fe:latest
     container_name: newstailor_fe
     ports:
-      - "5173:5173" 
+      - "5173:5173"
+    volumes:
+      - ./NewsTailorFE/NewsTailorReactApplication:/app
+      - /app/node_modules
 
   newstailor_be:
     image: newstailor_be:latest
     container_name: newstailor_be
     ports:
-      - "5273:5273" 
+      - "5273:5273"
+    volumes:
+      - ./NewsTailorBE:/app
 
 
 volumes:
   postgres_data:
+

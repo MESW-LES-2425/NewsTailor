@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -17,14 +16,80 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+      with:
+        version: latest
+
+    - name: Build Docker Image FE
+      working-directory: NewsTailorFE/NewsTailorReactApplication
+      run: |
+        docker build -t newstailor_fe .
+
+    - name: Build Docker Image BE
+      working-directory: NewsTailorBE
+      run: |
+        docker build -t newstailor_be .
+
+    - name: Build and Start Docker Containers
+      run: |
+        docker compose -f docker-compose.yaml up -d
+
     - name: Install Dependencies
+      working-directory: NewsTailorBE
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Run Tests
+        pip install coverage selenium pytest
+
+    - name: Install Chrome and Chromedriver
       run: |
-        python manage.py test
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        sudo apt-get install -y google-chrome-stable
+        CHROME_DRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        rm chromedriver_linux64.zip
+
+    - name: Check Chromedriver and Chrome versions
+      run: |
+        chromedriver --version
+        google-chrome-stable --version
+
+    - name: Run Tests
+      working-directory: NewsTailorBE
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        NEW_YORK_TIMES_API_KEY: ${{ secrets.NEW_YORK_TIMES_API_KEY }}
+        NUMBER_OF_NEWS_ARTICLES: ${{ secrets.NUMBER_OF_NEWS_ARTICLES }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        coverage run manage.py test
+        coverage report -m
+
+    - name: Run Selenium Tests with pytest
+      working-directory: NewsTailorBE/NewsTailorDjangoApplication/
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      run: |
+        echo "Running Selenium Tests"
+        pytest tests/automated_tests
+
+    - name: Shut down Docker containers
+      run: |
+        docker compose down

@@ -160,3 +160,9 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+NewsTailorBE/.idea/misc.xml
+NewsTailorBE/.idea/modules.xml
+NewsTailorBE/.idea/inspectionProfiles/Project_Default.xml
+NewsTailorBE/.idea/inspectionProfiles/profiles_settings.xml
+NewsTailorBE/.idea/NewsTailorBE.iml
+NewsTailorBE/.idea/vcs.xml
