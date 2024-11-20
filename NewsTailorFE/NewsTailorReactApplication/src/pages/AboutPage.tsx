@@ -4,7 +4,7 @@ import Footer from '../components/aboutPage/Footer';
 
 function AboutPage() {
   return (
-    <div className="about-page-container fade-in">
+    <div className="about-page-container">
       <Header />
       <About />
       <Footer />
