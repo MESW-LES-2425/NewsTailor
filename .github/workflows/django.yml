@@ -78,11 +78,11 @@ jobs:
         coverage report -m
 
     - name: Run Selenium Tests
-      working-directory: NewsTailorBE/NewsTailorDjangoApplication/tests/automated_tests
+      working-directory: NewsTailorBE/NewsTailorDjangoApplication/
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
-        python -m unittest discover -s tests/selenium
+        python -m unittest discover -s tests/automated_tests
 
     - name: Shut down Docker containers
       run: |
