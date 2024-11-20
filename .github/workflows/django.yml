@@ -66,10 +66,10 @@ jobs:
         coverage run manage.py test
         coverage report -m
 
-    - name: Install Firefox and GeckoDriver
+    - name: Install Non-Snap Firefox and GeckoDriver
       run: |
         sudo apt-get update
-        sudo apt-get install -y firefox
+        sudo apt-get install -y firefox  # Non-snap version
         wget -q https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
         tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
         chmod +x geckodriver
