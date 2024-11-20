@@ -6,7 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager  # To automatically manage ChromeDriver version
 
 
-class TestSignuserup():
+class TestFAQPage():
     def setup_method(self):
         # Set up Chrome options for headless mode
         chrome_options = Options()

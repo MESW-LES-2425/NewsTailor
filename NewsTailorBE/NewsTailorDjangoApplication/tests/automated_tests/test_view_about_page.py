@@ -1,11 +1,12 @@
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager  # To automatically manage ChromeDriver version
 
 
-class TestViewProfilePage():
+class TestViewAboutPage():
     def setup_method(self, method):
         # Set up Chrome options for headless mode
         chrome_options = Options()
@@ -22,8 +23,8 @@ class TestViewProfilePage():
     def teardown_method(self, method):
         self.driver.quit()
 
-    def test_view_profile_page(self):
-        # Test name: view_profile_page
+    def test_test_view_about_page(self):
+        # Test name: test_view_about_page
         # Step # | name | target | value
         # 1 | open | / |
         self.driver.get("http://localhost:5173/")
@@ -47,5 +48,5 @@ class TestViewProfilePage():
         self.driver.find_element(By.CSS_SELECTOR, ".sign-in-form > .signin-signup-input-field:nth-child(3)").click()
         # 11 | click | id=logginButton |
         self.driver.find_element(By.ID, "logginButton").click()
-        # 12 | click | id=userProfileLink |
-        # self.driver.find_element(By.ID, "userProfileLink").click()
+        # 12 | click | css=.blue-circle-button-about |
+        #self.driver.find_element(By.CSS_SELECTOR, ".blue-circle-button").click()
