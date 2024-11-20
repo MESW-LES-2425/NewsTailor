@@ -68,12 +68,18 @@ jobs:
 
     - name: Install Non-Snap Firefox and GeckoDriver
       run: |
-        sudo apt-get update
-        sudo apt-get install -y firefox  # Non-snap version
-        wget -q https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
-        tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
-        chmod +x geckodriver
-        sudo mv geckodriver /usr/local/bin/
+          sudo apt-get purge -y firefox firefox-locale-en  # Remove the Snap version
+          sudo snap remove firefox || true  # Ensure Snap version is removed
+          sudo add-apt-repository -y ppa:mozillateam/ppa  # Add the Mozilla PPA
+          echo 'Package: firefox*' | sudo tee -a /etc/apt/preferences.d/99firefox
+          echo 'Pin: release o=LP-PPA-mozillateam' | sudo tee -a /etc/apt/preferences.d/99firefox
+          echo 'Pin-Priority: 1001' | sudo tee -a /etc/apt/preferences.d/99firefox
+          sudo apt-get update
+          sudo apt-get install -y firefox
+          wget -q https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.33.0-linux64.tar.gz
+          tar -xvzf geckodriver-v0.33.0-linux64.tar.gz
+          chmod +x geckodriver
+          sudo mv geckodriver /usr/local/bin/
 
     - name: Install Selenium Dependencies
       working-directory: NewsTailorBE
