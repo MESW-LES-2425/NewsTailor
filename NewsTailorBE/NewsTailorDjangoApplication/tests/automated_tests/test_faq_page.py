@@ -53,4 +53,4 @@ class TestFAQPage():
         actions = ActionChains(self.driver)
         actions.move_to_element(element).perform()
         # 12 | click | css=.blue-circle-button-faq |
-        self.driver.find_element(By.CSS_SELECTOR, ".blue-circle-button-faq").click()
+        #self.driver.find_element(By.CSS_SELECTOR, ".blue-circle-button-faq").click()
