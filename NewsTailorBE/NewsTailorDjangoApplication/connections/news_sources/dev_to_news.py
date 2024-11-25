@@ -12,46 +12,27 @@ def obtain_news_from_dev_to(categories=None, timeline=None):
     # Initialize an empty list to collect articles
     all_news_data = []
 
-    # Iterate over each tag in the tags list (if provided)
-    if categories:
-        for category in categories:
-            url = f"{base_url}&tag={category}"
+    # Iterate over each tag in the tags list
+    for category in categories:
+        url = f"{base_url}&tag={category}"
 
-            # Calculate the published_after date based on the timeline
-            if timeline:
-                cutoff_time = datetime.utcnow() - timedelta(hours=int(timeline))
-                published_after = cutoff_time.isoformat() + "Z"  # Convert to ISO 8601 format
-                url += f"&published_after={published_after}"
+        # Calculate the published_after date based on the timeline
+        cutoff_time = datetime.utcnow() - timedelta(hours=int(timeline))
+        published_after = cutoff_time.isoformat() + "Z"
+        url += f"&published_after={published_after}"
 
-            # Fetch articles for the current tag
-            response = requests.get(url)
-            if response.status_code == 200:
-                articles = response.json()
-
-                # Fetch full content for each article
-                for article in articles:
-                    article_content = obtain_news_content_from_devto_id(article)
-                    if article_content:  # Ensure valid content is added
-                        all_news_data.append(article_content)
-            else:
-                print(f"Failed to fetch articles for tag '{category}'. Status code: {response.status_code}")
-    else:
-        # If no tags are provided, fetch articles without filtering by tag
-        url = base_url
-        if timeline:
-            cutoff_time = datetime.utcnow() - timedelta(hours=int(timeline))
-            published_after = cutoff_time.isoformat() + "Z"
-            url += f"&published_after={published_after}"
-
+        # Fetch articles for the current tag
         response = requests.get(url)
         if response.status_code == 200:
             articles = response.json()
+
+            # Fetch full content for each article
             for article in articles:
                 article_content = obtain_news_content_from_devto_id(article)
-                if article_content:
+                if article_content:  # Ensure valid content is added
                     all_news_data.append(article_content)
         else:
-            print(f"Failed to fetch articles. Status code: {response.status_code}")
+            print(f"Failed to fetch articles for tag '{category}'. Status code: {response.status_code}")
 
     # Return collected news data or a fallback message
     return all_news_data.__getitem__(0).get("content")
@@ -59,6 +40,7 @@ def obtain_news_from_dev_to(categories=None, timeline=None):
 
 def obtain_news_content_from_devto_id(article):
     article_id = article.get("id")
+    # Obtaining the wanted article via the provided ID.
     article_url = f"https://dev.to/api/articles/{article_id}"
 
     # Request full article details according to article ID

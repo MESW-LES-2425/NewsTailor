@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from NewsTailorDjangoApplication.connections.dev_to_news import obtain_news_from_dev_to
+from NewsTailorDjangoApplication.connections.news_sources.dev_to_news import obtain_news_from_dev_to
 from NewsTailorDjangoApplication.connections.news_api import obtain_news_from_news_api, obtain_news_from_guardian_api, \
     obtain_news_from_new_york_times
 from NewsTailorDjangoApplication.connections.summarizer_api import summarize
