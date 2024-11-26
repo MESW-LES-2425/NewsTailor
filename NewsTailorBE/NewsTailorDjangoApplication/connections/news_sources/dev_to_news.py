@@ -5,10 +5,11 @@ from NewsTailorDjangoApplication.connections.news_sources.NewsArticle import New
 
 NUMBER_OF_NEWS_ARTICLES = 5
 
+
 def obtain_news_from_dev_to(categories=None, timeline=None):
+    """Obtain news articles from Dev.to API"""
     base_url = f"https://dev.to/api/articles?per_page={NUMBER_OF_NEWS_ARTICLES}"
 
-    # Initialize an empty list to collect articles
     news_articles = []
 
     # Iterate over each category in the list
@@ -35,8 +36,8 @@ def obtain_news_from_dev_to(categories=None, timeline=None):
 
 
 def obtain_news_content_from_devto_id(article):
+    """Obtain full content for a given article ID"""
     article_id = article.get("id")
-    # Obtaining the wanted article via the provided ID.
     article_url = f"https://dev.to/api/articles/{article_id}"
 
     # Request full article details according to article ID

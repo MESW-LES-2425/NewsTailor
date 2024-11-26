@@ -57,9 +57,11 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
         "Make the content interesting to the user and engaging so that he wants to continue reading."
         "Try to make the content natural, articulating the different articles together."
         "For each article, create it with a title, an enhanced summary of the content and the url of the article which should be clickable. "
-        "You will receive a list of articles from different sources. Each news article has a title, a content and a url. "
+        "You will receive a list of articles from different sources. Each news article has a title, a content and a url. Display the URLS as 'Read the Full Article'."
         f"These are all the news articles I have obtained: {str(raw_news)}"
         "Make sure not to include any fake news or any content that is not appropriate. If the article is not appropriate, do not use it."
+        "For the main title, create a title  relates to the content of the article and has the time of the reading session - example: Your 5 Minutes Sports Read."
+        "In terms of markdown content, do not use separation lines between the articles. Only use h1, h2 and p for content."
     )
 
     try:

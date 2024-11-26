@@ -1,28 +1,30 @@
+"""
+Tutorial for news api usage at: https://worldnewsapi.com/docs/quick-start-tutorial/
+This is our main news aggregator - obtaining content from several different sources.
+Here, we are able to configure varied different parameters such as text detection, publish date and categories.
+
+Categories we will always want to use:
+    - news_sources
+    - earliest_publish_date
+    - categories
+"""
 import os
 from datetime import datetime, timedelta, timezone
 import worldnewsapi
 
 from NewsTailorDjangoApplication.connections.news_sources.NewsArticle import NewsArticle
+from NewsTailorDjangoApplication.connections.request_utils import English_language_prefix
 
-"""
-Tutorial for news api usage at: https://worldnewsapi.com/docs/quick-start-tutorial/
-This is our main news aggregator - obtaining content from several different sources.
-Here, we are able to configure varied different parameters such as text detection, publish date and categories.
-Categories we will always want to use:
-- news_sources
-- earliest_publish_date
-- categories
-"""
 newsapi_configuration = worldnewsapi.Configuration(api_key={'apiKey': os.getenv('WORLD_NEWS_KEY')})
 NUMBER_OF_NEWS_ARTICLES = 5
 
 
 def obtain_news_from_world_news(categories=None, timeline=None):
     """Method to obtain news from the world news API with the configured parameters"""
+
+    all_results = []
     try:
         newsapi_instance = worldnewsapi.NewsApi(worldnewsapi.ApiClient(newsapi_configuration))
-
-        all_results = []
 
         # Calculate the earliest publishing date based on the timeline
         earliest_publish_date = (datetime.now(timezone.utc) - timedelta(hours=int(timeline))).strftime(
@@ -37,7 +39,8 @@ def obtain_news_from_world_news(categories=None, timeline=None):
         response = newsapi_instance.search_news(
             earliest_publish_date=earliest_publish_date,
             categories=categories_str,
-            number=NUMBER_OF_NEWS_ARTICLES
+            number=NUMBER_OF_NEWS_ARTICLES,
+            language=English_language_prefix
         )
 
         all_results.extend(response.news)

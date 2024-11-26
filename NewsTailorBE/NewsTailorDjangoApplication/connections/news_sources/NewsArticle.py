@@ -18,6 +18,3 @@ class NewsArticle:
 
     def get_url(self):
         return self.url
-
-    def to_string(self):
-        return self.titles, self.contents, self.url
