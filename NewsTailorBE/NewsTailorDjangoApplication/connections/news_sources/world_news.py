@@ -14,7 +14,7 @@ Categories we will always want to use:
 - categories
 """
 newsapi_configuration = worldnewsapi.Configuration(api_key={'apiKey': os.getenv('WORLD_NEWS_KEY')})
-NUMBER_OF_NEWS_ARTICLES = os.getenv('NUMBER_OF_NEWS_ARTICLES')
+NUMBER_OF_NEWS_ARTICLES = 5
 
 
 def obtain_news_from_world_news(categories=None, timeline=None):
@@ -31,6 +31,9 @@ def obtain_news_from_world_news(categories=None, timeline=None):
         # Convert categories list to a comma-separated string
         categories_str = ','.join(categories) if categories else None
 
+        # List of possible categories:
+        # politics, sports, business, technology, entertainment, health, science, lifestyle, travel, culture, education, environment
+
         response = newsapi_instance.search_news(
             earliest_publish_date=earliest_publish_date,
             categories=categories_str,
@@ -40,13 +43,19 @@ def obtain_news_from_world_news(categories=None, timeline=None):
         all_results.extend(response.news)
 
     except worldnewsapi.ApiException as e:
-        print("Exception when calling NewsApi->search_news: %s\n" % e)
+        print(f"Exception when calling NewsApi -> search_news: {e}")
 
     # Obtaining the list of news articles objects from the response.
+    news_articles = create_news_articles(all_results)
+
+    return news_articles
+
+
+def create_news_articles(request_results):
+    """Method to create a list of NewsArticle objects from the API response"""
     news_articles = []
-    for article in all_results:
+    for article in request_results:
         news_article = NewsArticle(article.title, article.text, article.url)
         news_articles.append(news_article)
-        print(news_article.to_string())
 
     return news_articles

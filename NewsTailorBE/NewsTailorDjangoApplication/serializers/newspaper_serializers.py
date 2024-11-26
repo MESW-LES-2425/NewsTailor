@@ -20,7 +20,7 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         # Use serializer to validate and save the instance
         serializer = NewsPaperSerializer(data={
             "title": "News Tailor Newspaper",
-            "content": content["dev_to"],
+            "content": content,
             "created_at": datetime.now(),
             "user_newspaper": user_instance.id,
             "is_currently_reading": True,

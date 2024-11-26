@@ -1,27 +1,22 @@
-import os
 import requests
 from datetime import datetime, timedelta
 
-NUMBER_OF_NEWS_ARTICLES = os.getenv('NUMBER_OF_NEWS_ARTICLES')
+from NewsTailorDjangoApplication.connections.news_sources.NewsArticle import NewsArticle
 
+NUMBER_OF_NEWS_ARTICLES = 5
 
 def obtain_news_from_dev_to(categories=None, timeline=None):
-    # Base URL to fetch articles, with a placeholder for the tag filter
     base_url = f"https://dev.to/api/articles?per_page={NUMBER_OF_NEWS_ARTICLES}"
 
     # Initialize an empty list to collect articles
-    all_news_data = []
+    news_articles = []
 
-    # Iterate over each tag in the tags list
+    # Iterate over each category in the list
     for category in categories:
         url = f"{base_url}&tag={category}"
+        url += f"&published_after={obtain_published_after(timeline)}"
 
-        # Calculate the published_after date based on the timeline
-        cutoff_time = datetime.utcnow() - timedelta(hours=int(timeline))
-        published_after = cutoff_time.isoformat() + "Z"
-        url += f"&published_after={published_after}"
-
-        # Fetch articles for the current tag
+        # Fetch articles for the current category
         response = requests.get(url)
         if response.status_code == 200:
             articles = response.json()
@@ -29,13 +24,14 @@ def obtain_news_from_dev_to(categories=None, timeline=None):
             # Fetch full content for each article
             for article in articles:
                 article_content = obtain_news_content_from_devto_id(article)
-                if article_content:  # Ensure valid content is added
-                    all_news_data.append(article_content)
+                if article_content:
+                    news_article = NewsArticle(article_content.get("title"), article_content.get("content"),
+                                               article_content.get("url"))
+                    news_articles.append(news_article)
         else:
-            print(f"Failed to fetch articles for tag '{category}'. Status code: {response.status_code}")
+            print(f"Failed to fetch articles for category '{category}'. Status code: {response.status_code}")
 
-    # Return collected news data or a fallback message
-    return all_news_data.__getitem__(0).get("content")
+    return news_articles
 
 
 def obtain_news_content_from_devto_id(article):
@@ -50,10 +46,17 @@ def obtain_news_content_from_devto_id(article):
         article_data = {
             "title": full_article.get("title"),
             "content": full_article.get("body_markdown"),
-            "url": full_article.get("url"),
-            "tags": full_article.get("tag_list"),
+            "url": full_article.get("url")
         }
         return article_data
     else:
         print(f"Failed to fetch full content for article ID {article_id}")
         return None
+
+
+def obtain_published_after(timeline):
+    """Calculate the published_after date based on the timeline"""
+    cutoff_time = datetime.utcnow() - timedelta(hours=int(timeline))
+    published_after = cutoff_time.isoformat() + "Z"
+
+    return published_after
