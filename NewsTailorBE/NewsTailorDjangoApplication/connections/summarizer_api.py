@@ -18,15 +18,15 @@ WORLD_NEWS_SOURCE = "world_news"
 DEV_TO_SOURCE = "dev_to"
 
 
-def obtain_news_for_sources(sources, categories, timeline, userid):
+def obtain_news_for_sources(sources, categories, timeline, userid, duration_of_session):
     news_article_list = []
 
     # Iterating each source and adding the corresponding news articles to the aggregated response.
     for source in sources:
         if source == WORLD_NEWS_SOURCE:
-            news_article_list.extend(obtain_news_from_world_news(categories, timeline))
+            news_article_list.extend(obtain_news_from_world_news(categories, timeline, duration_of_session))
         elif source == DEV_TO_SOURCE:
-            news_article_list.extend(obtain_news_from_dev_to(categories, timeline))
+            news_article_list.extend(obtain_news_from_dev_to(categories, timeline, duration_of_session))
         else:
             return Response({"error": f"Invalid source specified: {source}"},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -35,7 +35,7 @@ def obtain_news_for_sources(sources, categories, timeline, userid):
     wpm = UserProfileView.get_wpm(userid)
 
     articles_formatted = format_articles(news_article_list)
-    content = summarize(articles_formatted, 2, wpm)
+    content = summarize(articles_formatted, 10, wpm)
 
     NewsPaperSerializer.create_news_paper(content, userid)
 
@@ -56,9 +56,10 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
         "Make the content seem like the text was written by an expert journalist with several years in the field. "
         "Make the content interesting to the user and engaging so that he wants to continue reading."
         "Try to make the content natural, articulating the different articles together."
+        "You can summarize more or less according to the relevance of the article - always respecting the duration of the session."
         "For each article, create it with a title, an enhanced summary of the content and the url of the article which should be clickable. "
         "You will receive a list of articles from different sources. Each news article has a title, a content and a url. Display the URLS as 'Read the Full Article'."
-        f"These are all the news articles I have obtained: {str(raw_news)}"
+        f"These are all the news articles I have obtained: {raw_news}"
         "Make sure not to include any fake news or any content that is not appropriate. If the article is not appropriate, do not use it."
         "For the main title, create a title  relates to the content of the article and has the time of the reading session - example: Your 5 Minutes Sports Read."
         "In terms of markdown content, do not use separation lines between the articles. Only use h1, h2 and p for content."
@@ -83,8 +84,8 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
 def format_articles(news_articles):
     """Format a list of news articles into a readable string."""
     formatted_articles = "\n\n".join(
-        f"Title: {article.get_titles()}\n"
-        f"Content: {article.get_contents()}\n"
+        f"Title: {article.get_title()}\n"
+        f"Content: {article.get_content()}\n"
         f"URL: {article.get_url()}"
         for article in news_articles
     )

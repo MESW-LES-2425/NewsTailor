@@ -6,15 +6,15 @@ This will be used to unify all the representations of the news article object.
 
 class NewsArticle:
     def __init__(self, title, content, url):
-        self.titles = title
-        self.contents = content
+        self.title = title
+        self.content = content
         self.url = url
 
-    def get_titles(self):
-        return self.titles
+    def get_title(self):
+        return self.title
 
-    def get_contents(self):
-        return self.contents
+    def get_content(self):
+        return self.content
 
     def get_url(self):
         return self.url

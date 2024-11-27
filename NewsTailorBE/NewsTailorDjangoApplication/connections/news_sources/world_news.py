@@ -16,10 +16,10 @@ from NewsTailorDjangoApplication.connections.news_sources.NewsArticle import New
 from NewsTailorDjangoApplication.connections.request_utils import English_language_prefix
 
 newsapi_configuration = worldnewsapi.Configuration(api_key={'apiKey': os.getenv('WORLD_NEWS_KEY')})
-NUMBER_OF_NEWS_ARTICLES = 5
+ARTICLE_VALUE_MULTIPLIER = 2
 
 
-def obtain_news_from_world_news(categories=None, timeline=None):
+def obtain_news_from_world_news(categories=None, timeline=None, duration_of_session=None):
     """Method to obtain news from the world news API with the configured parameters"""
 
     all_results = []
@@ -39,7 +39,7 @@ def obtain_news_from_world_news(categories=None, timeline=None):
         response = newsapi_instance.search_news(
             earliest_publish_date=earliest_publish_date,
             categories=categories_str,
-            number=NUMBER_OF_NEWS_ARTICLES,
+            number=duration_of_session * ARTICLE_VALUE_MULTIPLIER,
             language=English_language_prefix
         )
 

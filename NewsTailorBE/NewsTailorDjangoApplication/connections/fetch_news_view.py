@@ -25,6 +25,6 @@ class FetchNewsView(APIView):
             return Response({"error": "Sources and Categories should be provided as a list."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        aggregated_response = obtain_news_for_sources(sources, categories, timeline, userid)
+        aggregated_response = obtain_news_for_sources(sources, categories, timeline, userid, 2)
 
         return Response(aggregated_response, status=status.HTTP_200_OK)

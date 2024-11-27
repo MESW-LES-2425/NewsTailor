@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 
 from NewsTailorDjangoApplication.connections.news_sources.NewsArticle import NewsArticle
 
-NUMBER_OF_NEWS_ARTICLES = 5
+ARTICLE_VALUE_MULTIPLIER = 2
 
 
-def obtain_news_from_dev_to(categories=None, timeline=None):
+def obtain_news_from_dev_to(categories=None, timeline=None, duration_of_session=None):
     """Obtain news articles from Dev.to API"""
-    base_url = f"https://dev.to/api/articles?per_page={NUMBER_OF_NEWS_ARTICLES}"
+    base_url = f"https://dev.to/api/articles?per_page={duration_of_session * ARTICLE_VALUE_MULTIPLIER}"
 
     news_articles = []
 
