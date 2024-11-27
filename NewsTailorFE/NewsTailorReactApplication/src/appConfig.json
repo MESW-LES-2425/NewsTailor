@@ -7,10 +7,8 @@
         { "label": "Criptocurrency", "value": "cryptocurrency", "id": 5}
     ],
     "sourcesOptions": [
-        { "label": "Guardian", "value": "guardian" },
-        { "label": "News API (Generic)", "value": "news_api" },
-        { "label": "Dev TO (Generic)", "value": "dev_to" },
-        { "label": "New York Times", "value": "nyt" }
+        { "label": "World News", "value": "world_news" },
+        { "label": "Dev TO (Generic)", "value": "dev_to" }
     ],
     "readingSpeedOptions": [
         { "label": "Fast", "value": 300 },

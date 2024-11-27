@@ -24,6 +24,7 @@ pytest = "*"
 selenium = "*"
 openai = "*"
 webdriver-manager = "*"
+worldnewsapi = "*"
 
 [dev-packages]
 
