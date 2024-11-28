@@ -6,16 +6,7 @@
     flex-direction: column; 
     align-items: center;
     z-index: 10;
-}
-
-.social-icons-helper {
-    position: fixed;
-    top: 60%;
-    left: 80.1%;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    z-index: 10;
+    cursor: pointer;
 }
 
 .social-icons .icon-wrapper{

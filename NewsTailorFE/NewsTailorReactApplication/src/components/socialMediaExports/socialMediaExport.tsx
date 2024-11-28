@@ -11,7 +11,7 @@ const ShareButtons = ({ initialContent = "" }) => {
 
     return (
         <div>
-            <div className="icon-wrapper">
+            <div className="icon-wrapper" title="Share via Email">
                 <EmailShareButton
                     url={url}
                     subject="Check out this article from NewsTailor!"
@@ -21,13 +21,13 @@ const ShareButtons = ({ initialContent = "" }) => {
                 </EmailShareButton>
             </div>
 
-            <div className="icon-wrapper">
+            <div className="icon-wrapper" title="Share via WhatsApp">
                 <WhatsappShareButton url={url} title={articleText}>
                     <FontAwesomeIcon icon={faWhatsapp} size="lg" />
                 </WhatsappShareButton>
             </div>
 
-            <div className="icon-wrapper">
+            <div className="icon-wrapper" title="Share via LinkedIn">
                 <LinkedinShareButton
                     url={url}
                     title="Check this out!"
@@ -39,7 +39,7 @@ const ShareButtons = ({ initialContent = "" }) => {
                 </LinkedinShareButton>
             </div>
 
-            <div className="icon-wrapper">
+            <div className="icon-wrapper" title="Share via Twitter">
                 <TwitterShareButton
                     url={url}
                     title="Check out this article!"
