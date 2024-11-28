@@ -13,12 +13,13 @@ function Auth() {
 
     return (
         <div className={`auth-container ${isSignUpMode ? "sign-up-mode" : ""} fade-in`}>
-        <div className="auth-forms-container">
-            <div className="signin-signup">
-                <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
-                <LoginForm />
+            <div className="auth-forms-container">
+                <div className="signin-signup">
+                    <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
+                    <LoginForm />
+                </div>
+
             </div>
-        </div>
         <div className="auth-panels-container">
             <div className="auth-panel auth-panel-left">
                 <div className="auth-panel-content">
@@ -44,9 +45,9 @@ function Auth() {
                     </button>
                 </div>
                 <img src={authImage} className="auth-image" alt="" />
+                </div>
             </div>
         </div>
-      </div>
     );
 }
 

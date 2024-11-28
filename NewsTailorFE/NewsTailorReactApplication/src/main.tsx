@@ -1,6 +1,5 @@
 //import React from 'react'
 import './index.css'
-import React from 'react'
 import ConfigPage from "./pages/configPage.tsx";
 import { UserProvider } from "./context/UserContext.tsx";
 import ReactDOM from 'react-dom/client'
@@ -15,6 +14,7 @@ import ProfileForm from "./components/profile/ProfileForm.tsx";
 import LandingPage from './pages/LandingPage.tsx'
 import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
+import ResetPassword from './components/resetPassword/ResetPassword.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -36,6 +36,7 @@ function App() {
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
                 <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
+                <Route path="/reset-password/:userId/:token" element={<AuthRoute><ResetPassword /></AuthRoute>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>
