@@ -14,8 +14,9 @@ python-dotenv~=1.0.1
 feedparser~=6.0.11
 Flask~=3.0.3
 pytest~=8.3.3
-selenium~=4.26.1
-openai~=1.54.5
+selenium~=4.27.0
+openai~=1.55.0
 beautifulsoup4~=4.12.3
 
 webdriver-manager~=4.0.2
+worldnewsapi~=2.0.0
