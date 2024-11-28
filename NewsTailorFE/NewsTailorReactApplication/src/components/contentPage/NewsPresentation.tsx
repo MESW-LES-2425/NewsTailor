@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import api from '../../api';
 import "./contentTable.css";
-import { FaRegHeart, FaHeart, FaCheck } from "react-icons/fa";
 import MarkdownReader from "../../utils/MarkdownReader.tsx";
-
+import ShareButtons from '../socialMediaExports/socialMediaExport.tsx';
+import "../socialMediaExports/socialMediaStyling.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'; 
 
 export interface NewsPropertiesPresentation {
     news?: { content?: string; title?: string; id?: string; created_at?: string; is_currently_reading?: boolean; is_saved?: boolean; user_newspaper?: string; };
@@ -48,21 +50,18 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     return (
         <div className="content-and-buttons">
             <div className="home-news-actions">
-                <div className="button-container">
-                    <button className="conclude-reading-button" onClick={concludeReadingSession}>
-                        Conclude Reading  <FaCheck />
-                    </button>
-                    <button className="save-news-button" onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
-                        {isSaved ? (
-                            <>
-                                Saved <FaHeart />
-                            </>
-                        ) : (
-                            <>
-                                Save <FaRegHeart />
-                            </>
-                        )}
-                    </button>
+                <div className="social-icons">
+                    {news?.content && <ShareButtons initialContent={news.content} />}
+                    <div className="icon-wrapper">
+                        <button onClick={concludeReadingSession}>
+                            <FontAwesomeIcon icon={faCheck} size="lg"/>
+                        </button>
+                    </div>    
+                    <div className="icon-wrapper">
+                        <button onClick={!isSaved ? saveNewspaper : undefined} disabled={isSaved}>
+                            <FontAwesomeIcon icon={isSaved ? faHeart : faHeartBroken } size="lg" />
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="content-table">

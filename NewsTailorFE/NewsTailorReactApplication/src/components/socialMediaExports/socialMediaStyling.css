@@ -1,0 +1,42 @@
+.social-icons {
+    position: fixed;
+    top: 17.5%;
+    left: 80.1%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    z-index: 10;
+}
+
+.social-icons-helper {
+    position: fixed;
+    top: 60%;
+    left: 80.1%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    z-index: 10;
+}
+
+.social-icons .icon-wrapper{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 60px; 
+    height: 90px;
+    border: 1px solid #ccc; 
+    background-color: #f8f8f8; 
+    transition: transform 0.2s, background-color 0.3s; 
+}
+
+.social-icons .icon-wrapper button {
+    outline: none; 
+    background: transparent; 
+    border: none; 
+    color: black;
+}
+
+.social-icons .icon-wrapper:hover{
+    background-color: #e0e0e0; 
+}
