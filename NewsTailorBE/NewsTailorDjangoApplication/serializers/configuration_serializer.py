@@ -42,3 +42,22 @@ class ConfigurationSerializer(serializers.ModelSerializer):
             )
 
         return configuration_instance
+
+class ConfigurationListSerializer(serializers.ModelSerializer):
+    categories = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Configuration
+        fields = ['id', 'name', 'read_time', 'fetch_period', 'sources', 'categories']
+
+    def get_categories(self, obj):
+        categories_data = Configuration_Category.objects.filter(configuration=obj).select_related('category')
+        return [
+            {
+                "id": cc.category.id,
+                "name": cc.category.name,
+                "percentage": cc.percentage
+            }
+            for cc in categories_data
+        ]
+
