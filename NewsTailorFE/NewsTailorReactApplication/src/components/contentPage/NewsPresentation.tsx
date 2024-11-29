@@ -5,7 +5,8 @@ import MarkdownReader from "../../utils/MarkdownReader.tsx";
 import ShareButtons from '../socialMediaExports/socialMediaExport.tsx';
 import "../socialMediaExports/socialMediaStyling.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faHeart, faHeartBroken, faGear } from '@fortawesome/free-solid-svg-icons';
+import Popup from 'reactjs-popup';
 
 export interface NewsPropertiesPresentation {
     news?: { content?: string; title?: string; id?: string; created_at?: string; is_currently_reading?: boolean; is_saved?: boolean; user_newspaper?: string; };
@@ -16,6 +17,8 @@ export interface NewsPropertiesPresentation {
 const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclude }) => {
 
     const [isSaved, setIsSaved] = useState(news?.is_saved || false);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 
     const concludeReadingSession = async () => {
         if (!news?.id) {
@@ -47,11 +50,25 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
         }
     }
 
+    const openConfigs = () => {
+        setIsPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setIsPopupOpen(false);
+    };
+
+
     return (
         <div className="content-and-buttons">
             <div className="home-news-actions">
                 <div className="social-icons">
                     {news?.content && <ShareButtons initialContent={news.content} />}
+                    <div className="icon-wrapper" title="Configurations">
+                        <button onClick={openConfigs}>
+                            <FontAwesomeIcon icon={faGear} size="lg" />
+                        </button>
+                    </div>
                     <div className="icon-wrapper" title="Conclude Reading Session">
                         <button onClick={concludeReadingSession} className="hover-effect">
                             <FontAwesomeIcon icon={faCheck} size="lg" />
@@ -64,6 +81,15 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     </div>
                 </div>
             </div>
+            <Popup open={isPopupOpen} closeOnDocumentClick onClose={closePopup} overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+                <div className="popup-content">
+                    <h3>Configurations</h3>
+                    <p>Font</p>
+                    <button onClick={closePopup} className="close-popup-button">
+                        Close
+                    </button>
+                </div>
+            </Popup>
             <div className="content-table">
                 <div className="news-container">
                     <div className="news-item">
