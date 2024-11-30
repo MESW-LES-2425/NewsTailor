@@ -4,7 +4,6 @@ import config from "../../appConfig.json";
 interface Topic {
     label: string;
     value: string;
-    id: number;
 }
 
 const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
