@@ -35,7 +35,7 @@ def obtain_news_for_sources(sources, categories, timeline, userid, duration_of_s
     wpm = UserProfileView.get_wpm(userid)
 
     articles_formatted = format_articles(news_article_list)
-    content = summarize(articles_formatted, 10, wpm)
+    content = summarize(articles_formatted, duration_of_session, wpm)
 
     NewsPaperSerializer.create_news_paper(content, userid)
 
@@ -45,25 +45,11 @@ def obtain_news_for_sources(sources, categories, timeline, userid, duration_of_s
 def summarize(raw_news, duration_of_session, user_wpm) -> str:
     """Summarize the news obtained from the sources."""
 
-    message_content = (
-        "You are a News Tailor bot. "
-        "You create news using provided configurations and from provided news articles."
-        "For a newspaper, you should provide a title, have various different subtitles for the "
-        "different news articles obtained and you should summarize the content of the news articles. "
-        f"The user reads at {user_wpm} words per minute. "
-        f"Make sure the total word count on the result that will be presented to the reader "
-        f"is close to {user_wpm * duration_of_session} words. "
-        "Make the content seem like the text was written by an expert journalist with several years in the field. "
-        "Make the content interesting to the user and engaging so that he wants to continue reading."
-        "Try to make the content natural, articulating the different articles together."
-        "You can summarize more or less according to the relevance of the article - always respecting the duration of the session."
-        "For each article, create it with a title, an enhanced summary of the content and the url of the article which should be clickable. "
-        "You will receive a list of articles from different sources. Each news article has a title, a content and a url. Display the URLS as 'Read the Full Article'."
-        f"These are all the news articles I have obtained: {raw_news}"
-        "Make sure not to include any fake news or any content that is not appropriate. If the article is not appropriate, do not use it."
-        "For the main title, create a title  relates to the content of the article and has the time of the reading session - example: Your 5 Minutes Sports Read."
-        "In terms of markdown content, do not use separation lines between the articles. Only use h1, h2 and p for content."
-    )
+    total_word_counter = duration_of_session * user_wpm
+
+    with open("NewsTailorDjangoApplication/connections/config/summarization_prompt.txt", "r") as file:
+        message_content = file.read().format(total_word_counter=total_word_counter,
+                                             raw_news=raw_news)
 
     try:
         completion = client.chat.completions.create(
