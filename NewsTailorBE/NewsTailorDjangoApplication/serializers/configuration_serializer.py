@@ -54,7 +54,7 @@ class ConfigurationSerializer(serializers.ModelSerializer):
         if categories:
             Configuration_Category.objects.filter(configuration=instance).delete()
             for category in categories:
-                category_instance = Category.objects.get(category)
+                category_instance = Category.objects.get(name=category)
                 Configuration_Category.objects.create(
                     configuration=instance,
                     category=category_instance,

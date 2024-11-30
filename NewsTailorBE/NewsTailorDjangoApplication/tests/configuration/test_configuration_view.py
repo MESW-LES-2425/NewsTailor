@@ -131,8 +131,8 @@ class UpdateConfigurationAPIViewTest(TestCase):
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
 
-        self.category1 = Category.objects.create(name="Category 1")
-        self.category2 = Category.objects.create(name="Category 2")
+        self.category1 = Category.objects.create(name="category1")
+        self.category2 = Category.objects.create(name="category2")
 
         self.config = Configuration.objects.create(
             name="Tech News",
@@ -163,12 +163,8 @@ class UpdateConfigurationAPIViewTest(TestCase):
             'user_id': self.user.id,
             "read_time": 50,
             "fetch_period": "72",
-            'categories': [
-                {"label": "Category 1", "value": "category1", "id": self.category1.id},
-            ],
-            'sources': [
-                {"label": "News API (Generic)", "value": "news_api"},
-            ],
+            "categories": ["category1"],
+            "sources": ["news_api"]
         }
 
         response = self.client.put(self.url, data=payload, format='json')
