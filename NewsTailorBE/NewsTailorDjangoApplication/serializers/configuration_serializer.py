@@ -43,6 +43,31 @@ class ConfigurationSerializer(serializers.ModelSerializer):
 
         return configuration_instance
 
+    def update(self, instance, validated_data):
+        categories = validated_data.pop('categories', [])
+        sources = validated_data.pop('sources', [])
+        fetch_period = int(validated_data.pop('fetch_period', instance.fetch_period)) * 60 #Convert to minutes
+        read_time = validated_data.pop('read_time', instance.read_time)
+
+        instance.name = validated_data.get('name', instance.name)
+        instance.read_time = read_time
+        instance.fetch_period = fetch_period
+        instance.sources = [source['value'] for source in sources] if sources else instance.sources
+
+        if categories:
+            Configuration_Category.objects.filter(configuration=instance).delete()
+            for category in categories:
+                category_id = category.get('id')
+                category_instance = Category.objects.get(id=category_id)
+                Configuration_Category.objects.create(
+                    configuration=instance,
+                    category=category_instance,
+                    percentage=100 // len(categories)
+                )
+
+        instance.save()
+        return instance
+
 class ConfigurationListSerializer(serializers.ModelSerializer):
     categories = serializers.SerializerMethodField()
 
