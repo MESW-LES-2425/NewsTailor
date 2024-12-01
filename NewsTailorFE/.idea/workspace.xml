@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/management/commands/seed.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/management/commands/seed.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/serializers/configuration_serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/serializers/configuration_serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/tests/configuration/test_configuration_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/tests/configuration/test_configuration_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/contentTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/contentTable.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.css" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,62 +37,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.Configuration Form.renders configuration form correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Handles user interaction correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Handles user interaction correctly.selects and removes a source.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Handles user interaction correctly.selects and removes a topic.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Handles user interaction correctly.updates reading time slider correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.displays API error messages correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.displays error message for Axios error.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.displays error message for invalid credentials.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.displays error message from API response.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.handles API error and sets error state.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.redirects to home page on successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.renders login form correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.should initialize with empty form data, not loading, hidden password and no errors.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form and handles login and token retrieval.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form and redirects on successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form with invalid credentials, catches errors, and displays error message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form with invalid email, catches errors, and displays error message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form, catches error, and displays error message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form, catches errors, and displays error messages.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.LoginForm.submits form, logs in, retrieves tokens, and navigates.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.RegisterForm.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.RegisterForm.should call onRegisterSuccess when form is submitted successfully.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.RegisterForm.submits form and register with success.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.RegisterForm.submits form with taken email or username.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.RegisterForm.submits form, registers user, and calls onRegisterSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders configuration form correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders readingTime component correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders readingtTime component correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders sourceSelection component correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders timeline selection component correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Render Configuration Form components.renders topic selection component correctly.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.handles edit button click.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.handles form submission.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders ProfileForm in editing mode.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders ProfileForm with user data.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useLoginForm Hook.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useLoginForm Hook.initializes with correct initial state.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useLoginForm Hook.toggles password visibility.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useLoginForm Hook.updates formData on handleChange.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useRegisterForm Hook.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.useRegisterForm Hook.initializes with correct initial state.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/delete-reading-presets&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/src/components/configurationForm/utils&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.Configuration Form.renders configuration form correctly.executor": "Run",
+    "Jest.Handles user interaction correctly.executor": "Run",
+    "Jest.Handles user interaction correctly.selects and removes a source.executor": "Run",
+    "Jest.Handles user interaction correctly.selects and removes a topic.executor": "Run",
+    "Jest.Handles user interaction correctly.updates reading time slider correctly.executor": "Run",
+    "Jest.LoginForm.displays API error messages correctly.executor": "Run",
+    "Jest.LoginForm.displays error message for Axios error.executor": "Run",
+    "Jest.LoginForm.displays error message for invalid credentials.executor": "Run",
+    "Jest.LoginForm.displays error message from API response.executor": "Run",
+    "Jest.LoginForm.executor": "Run",
+    "Jest.LoginForm.handles API error and sets error state.executor": "Run",
+    "Jest.LoginForm.redirects to home page on successful login.executor": "Run",
+    "Jest.LoginForm.renders login form correctly.executor": "Run",
+    "Jest.LoginForm.should initialize with empty form data, not loading, hidden password and no errors.executor": "Run",
+    "Jest.LoginForm.submits form and handles login and token retrieval.executor": "Run",
+    "Jest.LoginForm.submits form and redirects on successful login.executor": "Run",
+    "Jest.LoginForm.submits form with invalid credentials, catches errors, and displays error message.executor": "Run",
+    "Jest.LoginForm.submits form with invalid email, catches errors, and displays error message.executor": "Run",
+    "Jest.LoginForm.submits form, catches error, and displays error message.executor": "Run",
+    "Jest.LoginForm.submits form, catches errors, and displays error messages.executor": "Run",
+    "Jest.LoginForm.submits form, logs in, retrieves tokens, and navigates.executor": "Run",
+    "Jest.RegisterForm.executor": "Run",
+    "Jest.RegisterForm.should call onRegisterSuccess when form is submitted successfully.executor": "Run",
+    "Jest.RegisterForm.submits form and register with success.executor": "Run",
+    "Jest.RegisterForm.submits form with taken email or username.executor": "Run",
+    "Jest.RegisterForm.submits form, registers user, and calls onRegisterSuccess.executor": "Run",
+    "Jest.Render Configuration Form components.renders configuration form correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders readingTime component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders readingtTime component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders sourceSelection component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders timeline selection component correctly.executor": "Run",
+    "Jest.Render Configuration Form components.renders topic selection component correctly.executor": "Run",
+    "Jest.handles edit button click.executor": "Run",
+    "Jest.handles form submission.executor": "Run",
+    "Jest.renders ProfileForm in editing mode.executor": "Run",
+    "Jest.renders ProfileForm with user data.executor": "Run",
+    "Jest.useLoginForm Hook.executor": "Run",
+    "Jest.useLoginForm Hook.initializes with correct initial state.executor": "Run",
+    "Jest.useLoginForm Hook.toggles password visibility.executor": "Run",
+    "Jest.useLoginForm Hook.updates formData on handleChange.executor": "Run",
+    "Jest.useRegisterForm Hook.executor": "Run",
+    "Jest.useRegisterForm Hook.initializes with correct initial state.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/update-reading-presets",
+    "last_opened_file_path": "/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/src/components/configurationForm/utils",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/utils" />

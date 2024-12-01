@@ -1,4 +1,3 @@
-/* Container for the configurations */
 .configurations-container {
     display: flex;
     flex-wrap: wrap;
@@ -7,7 +6,6 @@
     margin-top: 20px;
 }
 
-/* Each configuration card */
 .configuration-card {
     background-color: #fff;
     border-radius: 8px;
@@ -20,41 +18,35 @@
     justify-content: space-between;
 }
 
-/* Hover effect for the configuration card */
 .configuration-card:hover {
     transform: scale(1.05);
 }
 
-/* Title styling */
 .configuration-card h2 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
-    white-space: nowrap;  /* Prevent title from wrapping */
-    overflow: hidden;     /* Hide overflow */
-    text-overflow: ellipsis; /* Add "..." if the title overflows */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Styling for paragraphs (Reading time, Fetch period, etc.) */
 .configuration-card p {
     font-size: 1rem;
     margin: 5px 0;
     color: #555;
 }
 
-/* List styling for categories */
 .configuration-card ul {
     list-style: none;
     padding: 0;
 }
 
-/* Category item styling */
 .configuration-card ul li {
     font-size: 0.9rem;
     color: #777;
 }
 
-/* Styling for buttons (Edit and Delete) */
 .configuration-card button {
     margin-top: 15px;
     padding: 10px 15px;
@@ -65,7 +57,6 @@
     border: none;
 }
 
-/* Blue Edit Button */
 .configuration-card button.edit-btn {
     background-color: #007bff;
     color: #fff;
@@ -75,7 +66,6 @@
     background-color: #0056b3;
 }
 
-/* Red Delete Button */
 .configuration-card button.delete-btn {
     background-color: #f44336;
     color: #fff;
@@ -85,7 +75,6 @@
     background-color: #d32f2f;
 }
 
-/* General Button Hover Effect */
 .configuration-card button:hover {
     transform: scale(1.05);
 }

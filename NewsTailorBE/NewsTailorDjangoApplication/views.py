@@ -97,7 +97,7 @@ class ListConfigurationsAPIView(generics.ListAPIView):
         ).filter(user_configuration=user)
 
 class DeleteConfigurationAPIView(generics.DestroyAPIView):
-    lookup_url_kwarg = 'category_id'
+    lookup_url_kwarg = 'configuration_id'
     queryset = Configuration.objects.all()
     permission_classes = [IsAuthenticated]
 
@@ -105,3 +105,15 @@ class DeleteConfigurationAPIView(generics.DestroyAPIView):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UpdateConfigurationAPIView(generics.UpdateAPIView):
+    lookup_url_kwarg = 'configuration_id'
+    queryset = Configuration.objects.all()
+    permission_classes = [IsAuthenticated]
+    serializer_class = ConfigurationSerializer
+
+
+
+
+
+

@@ -3,12 +3,13 @@ import Sidebar from '../components/contentPage/Sidebar';
 import NewsGeneration from '../components/contentPage/NewsGeneration';
 import api from "../api";
 import Header from '../components/landingPage/Header';
-import {checkAuthStatus, clearAuthTokens} from "../utils/authUtils.ts";
+import { checkAuthStatus, clearAuthTokens } from "../utils/authUtils.ts";
 import NewsPresentation from '../components/contentPage/NewsPresentation';
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { REFRESH_TOKEN} from "../constants";
+import { REFRESH_TOKEN } from "../constants";
 
+// Define the types for news and configurations
 export interface NewsType {
     content?: string;
     title?: string;
@@ -20,10 +21,26 @@ export interface NewsType {
     user_newspaper?: string;
 }
 
+interface Category {
+    id: number;
+    name: string;
+    percentage: number;
+}
+
+interface Configuration {
+    id: number;
+    name: string;
+    read_time: number;
+    fetch_period: number;
+    sources: string[];
+    categories: Category[];
+}
+
 function Home() {
     const navigate = useNavigate();
     const { userId } = useParams<{ userId: string }>();
     const [news, setNews] = useState<NewsType | null>(null);
+    const [configurations, setConfigurations] = useState<Configuration[] | null>(null);
 
     useEffect(() => {
         const checkIfNewsExists = async () => {
@@ -36,8 +53,20 @@ function Home() {
                 console.error("Error checking news existence:", error);
             }
         };
+
+        // Fetch user-specific configurations/presets
+        const fetchConfigurations = async () => {
+            try {
+                const response = await api.get("/api/configurations/");
+                setConfigurations(response.data);
+            } catch (error) {
+                console.error('Error fetching configurations', error);
+            }
+        };
+
         if (userId) {
             checkIfNewsExists();
+            fetchConfigurations();
         }
     }, [userId]);
 
@@ -52,7 +81,7 @@ function Home() {
     const handleLogout = async () => {
         const route = "/api/logout/";
         const isAuthenticated = await checkAuthStatus();
-        if(isAuthenticated){
+        if (isAuthenticated) {
             const refreshToken = localStorage.getItem(REFRESH_TOKEN);
             await api.post(route, { "refresh": refreshToken });
             clearAuthTokens();
@@ -78,7 +107,11 @@ function Home() {
             {news ? (
                 <NewsPresentation news={news} onConclude={handleConclude} />
             ) : (
-                <NewsGeneration userId={userId} onGenerate={handleGenerate} />
+                <NewsGeneration
+                    userId={userId}
+                    onGenerate={handleGenerate}
+                    configurations={configurations}
+                />
             )}
             <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
             <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
