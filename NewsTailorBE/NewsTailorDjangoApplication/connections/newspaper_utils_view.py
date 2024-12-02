@@ -40,7 +40,6 @@ class SaveNewsPaperByIdView(APIView):
 
         return Response(status=status.HTTP_200_OK)
     
-
 class ObtainUserNewsPapersView(APIView):
     permission_classes = [AllowAny]
 
@@ -61,4 +60,29 @@ class ReadNewsPaperByIdView(APIView):
 
         NewsPaperSerializer.read_news_paper_by_id(newspaper_id)
 
-        return Response(status=status.HTTP_200_OK)        
+        return Response(status=status.HTTP_200_OK) 
+
+class CreateUserNewsPaperConfigurationView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        user_id = request.data.get('user_configuration')
+        font_size = request.data.get('font_size')
+
+        NewsPaperSerializer.create_user_news_paper_configuration(user_id, font_size)
+
+        return Response(status=status.HTTP_200_OK)      
+
+class FetchUserNewsPaperConfigurationView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def get(request, user_id):
+
+        user_configuration = NewsPaperSerializer.fetch_user_news_paper_configuration(user_id)
+
+        if user_configuration:
+            return Response({'User Configuration': user_configuration}, status=status.HTTP_200_OK)
+        else:
+            return Response({'User Configuration': []}, status=status.HTTP_200_OK)      

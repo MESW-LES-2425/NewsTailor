@@ -1,6 +1,6 @@
 from django.urls import path
 from .connections.fetch_news_view import FetchNewsView
-from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView
+from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
 from .views import CreateConfigurationView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
@@ -17,8 +17,10 @@ urlpatterns = [
     path('fetch-news/', FetchNewsView.as_view(), name='fetch-news'),
     path('check-news/<int:user_id>/', ObtainNewsPaperByIdView.as_view(), name='check-news'),
     path('create-configuration/', CreateConfigurationView.as_view(), name='create-configuration'),
-    path('start-reading-session/', ReadNewsPaperByIdView.as_view(), name='save-newspaper'),
+    path('start-reading-session/', ReadNewsPaperByIdView.as_view(), name='start-reading-session'),
     path('save-newspaper/', SaveNewsPaperByIdView.as_view(), name='save-newspaper'),
     path('newspapers/<int:user_id>/', ObtainUserNewsPapersView.as_view(), name='user-newspapers'),
     path('delete-newspaper/', DeleteNewsPaperIfNotSavedView.as_view(), name='delete-newspaper'),
+    path('save-user-configuration/', CreateUserNewsPaperConfigurationView.as_view(), name='save-user-configuration'),
+    path('fetch-user-configuration/<int:user_id>/', FetchUserNewsPaperConfigurationView.as_view(), name='fetch-user-configuration'),
 ]

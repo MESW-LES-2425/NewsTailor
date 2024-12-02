@@ -50,6 +50,15 @@ class Configuration_Category(models.Model):
             )
         ]
 
+class Configuration_User_Newspaper(models.Model): 
+    user_configuration = models.ForeignKey(User, on_delete=models.CASCADE)
+    font_size = models.IntegerField(null=False)
+    #font_family = models.CharField(max_length=256, null=True)
+
+    class Meta:
+        db_table = "configuration_user_newspaper"
+
+
 class Newspaper(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=256)

@@ -18,6 +18,8 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
 
     const [isSaved, setIsSaved] = useState(news?.is_saved || false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [selectedFontSize, setSelectedFontSize] = useState(16);
+    const [configUpdated, setConfigUpdated] = useState(false);
 
 
     const concludeReadingSession = async () => {
@@ -54,9 +56,25 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
         setIsPopupOpen(true);
     };
 
-    const closePopup = () => {
+    const closePopup = async () => {
         setIsPopupOpen(false);
+        console.log(news?.user_newspaper, selectedFontSize);
+        try {
+            await api.post("api/save-user-configuration/", {
+                user_configuration: news?.user_newspaper,
+                font_size: selectedFontSize,
+            }, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+            console.log(`Configuration saved: User ID ${news?.user_newspaper}, Font Size ${selectedFontSize}px`);
+            setConfigUpdated((prev) => !prev);
+        } catch (error) {
+            console.error('Error saving configurations:', error);
+        }
+            
     };
+
+    const fontSizes = [12, 14, 16, 18, 20, 22, 24, 26, 28, 30];
 
 
     return (
@@ -81,10 +99,20 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     </div>
                 </div>
             </div>
-            <Popup open={isPopupOpen} closeOnDocumentClick onClose={closePopup} overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+            <Popup open={isPopupOpen} closeOnDocumentClick overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                 <div className="popup-content">
                     <h3>Configurations</h3>
-                    <p>Font</p>
+                    <div className="font-configuration">
+                        <h4>Font Size</h4>
+                        <select
+                            value={selectedFontSize}
+                            onChange={(e) => setSelectedFontSize(Number(e.target.value))}
+                        >
+                            {fontSizes.map(size => (
+                                <option key={size} value={size}>{size}</option>
+                            ))}
+                        </select>
+                    </div>    
                     <button onClick={closePopup} className="close-popup-button">
                         Close
                     </button>
@@ -93,7 +121,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             <div className="content-table">
                 <div className="news-container">
                     <div className="news-item">
-                        {news?.content && <MarkdownReader initialContent={news.content} />}
+                        {news?.content && news?.user_newspaper && <MarkdownReader initialContent={news.content} user_id={news.user_newspaper} configUpdated={configUpdated}/>}
                     </div>
                 </div>
             </div>
