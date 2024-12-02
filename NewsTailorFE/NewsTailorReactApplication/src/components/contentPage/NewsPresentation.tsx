@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../api';
 import "./contentTable.css";
 import MarkdownReader from "../../utils/MarkdownReader.tsx";
@@ -18,11 +18,41 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
 
     const [isSaved, setIsSaved] = useState(news?.is_saved || false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const [selectedFontSize, setSelectedFontSize] = useState(16);
-    const [selectedFontFamily, setSelectedFontFamily] = useState("AbeeZee");
-    const [selectedMarginSize, setSelectedMarginSize] = useState(16);
+
     const [configUpdated, setConfigUpdated] = useState(false);
 
+    const [fontSize, setFontSize] = useState(16);
+    const [fontFamily, setFontFamily] = useState("AbeeZee");
+    const [marginSize, setMarginSize] = useState(16);
+
+    const [selectedFontSize, setSelectedFontSize] = useState(fontSize);
+    const [selectedFontFamily, setSelectedFontFamily] = useState(fontFamily);
+    const [selectedMarginSize, setSelectedMarginSize] = useState(marginSize);
+
+    useEffect(() => {
+        const fetchUserConfiguration = async () => {
+            try {
+                const response = await api.get(`/api/fetch-user-configuration/${news?.user_newspaper}/`);
+                const { font_size: fontSize } = response.data["User Configuration"] || {};
+                const { font_family: fontFamily } = response.data["User Configuration"] || {};
+                const { margin_size: marginSize } = response.data["User Configuration"] || {};
+
+                if (fontSize && fontFamily && marginSize) {
+                    setFontSize(fontSize);
+                    setFontFamily(fontFamily);
+                    setMarginSize(marginSize);
+                } else {
+                    console.log("Missing fields in response data");
+                }
+            } catch (error) {
+                console.error("Error fetching user configuration:", error);
+            }
+        };
+    
+        if (news?.user_newspaper) {
+            fetchUserConfiguration();
+        }
+    }, [news?.user_newspaper, configUpdated]);
 
     const concludeReadingSession = async () => {
         if (!news?.id) {
@@ -55,6 +85,9 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     }
 
     const openConfigs = () => {
+        setSelectedFontSize(fontSize);
+        setSelectedFontFamily(fontFamily);
+        setSelectedMarginSize(marginSize);
         setIsPopupOpen(true);
     };
 
@@ -145,7 +178,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             <div className="content-table">
                 <div className="news-container">
                     <div className="news-item">
-                        {news?.content && news?.user_newspaper && <MarkdownReader initialContent={news.content} user_id={news.user_newspaper} configUpdated={configUpdated}/>}
+                        {news?.content && news?.user_newspaper && <MarkdownReader initialContent={news.content} fontSize={fontSize} fontFamily={fontFamily} marginSize={marginSize} />}
                     </div>
                 </div>
             </div>
