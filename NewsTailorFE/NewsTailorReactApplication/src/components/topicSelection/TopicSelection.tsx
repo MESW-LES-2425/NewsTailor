@@ -4,7 +4,6 @@ import '../../styles/news-content/configuration.css';
 interface Topic {
     label: string;
     value: string;
-    id: number;
 }
 
 interface TopicSelectionProps {

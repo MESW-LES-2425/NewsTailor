@@ -4,18 +4,36 @@ import api from '../../api';
 import SourceSelection from "../sourceSelection/SourceSelection.tsx";
 import TopicSelection from "../topicSelection/TopicSelection.tsx";
 import TimelineSelection from "../timelineSelection/TimelineSelection.tsx";
+import Select from 'react-select';
+
+interface Category {
+    id: number;
+    name: string;
+    percentage: number;
+}
+
+interface Configuration {
+    id: number;
+    name: string;
+    read_time: number;
+    fetch_period: number;
+    sources: string[];
+    categories: Category[];
+}
 
 interface NewsProperties {
     userId?: string | undefined;
     onGenerate?: (newsData: { content?: string; title?: string; id?: string; userid?: string }) => void;
+    configurations?: Configuration[]| null;
 }
 
-const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
+const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configurations}) => {
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
     const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string }[]>([]);
     const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [isPresetSelected, setIsPresetSelected] = useState(false);
 
     const fetchNews = async () => {
         setLoading(true);
@@ -58,6 +76,16 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
         setSelectedTopics(topics);
     };
 
+    const handleToggle = () => {
+        setIsPresetSelected(!isPresetSelected);
+    };
+
+    const handlePresetSelection = (config:Configuration) => {
+        setSelectedSources(config.sources.map((source) => ({ label: source, value: source })));
+        setSelectedTopics(config.categories.map((category) => ({ label: category.name, value: category.name })));
+        setSelectedDate((config.fetch_period/60).toString());
+    };
+
     return (
         <div className="content-table">
             <h1 className='customizeTitle'>Customize your newspaper</h1>
@@ -66,9 +94,38 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate }) => {
                 <div className="spinner"></div>
             ) : (
                 <>
-                    <SourceSelection onSourceChange={handleSourceChange} />
-                    <TopicSelection onTopicChange={handleTopicChange} />
-                    <TimelineSelection onDateChange={handleDateChange} />
+                    <div className="toggle-switch-configurations">
+                        <label className="switch-configurations">
+                            <input
+                                type="checkbox"
+                                checked={isPresetSelected}
+                                onChange={handleToggle}
+                            />
+                            <span className="slider-configurations"></span>
+                        </label>
+                        <div className="toggle-labels">
+                            <span>Select a Template</span>
+                        </div>
+                    </div>
+                    {isPresetSelected && configurations && (
+                        <div>
+                            <Select
+                                options={configurations.map((preset) => ({
+                                    label: preset.name,
+                                    value: preset.id
+                                }))}
+                                onChange={(selectedOption) => handlePresetSelection(configurations!.find(preset => preset.id === selectedOption!.value)!)}
+                                placeholder="Select a preset"
+                            />
+                        </div>
+                    )}
+                    {!isPresetSelected && (
+                        <>
+                            <SourceSelection onSourceChange={handleSourceChange} />
+                            <TopicSelection onTopicChange={handleTopicChange} />
+                            <TimelineSelection onDateChange={handleDateChange} />
+                        </>
+                    )}
                     <button
                         className="blue-circle-button"
                         onClick={fetchNews}

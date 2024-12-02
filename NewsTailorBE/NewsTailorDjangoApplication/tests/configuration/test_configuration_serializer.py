@@ -15,15 +15,8 @@ class ConfigurationSerializerTestCase(TestCase):
             'fetch_period': '30',
             'read_time': 5,
             'user_id': self.user.id,
-            'categories': [
-                {"label": "Economy", "value": "economy", "id":self.category1.id},
-                {"label": "Politics", "value": "politics", "id":self.category2.id},
-                {"label": "Technology", "value": "technology", "id":self.category3.id}
-            ],
-            'sources': [
-                {"label": "Guardian", "value": "guardian"},
-                {"label": "News API (Generic)", "value": "news_api"}
-            ],
+            'categories': ["economy", "politics", "technology"],
+            'sources': ["guardian", "news_api"],
         }
 
     def test_serializer_valid_data(self):

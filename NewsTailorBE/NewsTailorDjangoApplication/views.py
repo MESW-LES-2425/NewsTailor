@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework import status
@@ -84,3 +85,35 @@ class UserUpdateView(generics.UpdateAPIView):
 class CreateConfigurationView(generics.CreateAPIView):
     serializer_class = ConfigurationSerializer
     permission_classes = [IsAuthenticated]
+
+class ListConfigurationsAPIView(generics.ListAPIView):
+    serializer_class = ConfigurationListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Configuration.objects.prefetch_related(
+            'configuration_category_set__category'
+        ).filter(user_configuration=user)
+
+class DeleteConfigurationAPIView(generics.DestroyAPIView):
+    lookup_url_kwarg = 'configuration_id'
+    queryset = Configuration.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UpdateConfigurationAPIView(generics.UpdateAPIView):
+    lookup_url_kwarg = 'configuration_id'
+    queryset = Configuration.objects.all()
+    permission_classes = [IsAuthenticated]
+    serializer_class = ConfigurationSerializer
+
+
+
+
+
+
