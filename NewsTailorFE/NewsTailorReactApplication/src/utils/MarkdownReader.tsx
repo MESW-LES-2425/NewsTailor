@@ -8,17 +8,21 @@ import api from '../api';
 const MarkdownReader = ({ initialContent = "", user_id = "", configUpdated = false }) => {
     const [markdown, setMarkdown] = useState(initialContent);
     const [fontSize, setFontSize] = useState(16);
+    const [fontFamily, setFontFamily] = useState("AbeeZee");
 
     useEffect(() => {
         const fetchUserConfiguration = async () => {
             try {
                 const response = await api.get(`/api/fetch-user-configuration/${user_id}/`);
                 const { font_size: fontSize } = response.data["User Configuration"] || {};
-                
-                if (fontSize) {
+                const { font_family: fontFamily } = response.data["User Configuration"] || {};
+
+
+                if (fontSize && fontFamily) {
                     setFontSize(fontSize);
+                    setFontFamily(fontFamily);
                 } else {
-                    console.log("Font size not found in response data");
+                    console.log("Missing fields in response data");
                 }
             } catch (error) {
                 console.error("Error fetching user configuration:", error);
@@ -39,6 +43,7 @@ const MarkdownReader = ({ initialContent = "", user_id = "", configUpdated = fal
                     borderRadius: "8px",
                     background: "#f9f9f9",
                     fontSize: `${fontSize}px`,
+                    fontFamily: `${fontFamily}, sans-serif`,
                 }}
             >
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>

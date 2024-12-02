@@ -19,6 +19,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     const [isSaved, setIsSaved] = useState(news?.is_saved || false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedFontSize, setSelectedFontSize] = useState(16);
+    const [selectedFontFamily, setSelectedFontFamily] = useState("AbeeZee");
     const [configUpdated, setConfigUpdated] = useState(false);
 
 
@@ -58,15 +59,15 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
 
     const closePopup = async () => {
         setIsPopupOpen(false);
-        console.log(news?.user_newspaper, selectedFontSize);
         try {
+            console.log(selectedFontFamily);
             await api.post("api/save-user-configuration/", {
                 user_configuration: news?.user_newspaper,
                 font_size: selectedFontSize,
+                font_family: selectedFontFamily,
             }, {
                 headers: { 'Content-Type': 'application/json' },
             });
-            console.log(`Configuration saved: User ID ${news?.user_newspaper}, Font Size ${selectedFontSize}px`);
             setConfigUpdated((prev) => !prev);
         } catch (error) {
             console.error('Error saving configurations:', error);
@@ -75,6 +76,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     };
 
     const fontSizes = [12, 14, 16, 18, 20, 22, 24, 26, 28, 30];
+    const fontFamilies = ["AbeeZee", "Arial", "Times New Roman"];
 
 
     return (
@@ -112,7 +114,17 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                                 <option key={size} value={size}>{size}</option>
                             ))}
                         </select>
-                    </div>    
+                        <h4>Font Family</h4>
+                        <select
+                            value={selectedFontFamily}
+                            onChange={(e) => setSelectedFontFamily(e.target.value)}
+                        >
+                            {fontFamilies.map(font => (
+                                <option key={font} value={font}>{font}</option>
+                            ))}
+                        </select>
+                    </div>
+                        
                     <button onClick={closePopup} className="close-popup-button">
                         Close
                     </button>
