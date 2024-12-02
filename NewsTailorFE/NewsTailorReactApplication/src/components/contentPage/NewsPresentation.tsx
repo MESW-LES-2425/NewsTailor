@@ -140,7 +140,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             <Popup open={isPopupOpen} closeOnDocumentClick overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                 <div className="popup-content">
                     <h3>Configurations</h3>
-                    <div className="newspaper-configuration">
+                    <div className="newspaper-configurations">
                         <h4>Font Size</h4>
                         <select
                             value={selectedFontSize}
@@ -168,6 +168,21 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                                 <option key={size} value={size}>{size}</option>
                             ))}
                         </select>
+                    </div>
+                    <h4>Preview</h4>
+                    <div
+                        className="preview-container"
+                        style={{
+                            fontSize: `${selectedFontSize}px`,
+                            fontFamily: selectedFontFamily,
+                            padding: `${selectedMarginSize}px`,
+                            border: '1px solid #ccc',
+                            borderRadius: '8px',
+                            backgroundColor: '#f9f9f9',
+                            marginTop: '1rem',
+                        }}
+                    >
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam odio, gravida et ultrices ac, dapibus quis odio. Suspendisse potenti.</p>
                     </div>
                         
                     <button onClick={closePopup} className="close-popup-button">

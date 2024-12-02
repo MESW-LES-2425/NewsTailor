@@ -62,6 +62,10 @@ news-content {
     text-align: center;
 }
 
+.popup-content h3 {
+    margin-bottom: 1rem;
+}
+
 .close-popup-button {
     background-color: #1A2A3A;
     color: #fff;
@@ -71,4 +75,25 @@ news-content {
     cursor: pointer;
     margin-top: 10px;
     font-size: 14px;
+}
+
+.preview-container {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 1rem;
+}
+
+.newspaper-configurations h4 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+.newspaper-configurations select {
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 100%;
 }
