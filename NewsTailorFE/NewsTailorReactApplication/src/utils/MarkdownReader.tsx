@@ -9,6 +9,7 @@ const MarkdownReader = ({ initialContent = "", user_id = "", configUpdated = fal
     const [markdown, setMarkdown] = useState(initialContent);
     const [fontSize, setFontSize] = useState(16);
     const [fontFamily, setFontFamily] = useState("AbeeZee");
+    const [marginSize, setMarginSize] = useState(16);
 
     useEffect(() => {
         const fetchUserConfiguration = async () => {
@@ -16,11 +17,13 @@ const MarkdownReader = ({ initialContent = "", user_id = "", configUpdated = fal
                 const response = await api.get(`/api/fetch-user-configuration/${user_id}/`);
                 const { font_size: fontSize } = response.data["User Configuration"] || {};
                 const { font_family: fontFamily } = response.data["User Configuration"] || {};
+                const { margin_size: marginSize } = response.data["User Configuration"] || {};
 
 
-                if (fontSize && fontFamily) {
+                if (fontSize && fontFamily && marginSize) {
                     setFontSize(fontSize);
                     setFontFamily(fontFamily);
+                    setMarginSize(marginSize);
                 } else {
                     console.log("Missing fields in response data");
                 }
@@ -39,7 +42,7 @@ const MarkdownReader = ({ initialContent = "", user_id = "", configUpdated = fal
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <div
                 style={{
-                    padding: "1rem",
+                    padding: `${marginSize}px`,
                     borderRadius: "8px",
                     background: "#f9f9f9",
                     fontSize: `${fontSize}px`,

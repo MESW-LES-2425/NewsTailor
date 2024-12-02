@@ -109,7 +109,7 @@ class NewsPaperSerializer(serializers.ModelSerializer):
     
 
     @classmethod
-    def create_user_news_paper_configuration(cls, userid, font_size, font_family):
+    def create_user_news_paper_configuration(cls, userid, font_size, font_family, margin_size):
         """
         Saves the user newspaper configuration for a given user ID. 
         If a configuration already exists, it updates the attributes.
@@ -121,7 +121,7 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         
         Configuration_User_Newspaper.objects.update_or_create(
             user_configuration=user_instance,
-            defaults={'font_size': font_size, 'font_family': font_family}
+            defaults={'font_size': font_size, 'font_family': font_family, 'margin_size': margin_size}
         )
 
         return {"message": f"User with id {userid} has a new configuration."}
@@ -142,7 +142,8 @@ class NewsPaperSerializer(serializers.ModelSerializer):
             configuration_data = {
                 'user_id': configuration.user_configuration.id,
                 'font_size': configuration.font_size,
-                'font_family': configuration.font_family
+                'font_family': configuration.font_family,
+                'margin_size': configuration.margin_size
             }
             return configuration_data
         except Configuration_User_Newspaper.DoesNotExist:

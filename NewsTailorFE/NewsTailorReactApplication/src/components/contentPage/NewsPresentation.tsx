@@ -20,6 +20,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedFontSize, setSelectedFontSize] = useState(16);
     const [selectedFontFamily, setSelectedFontFamily] = useState("AbeeZee");
+    const [selectedMarginSize, setSelectedMarginSize] = useState(16);
     const [configUpdated, setConfigUpdated] = useState(false);
 
 
@@ -65,6 +66,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                 user_configuration: news?.user_newspaper,
                 font_size: selectedFontSize,
                 font_family: selectedFontFamily,
+                margin_size: selectedMarginSize,
             }, {
                 headers: { 'Content-Type': 'application/json' },
             });
@@ -77,6 +79,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
 
     const fontSizes = [12, 14, 16, 18, 20, 22, 24, 26, 28, 30];
     const fontFamilies = ["AbeeZee", "Arial", "Times New Roman"];
+    const marginSizes = [1, 16, 32, 48, 64, 80, 96];
 
 
     return (
@@ -104,7 +107,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             <Popup open={isPopupOpen} closeOnDocumentClick overlayStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                 <div className="popup-content">
                     <h3>Configurations</h3>
-                    <div className="font-configuration">
+                    <div className="newspaper-configuration">
                         <h4>Font Size</h4>
                         <select
                             value={selectedFontSize}
@@ -121,6 +124,15 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                         >
                             {fontFamilies.map(font => (
                                 <option key={font} value={font}>{font}</option>
+                            ))}
+                        </select>
+                        <h4>Margin Size</h4>
+                        <select
+                            value={selectedMarginSize}
+                            onChange={(e) => setSelectedMarginSize(Number(e.target.value))}
+                        >
+                            {marginSizes.map(size => (
+                                <option key={size} value={size}>{size}</option>
                             ))}
                         </select>
                     </div>

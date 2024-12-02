@@ -70,8 +70,9 @@ class CreateUserNewsPaperConfigurationView(APIView):
         user_id = request.data.get('user_configuration')
         font_size = request.data.get('font_size')
         font_family = request.data.get('font_family')
+        margin_size = request.data.get('margin_size')
 
-        NewsPaperSerializer.create_user_news_paper_configuration(user_id, font_size, font_family)
+        NewsPaperSerializer.create_user_news_paper_configuration(user_id, font_size, font_family, margin_size)
 
         return Response(status=status.HTTP_200_OK)      
 
