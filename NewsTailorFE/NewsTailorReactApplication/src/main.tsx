@@ -14,7 +14,7 @@ import ProfileForm from "./components/profile/ProfileForm.tsx";
 import LandingPage from './pages/LandingPage.tsx'
 import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
-import Templates from "./components/templates/templates.tsx";
+import ResetPassword from './components/resetPassword/ResetPassword.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -27,7 +27,6 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
                 <Route path="/config/:userId" element={<ConfigPage />} />
                 <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/" element={<LandingPage />} />
@@ -37,6 +36,7 @@ function App() {
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
                 <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
+                <Route path="/reset-password/:userId/:token" element={<AuthRoute><ResetPassword /></AuthRoute>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>
