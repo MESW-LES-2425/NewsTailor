@@ -1,20 +1,12 @@
 # NewsTailor
 
-## Code First approach
+### Test Locations:
+**Be sure to change the branch to respective Iteration branch.**
 
-We decided to use code first approach meaning that our database will be created based on migrations.
+In order to access our test folders for the backend development, go to:
+ https://github.com/MESW-LES-2425/NewsTailor/tree/development/NewsTailorBE/NewsTailorDjangoApplication/tests
 
-### How to use migrations - Migrate the table to the PostgreSQL database
-
-### makemigrations
-To update database models (We have to run this command every time when something changes in models.py e.g. adding a new table, changing a field name, etc)
-
-command: python manage.py makemigrations
-
-### migrate
-The last step to submit or sent out our table into the database server
-
-command: python manage.py migrate
-
+In order to access our test folders for the frontend development, go to:
+ 'https://github.com/MESW-LES-2425/NewsTailor/tree/development/NewsTailorFE/NewsTailorReactApplication/src/__tests__' 
 
 
