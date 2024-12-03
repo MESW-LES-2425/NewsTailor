@@ -46,6 +46,7 @@ def summarize(raw_news, duration_of_session, user_wpm) -> str:
     """Summarize the news obtained from the sources."""
 
     total_word_counter = duration_of_session * user_wpm
+    #print(total_word_counter)
 
     with open("NewsTailorDjangoApplication/connections/config/summarization_prompt.txt", "r") as file:
         message_content = file.read().format(total_word_counter=total_word_counter,
