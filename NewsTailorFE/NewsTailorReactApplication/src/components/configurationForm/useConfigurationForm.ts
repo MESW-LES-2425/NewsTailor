@@ -26,11 +26,13 @@ const useConfigurationForm = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        const sourceValues = sources?.map((source) => source.value) || [];
+        const topicValues = topics?.map((topic) => topic.value) || [];
         const formData = {
             name,
             fetch_period:timeline,
-            sources,
-            categories:topics,
+            sources:sourceValues,
+            categories:topicValues,
             read_time:readingTime,
             user_id: user.id
         };

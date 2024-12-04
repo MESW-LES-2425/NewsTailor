@@ -1,7 +1,7 @@
 from datetime import datetime
 from rest_framework import serializers
 
-from NewsTailorDjangoApplication.models import Newspaper, User
+from NewsTailorDjangoApplication.models import Newspaper, User, Configuration_User_Newspaper
 
 
 class NewsPaperSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         # Use serializer to validate and save the instance
         serializer = NewsPaperSerializer(data={
             "title": "News Tailor Newspaper",
-            "content": content["dev_to"],
+            "content": content,
             "created_at": datetime.now(),
             "user_newspaper": user_instance.id,
             "is_currently_reading": True,
@@ -106,3 +106,46 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         newspaper_instance.is_currently_reading = True
         newspaper_instance.save()
         return {"message": f"Newspaper with id {id} is now being read."}
+    
+
+    @classmethod
+    def create_user_news_paper_configuration(cls, userid, font_size, font_family, margin_size):
+        """
+        Saves the user newspaper configuration for a given user ID. 
+        If a configuration already exists, it updates the attributes.
+        """
+        try:
+            user_instance = User.objects.get(id=userid)
+        except User.DoesNotExist:
+            raise ValueError(f"User with id {userid} does not exist.")
+        
+        Configuration_User_Newspaper.objects.update_or_create(
+            user_configuration=user_instance,
+            defaults={'font_size': font_size, 'font_family': font_family, 'margin_size': margin_size}
+        )
+
+        return {"message": f"User with id {userid} has a new configuration."}
+    
+    @classmethod
+    def fetch_user_news_paper_configuration(cls, userid):
+        """
+        Verifies if a newspaper configuration exists for a given user ID.
+        If found, returns the configuration data; if not, returns None.
+        """
+        try:
+            user_instance = User.objects.get(id=userid)
+        except User.DoesNotExist:
+            raise ValueError(f"User with id {userid} does not exist.")
+        
+        try:
+            configuration = Configuration_User_Newspaper.objects.get(user_configuration=user_instance)
+            configuration_data = {
+                'user_id': configuration.user_configuration.id,
+                'font_size': configuration.font_size,
+                'font_family': configuration.font_family,
+                'margin_size': configuration.margin_size
+            }
+            return configuration_data
+        except Configuration_User_Newspaper.DoesNotExist:
+            return None
+        

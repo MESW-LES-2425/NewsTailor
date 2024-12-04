@@ -46,7 +46,23 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install coverage
+        pip install coverage selenium pytest
+
+    - name: Install Chrome and Chromedriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        sudo apt-get install -y google-chrome-stable
+        CHROME_DRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        rm chromedriver_linux64.zip
+
+    - name: Check Chromedriver and Chrome versions
+      run: |
+        chromedriver --version
+        google-chrome-stable --version
 
     - name: Run Tests
       working-directory: NewsTailorBE
@@ -65,6 +81,14 @@ jobs:
       run: |
         coverage run manage.py test
         coverage report -m
+
+    - name: Run Selenium Tests with pytest
+      working-directory: NewsTailorBE/NewsTailorDjangoApplication/
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      run: |
+        echo "Running Selenium Tests"
+        pytest tests/automated_tests
 
     - name: Shut down Docker containers
       run: |

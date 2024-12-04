@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
 from NewsTailorDjangoApplication.models import Category
+from django.db import connection
+from django.core.management.color import no_style
 
 # python manage.py seed --mode=refresh
 """ Clear all data and creates addresses """
@@ -20,11 +22,17 @@ class Command(BaseCommand):
         self.stdout.write('Done.')
 
 
+def reset_category_sequence():
+    """Resets the auto-increment sequence for Category model."""
+    sequence_sql = connection.ops.sequence_reset_sql(no_style(), [Category])
+    with connection.cursor() as cursor:
+        for sql in sequence_sql:
+            cursor.execute(sql)
+
 def clear_data():
     """Deletes all the table data"""
     print("Deleting Category instances")
     Category.objects.all().delete()
-
 
 def create_category(name):
     """Creates a Category object."""
@@ -43,10 +51,12 @@ def run_seed(self, mode):
     # Clear data from tables
     if mode == MODE_CLEAR:
         clear_data()
+        reset_category_sequence()
         return
 
     if mode == MODE_REFRESH:
         clear_data()
+        reset_category_sequence()
 
     categories = ["economy", "politics", "technology", "ai", "cryptocurrency"]
 
