@@ -21,7 +21,6 @@ class FetchNewsView(APIView):
         sources = data.get("sources")
         userid = data.get("userid")
         timeline = data.get("timeline")
-        read_time = data.get("read_time")
 
         if not all([categories, sources]):
             return Response({"error": "Missing List of Categories or Sources in the request."},
@@ -31,8 +30,7 @@ class FetchNewsView(APIView):
             return Response({"error": "Sources and Categories should be provided as a list."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        #aggregated_response = obtain_news_for_sources(sources, categories, timeline, userid, 2)
-        aggregated_response = obtain_news_for_sources(sources, categories, timeline, userid, read_time)
+        aggregated_response = obtain_news_for_sources(sources, categories, timeline, userid, 2)
 
         return Response(aggregated_response, status=status.HTTP_200_OK)
 

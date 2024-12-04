@@ -3,8 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import '../utils/markdownStyling.css';
 
-
-const MarkdownReader = ({ initialContent = "", fontSize = 0, fontFamily = "", marginSize = 0 }) => {
+const MarkdownReader = ({ initialContent = "" }) => {
     const [markdown, setMarkdown] = useState(initialContent);
 
      useEffect(() => {
@@ -15,11 +14,9 @@ const MarkdownReader = ({ initialContent = "", fontSize = 0, fontFamily = "", ma
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             <div
                 style={{
-                    padding: `${marginSize}px`,
+                    padding: "1rem",
                     borderRadius: "8px",
                     background: "#f9f9f9",
-                    fontSize: `${fontSize}px`,
-                    fontFamily: `${fontFamily}, sans-serif`,
                 }}
             >
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>

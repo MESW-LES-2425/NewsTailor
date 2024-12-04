@@ -5,7 +5,6 @@ import SourceSelection from "../sourceSelection/SourceSelection.tsx";
 import TopicSelection from "../topicSelection/TopicSelection.tsx";
 import TimelineSelection from "../timelineSelection/TimelineSelection.tsx";
 import Select from 'react-select';
-import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.tsx";
 
 interface Category {
     id: number;
@@ -32,7 +31,6 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
     const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string }[]>([]);
     const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
-    const [selectedReadTime, setSelectedReadTime] = useState<number>(5);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [isPresetSelected, setIsPresetSelected] = useState(false);
@@ -53,7 +51,6 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
                 timeline: selectedDate,
-                read_time: selectedReadTime,
                 userid: userId,
             }, {
                 headers: { 'Content-Type': 'application/json' },
@@ -82,10 +79,6 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
         setSelectedDate(date);
     };
 
-    const handleReadingTimeChange = (readingTime: number) => {
-        setSelectedReadTime(readingTime);
-    };
-
     const handleTopicChange = (topics: { label: string, value: string }[]) => {
         setSelectedTopics(topics);
     };
@@ -98,7 +91,6 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
         setSelectedSources(config.sources.map((source) => ({ label: source, value: source })));
         setSelectedTopics(config.categories.map((category) => ({ label: category.name, value: category.name })));
         setSelectedDate((config.fetch_period/60).toString());
-        setSelectedReadTime(config.read_time);
     };
 
     return (
@@ -139,7 +131,6 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
                             <SourceSelection onSourceChange={handleSourceChange} />
                             <TopicSelection onTopicChange={handleTopicChange} />
                             <TimelineSelection onDateChange={handleDateChange} />
-                            <ReadingTimeSelection onReadingTimeChange={handleReadingTimeChange} />
                         </>
                     )}
                     <button

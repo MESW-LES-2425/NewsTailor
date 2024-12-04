@@ -17,21 +17,11 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout pull request
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Fetch latest development branch
-        run: |
-          git fetch origin development
-          git checkout development
-          git pull origin development
 
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
-
-      - name: Get the commit hash of development branch
-        id: commit_hash
-        run: echo "::set-output name=hash::$(git rev-parse origin/development)"
 
       - name: Extract iteration number
         id: extract_iteration
@@ -41,7 +31,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create v0.${{ steps.extract_iteration.outputs.iteration }} \
-            --title "Iteration ${{ steps.extract_iteration.outputs.iteration }}" \
-            --generate-notes \
-            --target ${{ steps.commit_hash.outputs.hash }}
+          gh release create v0.${{ steps.extract_iteration.outputs.iteration }} --title "Iteration ${{ steps.extract_iteration.outputs.iteration }}" --generate-notes

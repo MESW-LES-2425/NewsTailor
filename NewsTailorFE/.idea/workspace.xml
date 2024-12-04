@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/serializers/configuration_serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/serializers/configuration_serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/tests/configuration/test_configuration_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/tests/configuration/test_configuration_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/appConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/ConfigurationForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/contentTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/contentTable.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.css" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/templates/templates.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/pages/Home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +82,7 @@
     "Jest.useRegisterForm Hook.executor": "Run",
     "Jest.useRegisterForm Hook.initializes with correct initial state.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "session-duration",
+    "git-widget-placeholder": "feature/update-reading-presets",
     "last_opened_file_path": "/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/src/components/configurationForm/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

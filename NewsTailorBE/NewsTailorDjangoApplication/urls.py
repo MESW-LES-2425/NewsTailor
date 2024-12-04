@@ -2,10 +2,7 @@ from django.urls import path
 from .connections.fetch_news_view import FetchNewsView,NewsExtension
 from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, \
     DeleteNewsPaperIfNotSavedView
-from .connections.fetch_news_view import FetchNewsView
-from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
-from .views import CreateConfigurationView, ListConfigurationsAPIView, DeleteConfigurationAPIView, \
-    UpdateConfigurationAPIView
+from .views import CreateConfigurationView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -25,5 +22,4 @@ urlpatterns = [
     path('save-newspaper/', SaveNewsPaperByIdView.as_view(), name='save-newspaper'),
     path('newspapers/<int:user_id>/', ObtainUserNewsPapersView.as_view(), name='user-newspapers'),
     path('delete-newspaper/', DeleteNewsPaperIfNotSavedView.as_view(), name='delete-newspaper'),
-    path('extend-reading-session/', NewsExtension.as_view(), name='news-extension'),
     path('extend-reading-session/', NewsExtension.as_view(), name='news-extension')]
