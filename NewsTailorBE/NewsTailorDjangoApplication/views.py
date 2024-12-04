@@ -89,7 +89,7 @@ class CreateConfigurationView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class PasswordResetRequestView(generics.GenericAPIView):
+class ForgotPassword(generics.GenericAPIView):
     permission_classes = (AllowAny,)
     def post(self, request):
         email = request.data.get('email')
