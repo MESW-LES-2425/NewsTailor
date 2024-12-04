@@ -15,6 +15,7 @@ import LandingPage from './pages/LandingPage.tsx'
 import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
 import ResetPassword from './components/resetPassword/ResetPassword.tsx'
+import Templates from "./components/templates/templates.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
