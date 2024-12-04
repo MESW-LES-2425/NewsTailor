@@ -15,7 +15,6 @@ import LandingPage from './pages/LandingPage.tsx'
 import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
 import ResetPassword from './components/resetPassword/ResetPassword.tsx'
-import Templates from "./components/templates/templates.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -28,7 +27,6 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
                 <Route path="/config/:userId" element={<ConfigPage />} />
                 <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/" element={<LandingPage />} />
