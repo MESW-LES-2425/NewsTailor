@@ -61,4 +61,15 @@ class ReadNewsPaperByIdView(APIView):
 
         NewsPaperSerializer.read_news_paper_by_id(newspaper_id)
 
-        return Response(status=status.HTTP_200_OK)        
+        return Response(status=status.HTTP_200_OK)
+
+class NewsExtensionView(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def post(request):
+        newspaper_id = request.data.get('newspaperid')
+
+        NewsPaperSerializer.extend_reading_session(newspaper_id)
+
+        return Response(status=status.HTTP_200_OK)

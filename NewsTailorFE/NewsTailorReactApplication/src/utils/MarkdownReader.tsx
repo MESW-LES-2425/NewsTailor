@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import '../utils/markdownStyling.css';
 
 const MarkdownReader = ({ initialContent = "" }) => {
     const [markdown, setMarkdown] = useState(initialContent);
+
+     useEffect(() => {
+        setMarkdown(initialContent);
+    }, [initialContent]);
 
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

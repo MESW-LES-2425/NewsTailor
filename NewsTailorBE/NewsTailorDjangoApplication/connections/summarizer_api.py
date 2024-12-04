@@ -77,3 +77,35 @@ def format_articles(news_articles):
     )
 
     return formatted_articles
+
+
+def extend_newspaper(sources, categories, timeline, user_id , reading_time, newspaper):
+    """Extend the newspaper content based on the reading time."""
+    news_article_list = []
+    for source in sources:
+        if source == WORLD_NEWS_SOURCE:
+            news_article_list.extend(obtain_news_from_world_news(categories, timeline, reading_time))
+        elif source == DEV_TO_SOURCE:
+            news_article_list.extend(obtain_news_from_dev_to(categories, timeline, reading_time))
+        else:
+            return Response({"error": f"Invalid source specified: {source}"},
+                            status=status.HTTP_400_BAD_REQUEST)
+    wpm = UserProfileView.get_wpm(user_id)
+    articles_formatted = format_articles(news_article_list)
+    with open("NewsTailorDjangoApplication/connections/config/extension_prompt.txt", "r") as file:
+        message_content = file.read().format(newspaper=newspaper, reading_time=reading_time, wpm=wpm, raw_news=articles_formatted, total_word_counter=reading_time * wpm)
+
+    try:
+        completion = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "user",
+                    "content": message_content
+                }
+            ]
+        )
+    except Exception as e:
+        return f"Error in extending news: {str(e)}"
+
+    return completion.choices[0].message.content
