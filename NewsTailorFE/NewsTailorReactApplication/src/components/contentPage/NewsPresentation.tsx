@@ -110,10 +110,26 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
             
     };
 
-    const fontSizes = [12, 14, 16, 18, 20, 22, 24, 26, 28, 30];
-    const fontFamilies = ["AbeeZee", "Arial", "Times New Roman"];
-    const marginSizes = [1, 16, 32, 48, 64, 80, 96];
-
+    const fontFamilies = [
+        "AbeeZee", 
+        "Arial", 
+        "Times New Roman", 
+        "Georgia", 
+        "Verdana", 
+        "Tahoma", 
+        "Courier New", 
+        "Lucida Console", 
+        "Impact", 
+        "Comic Sans MS", 
+        "Trebuchet MS", 
+        "Palatino", 
+        "Garamond", 
+        "Helvetica", 
+        "Roboto", 
+        "Open Sans", 
+        "Lora", 
+        "Merriweather"
+    ];    
 
     return (
         <div className="content-and-buttons">
@@ -142,14 +158,18 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                     <h3>Configurations</h3>
                     <div className="newspaper-configurations">
                         <h4>Font Size</h4>
-                        <select
-                            value={selectedFontSize}
-                            onChange={(e) => setSelectedFontSize(Number(e.target.value))}
-                        >
-                            {fontSizes.map(size => (
-                                <option key={size} value={size}>{size}</option>
-                            ))}
-                        </select>
+                        <div className='font-size-slider'>
+                            <input
+                                type="range"
+                                min="12"
+                                max="30"
+                                step="1"
+                                value={selectedFontSize}
+                                onChange={(e) => setSelectedFontSize(Number(e.target.value))}
+                                style={{ width: '100%' }}
+                            />
+                            <span>{selectedFontSize}px</span>
+                        </div>
                         <h4>Font Family</h4>
                         <select
                             value={selectedFontFamily}
@@ -160,14 +180,18 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                             ))}
                         </select>
                         <h4>Margin Size</h4>
-                        <select
-                            value={selectedMarginSize}
-                            onChange={(e) => setSelectedMarginSize(Number(e.target.value))}
-                        >
-                            {marginSizes.map(size => (
-                                <option key={size} value={size}>{size}</option>
-                            ))}
-                        </select>
+                        <div className='margin-size-slider'>
+                            <input
+                                type="range"
+                                min="1"
+                                max="96"
+                                step="1"
+                                value={selectedMarginSize}
+                                onChange={(e) => setSelectedMarginSize(Number(e.target.value))}
+                                style={{ width: '100%' }}
+                            />
+                            <span>{selectedMarginSize}px</span>
+                        </div>
                     </div>
                     <h4>Preview</h4>
                     <div
@@ -180,6 +204,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onConclu
                             borderRadius: '8px',
                             backgroundColor: '#f9f9f9',
                             marginTop: '1rem',
+                            whiteSpace: 'pre-line',
                         }}
                     >
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quam odio, gravida et ultrices ac, dapibus quis odio. Suspendisse potenti.</p>
