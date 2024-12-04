@@ -4,7 +4,7 @@ from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPap
 from .views import CreateConfigurationView, ListConfigurationsAPIView, DeleteConfigurationAPIView, \
     UpdateConfigurationAPIView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
-from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
+from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView, ForgotPassword, PasswordResetConfirmView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -25,6 +25,8 @@ urlpatterns = [
     path('save-newspaper/', SaveNewsPaperByIdView.as_view(), name='save-newspaper'),
     path('newspapers/<int:user_id>/', ObtainUserNewsPapersView.as_view(), name='user-newspapers'),
     path('delete-newspaper/', DeleteNewsPaperIfNotSavedView.as_view(), name='delete-newspaper'),
+    path('forgot-password/', ForgotPassword.as_view(), name='forgot_password'),
+    path('password-reset/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('save-user-configuration/', CreateUserNewsPaperConfigurationView.as_view(), name='save-user-configuration'),
     path('fetch-user-configuration/<int:user_id>/', FetchUserNewsPaperConfigurationView.as_view(), name='fetch-user-configuration'),
 ]
