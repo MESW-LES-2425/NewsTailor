@@ -36,7 +36,7 @@ const ConfigurationForm: React.FC = () => {
                             <input
                                 className="configuration-form-input"
                                 type="text"
-                                id="template-name"
+                                id="template-name-config"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder="Enter template name"
