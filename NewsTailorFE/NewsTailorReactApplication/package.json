@@ -26,7 +26,9 @@
     "react-router-dom": "^6.27.0",
     "react-select": "^5.8.3",
     "react-share": "^5.1.1",
-    "remark-gfm": "^4.0.0"
+    "reactjs-popup": "^2.0.6",
+    "remark-gfm": "^4.0.0",
+    "rollup": "^4.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
