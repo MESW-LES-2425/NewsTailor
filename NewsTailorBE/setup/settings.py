@@ -20,7 +20,14 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]   
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://newstailorreactapplication.fly.dev",
+]
+
+ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'localhost', '127.0.0.1']
+
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
