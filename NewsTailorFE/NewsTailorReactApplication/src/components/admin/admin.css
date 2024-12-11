@@ -1,0 +1,42 @@
+li {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #acacac;
+    border-radius: 20px;
+    padding: 30px;
+    color: #001f3d;
+
+}
+
+div {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+ul {
+    height: 60%;
+    overflow: scroll;
+}
+
+button {
+    background-color: #001f3d;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #003366;
+}
+
+p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.banned {
+    text-decoration: line-through;
+}
