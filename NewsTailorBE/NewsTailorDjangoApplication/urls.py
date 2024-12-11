@@ -1,4 +1,10 @@
 from django.urls import path
+from .connections.fetch_news_view import FetchNewsView,NewsExtension
+from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, \
+    DeleteNewsPaperIfNotSavedView
+from .views import CreateConfigurationView
+from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
+from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
 from .connections.fetch_news_view import FetchNewsView
 from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
 from .views import CreateConfigurationView, ListConfigurationsAPIView, DeleteConfigurationAPIView, \
@@ -29,4 +35,5 @@ urlpatterns = [
     path('password-reset/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('save-user-configuration/', CreateUserNewsPaperConfigurationView.as_view(), name='save-user-configuration'),
     path('fetch-user-configuration/<int:user_id>/', FetchUserNewsPaperConfigurationView.as_view(), name='fetch-user-configuration'),
+    path('extend-reading-session/', NewsExtension.as_view(), name='news-extension')
 ]

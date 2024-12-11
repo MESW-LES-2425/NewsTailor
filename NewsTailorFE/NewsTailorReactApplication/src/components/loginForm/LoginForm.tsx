@@ -46,14 +46,14 @@ const LoginForm: React.FC = () => {
                 <h2 className="signin-signup-title">Sign in</h2>
                 <div className={`signin-signup-input-field ${errors.email ? "error-auth-border" : ""}`}>
                     <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
-                    <input type="text" name="email" value={formData.email}
+                    <input id = "sign-up-email" type="text" name="email" value={formData.email}
                         onChange={handleChange} placeholder="Email" required
                     />
                 </div>
                 {errors.email && <p className="error-auth-message">{errors.email}</p>}
                 <div className="signin-signup-input-field" style={{ position: 'relative' }}>
                     <FontAwesomeIcon icon={faLock} className="auth-icons" />
-                    <input type={showPassword ? "text" : "password"} name="password" value={formData.password}
+                    <input id="sign-up-password" type={showPassword ? "text" : "password"} name="password" value={formData.password}
                         onChange={handleChange} placeholder="Password" required
                     />
                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="toggle-password-icon"
@@ -61,7 +61,7 @@ const LoginForm: React.FC = () => {
                     />
                 </div>
                 {errors.non_field_error && <p className="error-auth-message">{errors.non_field_error}</p>}
-                <button className="auth-btn solid" type="submit" disabled={isLoading}>
+                <button id= "login-button-id" className="auth-btn solid" type="submit" disabled={isLoading}>
                     {isLoading ? "Logging In..." : "Login"}
                 </button>
                 <p className="social-text">Or Sign in with social platforms</p>
@@ -93,7 +93,7 @@ const LoginForm: React.FC = () => {
                             onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required
                         />
                     </div>
-                    <button className="auth-btn solid" type="submit">Submit</button>
+                    <button id = "submit-button" className="auth-btn solid" type="submit">Submit</button>
                 </form>
             </Modal>
         </>

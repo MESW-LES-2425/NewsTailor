@@ -40,6 +40,13 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
     const fetchNews = async () => {
         setLoading(true);
         setError(null);
+        localStorage.setItem('selectedSources', JSON.stringify(selectedSources.map(source => source.value)));
+        localStorage.setItem('selectedTopics', JSON.stringify(selectedTopics.map(topic => topic.value)));
+        localStorage.setItem('selectedDate', JSON.stringify(selectedDate));
+        localStorage.setItem('isPresetSelected', JSON.stringify(isPresetSelected));
+        localStorage.setItem('userId', JSON.stringify(userId));
+        localStorage.setItem('language', JSON.stringify('English'));
+        localStorage.setItem('reading_time', JSON.stringify(10));
         try {
             const response = await api.post("api/fetch-news/", {
                 categories: selectedTopics.map(topic => topic.value),

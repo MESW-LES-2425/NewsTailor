@@ -38,6 +38,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
             </div>
 
             <select
+                id = "source-select-buttons"
                 value={dropdownValue}
                 onChange={handleSelectChange}
                 className="source-select"

@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework import status
@@ -10,11 +9,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.conf import settings
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-from django.shortcuts import resolve_url
+
 
 User = get_user_model()
 
@@ -84,10 +80,6 @@ class UserUpdateView(generics.UpdateAPIView):
         self.perform_update(serializer)
         return Response(serializer.data)
 
-    def delete(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class CreateConfigurationView(generics.CreateAPIView):
     serializer_class = ConfigurationSerializer
@@ -136,6 +128,7 @@ class PasswordResetConfirmView(generics.GenericAPIView):
                 return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
             return Response({"error": "Invalid user."}, status=status.HTTP_400_BAD)
+        
 class ListConfigurationsAPIView(generics.ListAPIView):
     serializer_class = ConfigurationListSerializer
     permission_classes = [IsAuthenticated]
