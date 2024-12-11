@@ -6,7 +6,7 @@ from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView, ForgotPassword, PasswordResetConfirmView
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from .views_dir.v_admin import UserListView
+from .views_dir.v_admin import UserListView, BanUnbanUserView
 from .views_dir.v_user import UserProfileView, UserUpdateView
 
 
@@ -33,4 +33,5 @@ urlpatterns = [
     path('save-user-configuration/', CreateUserNewsPaperConfigurationView.as_view(), name='save-user-configuration'),
     path('fetch-user-configuration/<int:user_id>/', FetchUserNewsPaperConfigurationView.as_view(), name='fetch-user-configuration'),
     path('users/', UserListView.as_view(), name='users'),
+    path('users/ban/<int:user_id>/', BanUnbanUserView.as_view(), name='ban-unban-user'),
 ]
