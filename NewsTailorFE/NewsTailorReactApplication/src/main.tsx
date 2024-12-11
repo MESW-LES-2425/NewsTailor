@@ -16,6 +16,7 @@ import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
 import ResetPassword from './components/resetPassword/ResetPassword.tsx'
 import Templates from "./components/templates/templates.tsx";
+import AdminPage from "./pages/adminPage.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
                 <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
                 <Route path="/reset-password/:userId/:token" element={<AuthRoute><ResetPassword /></AuthRoute>} />
+                <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>

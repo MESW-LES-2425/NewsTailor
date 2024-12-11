@@ -1,11 +1,14 @@
 from django.urls import path
 from .connections.fetch_news_view import FetchNewsView
 from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
-from .views import CreateConfigurationView, ListConfigurationsAPIView, DeleteConfigurationAPIView, \
-    UpdateConfigurationAPIView
+from .views import CreateConfigurationView, DeleteConfigurationAPIView, UpdateConfigurationAPIView, ListConfigurationsAPIView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
-from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView, ForgotPassword, PasswordResetConfirmView
+from .views import UserRegistrationView, UserLoginView, UserLogoutView, ForgotPassword, PasswordResetConfirmView
 from rest_framework_simplejwt.views import TokenRefreshView
+
+from .views_dir.v_admin import UserListView
+from .views_dir.v_user import UserProfileView, UserUpdateView
+
 
 urlpatterns = [
     path('register/', UserRegistrationView.as_view(), name="register"),
@@ -29,4 +32,5 @@ urlpatterns = [
     path('password-reset/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('save-user-configuration/', CreateUserNewsPaperConfigurationView.as_view(), name='save-user-configuration'),
     path('fetch-user-configuration/<int:user_id>/', FetchUserNewsPaperConfigurationView.as_view(), name='fetch-user-configuration'),
+    path('users/', UserListView.as_view(), name='users'),
 ]
