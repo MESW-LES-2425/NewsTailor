@@ -6,6 +6,7 @@ import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.t
 import useConfigurationForm from "./useConfigurationForm.ts";
 import Header from '../../components/landingPage/Header';
 import '../../styles/news-content/configuration.css';
+import ShareButtons from "../socialMediaExports/socialMediaExport.tsx";
 
 const ConfigurationForm: React.FC = () => {
 
@@ -21,6 +22,10 @@ const ConfigurationForm: React.FC = () => {
 
     return (
         <div>
+            <div className="social-icons">
+                <ShareButtons initialContent={ `${name}`} />
+            </div>
+            
             <Header />
             <div className="form-wrapper">
                 <form onSubmit={handleSubmit} className="configuration-form">
@@ -50,7 +55,6 @@ const ConfigurationForm: React.FC = () => {
                     </div>
                     <TopicSelection onTopicChange={setTopics} />
                 </form>
-
             </div>
         </div>
 
