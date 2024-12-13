@@ -30,7 +30,7 @@ function App() {
                 <Route path="/landingPage" element={<AuthRoute><LandingPage /></AuthRoute>} />
                 <Route path="/" element={<AuthRoute><LandingPage /></AuthRoute>} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
-                <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
