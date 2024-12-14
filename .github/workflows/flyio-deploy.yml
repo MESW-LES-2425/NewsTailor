@@ -38,7 +38,7 @@ jobs:
                             DB_NAME="${{ secrets.DB_NAME }}" \
                             DB_USER="${{ secrets.DB_USER }}" \
                             DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-                            DB_HOST="${{ secrets.DB_HOST }}" \
+                            DB_HOST="postgresql://newstailor-db.flycast" \
                             DB_PORT="${{ secrets.DB_PORT }}" \
                             GUARDIAN_API_KEY="${{ secrets.GUARDIAN_API_KEY }}" \
                             NEWS_API_KEY="${{ secrets.NEWS_API_KEY }}" \
@@ -55,7 +55,7 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_HOST: postgresql://newstailor-db.flycast
           DB_PORT: ${{ secrets.DB_PORT }}
           GUARDIAN_API_KEY: ${{ secrets.GUARDIAN_API_KEY }}
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
