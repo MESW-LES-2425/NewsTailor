@@ -18,32 +18,33 @@ function Auth() {
                     <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
                     <LoginForm />
                 </div>
+
             </div>
-            <div className="auth-panels-container">
-                <div className="auth-panel auth-panel-left">
-                    <div className="auth-panel-content">
-                        <h3>New here ?</h3>
-                        <p>
-                            Sign up today to unlock the full potential of our AI news search! Tailor your news experience and
-                            save your favorite articles. Don't miss out on the conversation!
-                        </p>
-                        <button onClick={enableSignUpMode} className="auth-btn transparent" id="signUpButton">
-                            Sign up
-                        </button>
-                    </div>
-                    <img src={authImage} className="auth-image" alt="" />
+        <div className="auth-panels-container">
+            <div className="auth-panel auth-panel-left">
+                <div className="auth-panel-content">
+                    <h3>New here ?</h3>
+                    <p>
+                        Sign up today to unlock the full potential of our AI news search! Tailor your news experience and
+                        save your favorite articles. Don't miss out on the conversation!
+                    </p>
+                    <button onClick={enableSignUpMode} className="auth-btn transparent">
+                        Sign up
+                    </button>
                 </div>
-                <div className="auth-panel auth-panel-right">
-                    <div className="auth-panel-content">
-                        <h3>One of us ?</h3>
-                        <p>
-                            Welcome back! Log in to access your personalized news feed and stay updated with the stories that matter most to you.
-                        </p>
-                        <button onClick={enableSignInMode} className="auth-btn transparent" id="signInMode">
-                            Sign In
-                        </button>
-                    </div>
-                    <img src={authImage} className="auth-image" alt="" />
+                <img src={authImage} className="auth-image" alt="" />
+            </div>
+            <div className="auth-panel auth-panel-right">
+                <div className="auth-panel-content">
+                    <h3>One of us ?</h3>
+                    <p>
+                        Welcome back! Log in to access your personalized news feed and stay updated with the stories that matter most to you.
+                    </p>
+                    <button onClick={enableSignInMode} className="auth-btn transparent">
+                        Sign In
+                    </button>
+                </div>
+                <img src={authImage} className="auth-image" alt="" />
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ const SourceSelection: React.FC<SourceSelectionProps> = ({ onSourceChange }) => 
     } = useSourceSelection(onSourceChange)
 
     return (
-        <div className="form-source-selection">
+        <div id = "source-selection-button" className="form-source-selection">
             <h3>News Sources</h3>
             <div className="selected-news-sources">
                 {selectedSources.map((source) => (
