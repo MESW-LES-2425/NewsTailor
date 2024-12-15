@@ -15,7 +15,11 @@ class ConfigurationSerializerTestCase(TestCase):
             'fetch_period': '30',
             'read_time': 5,
             'user_id': self.user.id,
-            'categories': ["economy", "politics", "technology"],
+            'categories': [
+                {'value': "economy", 'percentage': 50},
+                {'value': "politics", 'percentage': 30},
+                {'value': "technology", 'percentage': 20},
+            ],
             'sources': ["guardian", "news_api"],
         }
 
@@ -30,15 +34,13 @@ class ConfigurationSerializerTestCase(TestCase):
         self.assertEqual(configuration.read_time, 5)
         self.assertEqual(configuration.sources, ["guardian", "news_api"])
 
-        # Check that the intermediate table Configuration_Category has the correct entries for all three categories
+        # Check that the intermediate table Configuration_Category has the correct entries
         config_categories = Configuration_Category.objects.filter(configuration=configuration)
         self.assertEqual(config_categories.count(), 3)
 
-        category_ids = [config_category.category.id for config_category in config_categories]
-        self.assertIn(self.category1.id, category_ids)
-        self.assertIn(self.category2.id, category_ids)
-        self.assertIn(self.category3.id, category_ids)
-
-        # Check that the percentage is distributed correctly (33% for each category)
-        for config_category in config_categories:
-            self.assertEqual(config_category.percentage, 33)
+        # Verify the categories and their associated percentages
+        category_map = {config_category.category.name: config_category.percentage for config_category in
+                        config_categories}
+        self.assertEqual(category_map["economy"], 50)
+        self.assertEqual(category_map["politics"], 30)
+        self.assertEqual(category_map["technology"], 20)

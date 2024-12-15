@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class ConfigurationSerializer(serializers.ModelSerializer):
-    categories = serializers.ListField(child=serializers.CharField(), write_only=True)
+    categories = serializers.ListField(child=serializers.DictField(), write_only=True)
     sources = serializers.ListField(child=serializers.CharField(), write_only=True)
     user_id = serializers.IntegerField(write_only=True)
     fetch_period = serializers.CharField()
@@ -30,12 +30,15 @@ class ConfigurationSerializer(serializers.ModelSerializer):
             **validated_data
         )
 
-        for category in categories:
-            category_instance = Category.objects.get(name=category)
+        for category_data in categories:
+            category_value = category_data.get('value')
+            percentage = category_data.get('percentage')
+
+            category_instance = Category.objects.get(name=category_value)
             Configuration_Category.objects.create(
                 configuration=configuration_instance,
                 category=category_instance,
-                percentage=100 // len(categories)
+                percentage=percentage
             )
 
         return configuration_instance
@@ -53,12 +56,16 @@ class ConfigurationSerializer(serializers.ModelSerializer):
 
         if categories:
             Configuration_Category.objects.filter(configuration=instance).delete()
-            for category in categories:
-                category_instance = Category.objects.get(name=category)
+
+            for category_data in categories:
+                category_value = category_data.get('value')
+                percentage = category_data.get('percentage')
+
+                category_instance = Category.objects.get(name=category_value)
                 Configuration_Category.objects.create(
                     configuration=instance,
                     category=category_instance,
-                    percentage=100 // len(categories)
+                    percentage=percentage
                 )
 
         instance.save()

@@ -1,4 +1,3 @@
-//import React from 'react'
 import './index.css'
 import ConfigPage from "./pages/configPage.tsx";
 import { UserProvider } from "./context/UserContext.tsx";
@@ -28,6 +27,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
                 <Route path="/config/:userId" element={<ConfigPage />} />
                 <Route path="/landingPage" element={<LandingPage />} />
                 <Route path="/" element={<LandingPage />} />

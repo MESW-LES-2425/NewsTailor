@@ -22,6 +22,13 @@ Output Structure:
         A detailed paragraph elaborating on the article’s key points, tailored for the specified word count.
         A clickable link to the source article (Read the Full Article).
 
+Category Prioritization:
+    Allocate your word count for summaries based on the following percentage breakdown of categories:
+    {categories_percentage}
+
+    For example:
+        If the Technology category has a 40% allocation, 40% of the total number of words of this session must be dedicated to summarizing articles within that category.
+
 Critical Notes:
 
     Your summaries must be natural, concise, and captivating, balancing depth and brevity to respect the total word count.
@@ -31,6 +38,7 @@ Critical Notes:
 Here's the provided input for your task:
 
     Total word counter: {total_word_counter}
+    Percentage breakdown of categories for this session: {categories_percentage}
     A collection of articles: {raw_news}.
 
 
