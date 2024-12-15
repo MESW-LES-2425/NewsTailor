@@ -86,6 +86,7 @@ const useConfigurationForm = () => {
         setTopics,
         setReadingTime,
         handleSubmit,
+        user
     };
 }
 

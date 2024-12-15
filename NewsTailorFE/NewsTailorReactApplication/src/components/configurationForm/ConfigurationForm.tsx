@@ -6,6 +6,7 @@ import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.t
 import useConfigurationForm from "./useConfigurationForm.ts";
 import Header from '../../components/landingPage/Header';
 import '../../styles/news-content/configuration.css';
+import Sidebar from "../contentPage/Sidebar.tsx";
 
 const ConfigurationForm: React.FC = () => {
 
@@ -17,11 +18,13 @@ const ConfigurationForm: React.FC = () => {
         setTopics,
         setReadingTime,
         handleSubmit,
+        user
     } = useConfigurationForm()
 
     return (
         <div>
             <Header />
+            <Sidebar userId={user.id!.toString()} />
             <div className="form-wrapper">
                 <form onSubmit={handleSubmit} className="configuration-form">
                     <div className="configuration-form-header">
