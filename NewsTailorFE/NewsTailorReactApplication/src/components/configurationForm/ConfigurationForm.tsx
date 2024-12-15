@@ -24,7 +24,7 @@ const ConfigurationForm: React.FC = () => {
     return (
         <div>
             <Header />
-            <Sidebar userId={user.id!.toString()} />
+            {user.id && <Sidebar userId={user.id.toString()} />}
             <div className="form-wrapper">
                 <form onSubmit={handleSubmit} className="configuration-form">
                     <div className="configuration-form-header">
