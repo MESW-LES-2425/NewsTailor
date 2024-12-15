@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/connections/fetch_news_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/connections/fetch_news_view.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/configurationForm/useConfigurationForm.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/TopicSelection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/topicSelection/useTopicSelection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/styles/news-content/configuration.css" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/styles/news-content/configuration.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

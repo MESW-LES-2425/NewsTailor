@@ -28,15 +28,14 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
             <div className="selected-sources-2">
                 {selectedTopics.map((topic) => (
                     <div key={topic.value} className="source-tag">
-                        <div className="topic-label">
-                            {topic.label}
+                        <div className="topic-details">
+                            <span className="topic-label">{topic.label}</span>
                             <button
-                                onClick={() =>
-                                    handleRemoveTopics(topic.value)
-                                }
+                                onClick={() => handleRemoveTopics(topic.value)}
                                 className="remove-source-btn"
+                                aria-label={`Remove ${topic.label}`}
                             >
-                                X
+                                ×
                             </button>
                         </div>
                         <div className="topic-percentage">
@@ -51,16 +50,15 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
                                         Number(e.target.value)
                                     )
                                 }
+                                className="percentage-input"
                                 aria-label={`Percentage for ${topic.label}`}
                             />
-                            <span>%</span>
+                            <span className="percentage-symbol">%</span>
                         </div>
                     </div>
                 ))}
             </div>
-
             <select
-                id="source-select-buttons"
                 value={dropdownValue}
                 onChange={handleSelectChange}
                 className="source-select"
