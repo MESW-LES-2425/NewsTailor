@@ -1,8 +1,3 @@
-# fly.toml app configuration file generated for newstailorbe on 2024-12-04T19:18:45Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'newstailorbe-prod'
 primary_region = 'mad'
 console_command = '/code/manage.py shell'

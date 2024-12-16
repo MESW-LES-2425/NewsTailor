@@ -43,7 +43,8 @@ jobs:
             VITE_API_URL="https://newstailorbe.fly.dev/"
           fi
 
-          # Set the Fly.io secrets, including the VITE_API_URL
+          echo "VITE_API_URL is set to: $VITE_API_URL"
+
           flyctl secrets set SECRET_KEY="${{ secrets.SECRET_KEY }}" \
                             DB_NAME="postgres" \
                             DB_USER="postgres" \
