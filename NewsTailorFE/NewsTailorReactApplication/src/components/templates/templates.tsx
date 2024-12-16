@@ -5,6 +5,7 @@ import Sidebar from "../contentPage/Sidebar.tsx";
 import "../contentPage/contentTable.css";
 import "./templates.css";
 import {MdDelete} from "react-icons/md";
+import {Link} from "react-router-dom";
 
 const Templates: React.FC = () => {
     const {
@@ -23,6 +24,9 @@ const Templates: React.FC = () => {
             <Sidebar userId={user.id!.toString()} />
             <div className="content-table">
                 <h1>Your Templates</h1>
+                <Link to="/create-configuration" className="new-template-btn">
+                    + New
+                </Link>
                 <div className="configurations-container">
                     {configurations.length === 0 ? (
                         <div>No configurations available.</div>

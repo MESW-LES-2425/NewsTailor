@@ -1,6 +1,4 @@
-//import React from 'react'
 import './index.css'
-import ConfigPage from "./pages/configPage.tsx";
 import { UserProvider } from "./context/UserContext.tsx";
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -16,6 +14,7 @@ import FaqPage from './pages/FaqPage.tsx'
 import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.tsx'
 import ResetPassword from './components/resetPassword/ResetPassword.tsx'
 import Templates from "./components/templates/templates.tsx";
+import ConfigurationForm from "./components/configurationForm/ConfigurationForm.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -28,11 +27,12 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-                <Route path="/config/:userId" element={<ConfigPage />} />
-                <Route path="/landingPage" element={<LandingPage />} />
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
+                <Route path="/create-configuration" element={<ProtectedRoute><ConfigurationForm /></ProtectedRoute>} />
+                <Route path="/landingPage" element={<AuthRoute><LandingPage /></AuthRoute>} />
+                <Route path="/" element={<AuthRoute><LandingPage /></AuthRoute>} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
-                <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="/faq" element={<FaqPage />} />
                 <Route path="/404" element={<NotFound />}></Route>
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
