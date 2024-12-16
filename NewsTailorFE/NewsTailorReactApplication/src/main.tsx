@@ -17,6 +17,8 @@ import YourNewspapersPage from './components/userNewspapers/YourNewspapersPage.t
 import ResetPassword from './components/resetPassword/ResetPassword.tsx'
 import Templates from "./components/templates/templates.tsx";
 import AdminPage from "./pages/adminPage.tsx";
+import Forbidden from "./pages/Forbidden.tsx";
+import AdminRoute from "./components/AdminRoute.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <UserProvider>
@@ -40,7 +42,8 @@ function App() {
                 <Route path="/newspapers/:userId" element={<ProtectedRoute><YourNewspapersPage /></ProtectedRoute>} />
                 <Route path="/profile/:userId" element={<ProtectedRoute><ProfileForm /></ProtectedRoute>} />
                 <Route path="/reset-password/:userId/:token" element={<AuthRoute><ResetPassword /></AuthRoute>} />
-                <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
+                <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
+                <Route path="/forbidden" element={<Forbidden/>} />
                 <Route path="*" element={<NotFound />}></Route>
             </Routes>
         </BrowserRouter>

@@ -1,4 +1,4 @@
-li {
+.user-list li {
     display: flex;
     justify-content: space-between;
     border: 2px solid #acacac;
@@ -8,17 +8,17 @@ li {
 
 }
 
-div {
+.user-list {
     margin-left: 10%;
     margin-right: 10%;
 }
 
-ul {
+.user-list ul {
     height: 60%;
     overflow: scroll;
 }
 
-button {
+.user-list button {
     background-color: #001f3d;
     color: white;
     border: none;
@@ -28,11 +28,11 @@ button {
     font-size: 20px;
 }
 
-button:hover {
+.user-list button:hover {
     background-color: #003366;
 }
 
-p {
+.user-list p {
     font-size: 20px;
     margin-top: 10px;
 }
