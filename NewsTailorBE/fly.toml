@@ -13,7 +13,7 @@ python_version = "3.10"
 [build]
 
 [deploy]
-  release_command = 'python manage.py migrate --noinput'
+release_command = "python manage.py migrate --noinput"
 
 [env]
   PORT = '8000'

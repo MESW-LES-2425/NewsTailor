@@ -22,10 +22,12 @@ DEBUG = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://localhost:6173",
     "https://newstailorreactapplication.fly.dev",
+    "https://newstailorreactapplication-prod.fly.dev",
 ]
 
-ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'newstailorbe-prod.fly.dev',  'localhost', '127.0.0.1']
 
 CORS_ALLOW_CREDENTIALS = True
 

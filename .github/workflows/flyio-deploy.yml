@@ -34,7 +34,16 @@ jobs:
         working-directory: NewsTailorBE
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          REF_NAME: ${{ github.ref_name }}
         run: |
+          # Set VITE_API_URL based on branch
+          if [[ "$REF_NAME" == "development" ]]; then
+            VITE_API_URL="https://newstailorbe-prod.fly.dev/"
+          else
+            VITE_API_URL="https://newstailorbe.fly.dev/"
+          fi
+
+          # Set the Fly.io secrets, including the VITE_API_URL
           flyctl secrets set SECRET_KEY="${{ secrets.SECRET_KEY }}" \
                             DB_NAME="postgres" \
                             DB_USER="postgres" \
@@ -46,7 +55,7 @@ jobs:
                             NEWS_API_KEY="${{ secrets.NEWS_API_KEY }}" \
                             NEW_YORK_TIMES_API_KEY="${{ secrets.NEW_YORK_TIMES_API_KEY }}" \
                             NUMBER_OF_NEWS_ARTICLES="${{ secrets.NUMBER_OF_NEWS_ARTICLES }}" \
-                            VITE_API_URL="https://newstailorbe.fly.dev/" \
+                            VITE_API_URL="$VITE_API_URL" \
                             OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}"
 
       - name: Deploy Backend to Fly.io
@@ -56,20 +65,19 @@ jobs:
           REF_NAME: ${{ github.ref_name }}
         run: |
           if [[ "$REF_NAME" == "development" ]]; then
-            flyctl deploy --config fly.prod.toml;
+            flyctl deploy --config fly.prod.toml --app newstailorbe-prod;
           else
-            flyctl deploy --config fly.toml;
+            flyctl deploy --config fly.toml --app newstailorbe;
           fi
 
       - name: Deploy Frontend to Fly.io
         working-directory: NewsTailorFE/NewsTailorReactApplication
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          VITE_API_URL: https://newstailorbe.fly.dev/
           REF_NAME: ${{ github.ref_name }}
         run: |
           if [[ "$REF_NAME" == "development" ]]; then
-            flyctl deploy --config fly.prod.toml;
+            flyctl deploy --config fly.prod.toml --app newstailorreactapplication-prod;
           else
-            flyctl deploy --config fly.toml;
+            flyctl deploy --config fly.toml --app newstailorreactapplication;
           fi
