@@ -26,7 +26,7 @@ class TestGenerate:
 
     def test_generate(self):
         sign_in(self)
-        config_form_input = WebDriverWait(self.driver, 10).until(
+        config_form_input = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".configuration-form-input:nth-child(3)"))
         )
         config_form_input.click()

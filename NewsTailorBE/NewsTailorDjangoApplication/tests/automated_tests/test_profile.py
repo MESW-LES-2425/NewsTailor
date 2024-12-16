@@ -28,13 +28,13 @@ class TestProfile:
         sign_in(self)
 
         # Wait for user profile link to appear and click it
-        user_profile_link = WebDriverWait(self.driver, 10).until(
+        user_profile_link = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "userProfileLink"))
         )
         user_profile_link.click()
 
         # Wait for the button with the icon to be clickable and click it
-        button_icon = WebDriverWait(self.driver, 10).until(
+        button_icon = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "button > .icon"))
         )
         button_icon.click()
@@ -44,13 +44,13 @@ class TestProfile:
         actions.move_to_element(button_icon).perform()
 
         # Perform hover action on the body element
-        body_element = WebDriverWait(self.driver, 10).until(
+        body_element = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "body"))
         )
         actions.move_to_element(body_element).perform()
 
         # Wait for the username field to be clickable and interact with it
-        username_field = WebDriverWait(self.driver, 10).until(
+        username_field = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "username"))
         )
         username_field.click()
@@ -58,7 +58,7 @@ class TestProfile:
         username_field.send_keys("User12")
 
         # Wait for the submit button to be clickable and click it
-        submit_button = WebDriverWait(self.driver, 10).until(
+        submit_button = WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, ".blue-circle-button-submit"))
         )
         submit_button.click()

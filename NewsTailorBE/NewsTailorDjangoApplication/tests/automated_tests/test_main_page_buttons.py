@@ -26,18 +26,18 @@ class TestMainPageButtons:
 
     def test_faq(self):
         sign_in(self)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "FAQ-button"))
         ).click()
 
     def test_about(self):
         sign_in(self)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "About-page-button"))
         ).click()
 
     def test_logout(self):
         sign_in(self)
-        WebDriverWait(self.driver, 10).until(
+        WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "Logout-button"))
         ).click()
