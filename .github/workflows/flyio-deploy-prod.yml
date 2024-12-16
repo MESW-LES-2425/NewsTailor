@@ -3,10 +3,10 @@ name: Deploy to Production (Fly.io)
 on:
   push:
     branches:
-      - deployment-docs
+      - main
   pull_request:
     branches:
-      - deployment-docs
+      - main
 
 jobs:
   deploy:
