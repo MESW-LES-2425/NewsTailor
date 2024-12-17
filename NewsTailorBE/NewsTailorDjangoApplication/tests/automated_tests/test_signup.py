@@ -27,13 +27,13 @@ def sign_up(self):
     username_field = WebDriverWait(self.driver, 20).until(
         EC.visibility_of_element_located((By.NAME, "username"))
     )
-    username_field.send_keys("user")
+    username_field.send_keys("funciona")
 
     # Input email
     email_field = WebDriverWait(self.driver, 20).until(
         EC.visibility_of_element_located((By.NAME, "email"))
     )
-    email_field.send_keys("user@gmail.com")
+    email_field.send_keys("funciona@gmail.com")
 
     # Input password1
     password1_field = WebDriverWait(self.driver, 20).until(

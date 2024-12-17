@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from NewsTailorDjangoApplication.models import Category
+from NewsTailorDjangoApplication.models import Category, User
 from django.db import connection
 from django.core.management.color import no_style
 
@@ -9,6 +9,8 @@ MODE_REFRESH = 'refresh'
 
 """ Clear all data and do not create any object """
 MODE_CLEAR = 'clear'
+
+MODE_CREATE = 'create'
 
 class Command(BaseCommand):
     help = "Seed database for testing and development."
@@ -42,6 +44,15 @@ def create_category(name):
     print(f"Category '{name}' created.")
     return category
 
+def create_user(username, email, password):
+    """Creates a User object."""
+    print(f"Creating user: {username}")
+    user = User(username=username, email=email)
+    user.set_password(password)
+    user.save()
+    print(f"User '{username}' created.")
+    return user
+
 def run_seed(self, mode):
     """ Seed database based on mode
 
@@ -49,6 +60,8 @@ def run_seed(self, mode):
     :return:
     """
     # Clear data from tables
+    if mode == MODE_CREATE:
+        create_user(username="funciona", email="funciona@gmail.com", password="12345Aa!")
     if mode == MODE_CLEAR:
         clear_data()
         reset_category_sequence()

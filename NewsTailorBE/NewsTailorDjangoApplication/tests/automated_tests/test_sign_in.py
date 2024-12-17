@@ -12,9 +12,9 @@ def sign_in(self):
     self.driver.get("http://localhost:5173/")
     self.driver.set_window_size(1512, 823)
     self.driver.find_element(By.ID, "button-auth").click()
-    self.driver.find_element(By.NAME, "username").send_keys("user@gmail.com")
+    self.driver.find_element(By.NAME, "username").send_keys("funciona@gmail.com")
     self.driver.find_element(By.NAME, "password1").send_keys("12345Aa!")
-    self.driver.find_element(By.ID, "sign-up-email").send_keys("user@gmail.com")
+    self.driver.find_element(By.ID, "sign-up-email").send_keys("funciona@gmail.com")
     self.driver.find_element(By.ID, "sign-up-password").send_keys("12345Aa!")
     self.driver.find_element(By.ID, "login-button-id").click()
 
