@@ -91,6 +91,18 @@
     transition: background-color 0.3s ease;
 }
 
+@media (max-width: 1500px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 300px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .news-grid {
+        grid-template-columns: repeat(1, 300px);
+    }
+}
+
 @media (max-width: 768px) {
 
 .your-newspapers-container {

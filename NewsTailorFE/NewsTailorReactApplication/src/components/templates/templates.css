@@ -79,3 +79,32 @@
     transform: scale(1.05);
 }
 
+.new-template-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #022B48;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.new-template-btn:hover {
+    background-color: #011A2A;
+}
+
+.new-template-btn:focus {
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .configurations-container {
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}

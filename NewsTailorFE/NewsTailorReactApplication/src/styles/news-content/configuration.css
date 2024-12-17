@@ -163,6 +163,35 @@
     margin-top: 5px;
 }
 
+.topic-label {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.topic-percentage {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.percentage-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 3px;
+    outline: none;
+    font-size: 14px;
+}
+
+.percentage-input:focus {
+    border-color: #007bff;
+}
+
+.percentage-symbol {
+    font-weight: bold;
+    color: #333;
+}
 
 @media (max-width: 768px) {
     .source-selection,
@@ -201,6 +230,9 @@
         width: 90%;
         top: 50%;
         padding: 1em;
+        overflow-y: scroll;
+        max-height: 600px;
+
     }
 
     .configuration-form-header {
@@ -227,6 +259,8 @@
         font-size: 0.9rem;
     }
 
-
-
 }
+
+
+
+
