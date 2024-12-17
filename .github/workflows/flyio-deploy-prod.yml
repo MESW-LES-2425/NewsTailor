@@ -28,7 +28,6 @@ jobs:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         run: |
           VITE_API_URL="https://newstailorbe-prod.fly.dev/"
-          APP_NAME="newstailorbe-prod"
   
           echo "VITE_API_URL is set to: $VITE_API_URL"
   
@@ -45,8 +44,7 @@ jobs:
                             NUMBER_OF_NEWS_ARTICLES="${{ secrets.NUMBER_OF_NEWS_ARTICLES }}" \
                             VITE_API_URL="$VITE_API_URL" \
                             FLY_API_TOKEN="${{ secrets.FLY_API_TOKEN }}" \
-                            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
-                            -a "$APP_NAME"
+                            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" 
 
       - name: Deploy Backend to Fly.io
         working-directory: NewsTailorBE
