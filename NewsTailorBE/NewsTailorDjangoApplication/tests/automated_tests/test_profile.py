@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from NewsTailorDjangoApplication.tests.automated_tests.test_sign_in import sign_in
+from NewsTailorDjangoApplication.tests.automated_tests.test_signup import sign_up
 
 
 class TestProfile:
@@ -25,6 +26,7 @@ class TestProfile:
         self.driver.quit()
 
     def test_profile(self):
+        sign_up(self)
         sign_in(self)
 
         # Wait for user profile link to appear and click it

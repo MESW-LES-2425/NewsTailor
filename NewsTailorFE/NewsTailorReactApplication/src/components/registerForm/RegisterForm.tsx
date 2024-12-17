@@ -76,7 +76,7 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
                     onClick={() => toggleShowPassword2(!showPassword2)} data-testid="toggle-password-icon"
                 />
             </div>
-            <button className="auth-btn" type="submit" disabled={isLoading}>
+            <button id="register-button" className="auth-btn" type="submit" disabled={isLoading}>
                 {isLoading ? "Registering..." : "Register"}
             </button>
             <p className="social-text">Or Sign up with social platforms</p>

@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from NewsTailorDjangoApplication.tests.automated_tests.test_sign_in import sign_in
+from NewsTailorDjangoApplication.tests.automated_tests.test_signup import sign_up
 
 
 class TestMainPageButtons:
@@ -25,18 +26,21 @@ class TestMainPageButtons:
         self.driver.quit()
 
     def test_faq(self):
+        sign_up(self)
         sign_in(self)
         WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "FAQ-button"))
         ).click()
 
     def test_about(self):
+        sign_up(self)
         sign_in(self)
         WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "About-page-button"))
         ).click()
 
     def test_logout(self):
+        sign_up(self)
         sign_in(self)
         WebDriverWait(self.driver, 20).until(
             EC.element_to_be_clickable((By.ID, "Logout-button"))

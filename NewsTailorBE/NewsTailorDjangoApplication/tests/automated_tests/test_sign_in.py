@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
+from NewsTailorDjangoApplication.tests.automated_tests.test_signup import sign_up
+
 
 def sign_in(self):
     self.driver.get("http://localhost:5173/")
@@ -33,6 +35,7 @@ class TestSignIn:
         self.driver.quit()
 
     def test_configuration(self):
+        sign_up(self)
         sign_in(self)
 
 
