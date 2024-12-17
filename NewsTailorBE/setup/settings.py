@@ -28,7 +28,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://newstailorbe.fly.dev",
 ]
 
-ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'newstailorbe-prod.fly.dev',  'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'www.newstailorbe.fly.dev', 'newstailorbe-prod.fly.dev', 'www.newstailorbe-prod.fly.dev', 'localhost', '127.0.0.1']
 
 CORS_ALLOW_CREDENTIALS = True
 
