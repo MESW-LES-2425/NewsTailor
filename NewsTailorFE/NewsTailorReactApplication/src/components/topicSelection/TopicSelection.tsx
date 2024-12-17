@@ -22,7 +22,7 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
 
     return (
         <div className="source-selection">
-            <h3>Categories</h3>
+            <h3 className="categories-title">Categories</h3>
             <div className="selected-sources-2">
                 {selectedTopics.map((topic) => (
                     <div key={topic.value} className="source-tag">

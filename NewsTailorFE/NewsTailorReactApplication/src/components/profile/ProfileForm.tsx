@@ -23,7 +23,7 @@ function ProfileForm() {
         <div>
             <Sidebar userId={userId} />
             <Header />
-            <div className="container">
+            <div className="container-profile">
                 <h1 className="header">User Profile</h1>
                 <div className="card">
                     <form role="form" onSubmit={handleSubmit}>
