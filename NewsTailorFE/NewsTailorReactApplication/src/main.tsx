@@ -21,11 +21,11 @@ import Forbidden from "./pages/Forbidden.tsx";
 import AdminRoute from "./components/AdminRoute.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <UserProvider>
-        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId="866508719375-9ll87llj25h9v0c1leukt43usator7kn.apps.googleusercontent.com">
+        <UserProvider>
             <App />
-        </GoogleOAuthProvider>
-    </UserProvider>
+        </UserProvider>
+    </GoogleOAuthProvider>
 );
 
 function App() {
