@@ -1,7 +1,7 @@
 from django.urls import path
 from .connections.fetch_news_view import FetchNewsView,NewsExtension
-from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
-from .views import CreateConfigurationView, DeleteConfigurationAPIView, UpdateConfigurationAPIView, ListConfigurationsAPIView
+from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView, ObtainAllNewsPaperCount
+from .views import CreateConfigurationView, DeleteConfigurationAPIView, UpdateConfigurationAPIView, ListConfigurationsAPIView, ObtainAllConfigurationsCount
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
 from .views import UserRegistrationView, UserLoginView, UserLogoutView, ForgotPassword, PasswordResetConfirmView
 from rest_framework_simplejwt.views import TokenRefreshView
@@ -36,4 +36,6 @@ urlpatterns = [
     path('users/', UserListView.as_view(), name='users'),
     path('users/ban/<int:user_id>/', BanUnbanUserView.as_view(), name='ban-unban-user'),
     path('users/delete/<int:user_id>/', DeleteUserView.as_view(), name='delete-user'),
+    path('newspaper-count/', ObtainAllNewsPaperCount.as_view(), name='newspaper-count'),
+    path('configuration-count/', ObtainAllConfigurationsCount.as_view(), name='configuration-count'),
 ]
