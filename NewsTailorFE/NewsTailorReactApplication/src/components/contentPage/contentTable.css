@@ -184,6 +184,10 @@ input:checked + .slider-configurations:before {
         border: 1px solid #ccc;
     }
 
+    .news-container {
+        margin-bottom: 60px;
+    }
+
     .customizeTitle {
         margin-bottom: 20px;
         font-size: 20px;

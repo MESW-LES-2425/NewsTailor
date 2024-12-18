@@ -8,7 +8,7 @@ const userId = userInfo.id;
 const adminPage = () => {
     return (
         <div>
-            <Link to={`/${userId}`}>
+            <Link to={`/${userId}`} style={{ textDecoration: "none" }}>
                 <Header />
             </Link>
             <UserList />
