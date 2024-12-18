@@ -42,18 +42,6 @@ const LoginForm: React.FC = () => {
         }
     };
 
-    const googleLogin = useGoogleLogin({
-        flow: 'auth-code',
-        onSuccess: async (codeResponse) => {
-            const loginResponse = await api.post(
-                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
-                    code: codeResponse.code,
-                });
-            loginToApp(loginResponse);
-        },
-        onError: errorResponse => console.log(errorResponse),
-    });
-
     return (
         <>
             <form onSubmit={handleSubmit} className="sign-in-form">
@@ -80,7 +68,7 @@ const LoginForm: React.FC = () => {
                 </button>
                 <p className="social-text">Or Sign in with social platforms</p>
                 <div className="social-media">
-                    <a onClick={() => googleLogin()} className="social-icon" data-testid="google-icon">
+                    <a className="social-icon" data-testid="google-icon">
                         <FontAwesomeIcon icon={faGoogle} />
                     </a>
                 </div>

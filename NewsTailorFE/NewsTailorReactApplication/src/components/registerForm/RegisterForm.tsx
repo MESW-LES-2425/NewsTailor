@@ -6,8 +6,6 @@ import "./registerForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope, faEye, faEyeSlash, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import {useGoogleLogin} from "@react-oauth/google";
-import api from "../../api.ts";
 
 interface callBackFunction {
     onRegisterSuccess: () => void;
@@ -29,18 +27,6 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
         handleSubmit,
         loginToApp,
     } = useRegisterForm({ onRegisterSuccess });
-
-    const googleLogin = useGoogleLogin({
-        flow: 'auth-code',
-        onSuccess: async (codeResponse) => {
-            const loginResponse = await api.post(
-                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
-                    code: codeResponse.code,
-                });
-            loginToApp(loginResponse);
-        },
-        onError: errorResponse => console.log(errorResponse),
-    });
 
     return (
         <form onSubmit={handleSubmit} className="sign-up-form">
@@ -96,7 +82,7 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
             </button>
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
-                <a onClick={googleLogin} className="social-icon" data-testid="google-icon">
+                <a className="social-icon" data-testid="google-icon">
                     <FontAwesomeIcon icon={faGoogle} />
                 </a>
             </div>
