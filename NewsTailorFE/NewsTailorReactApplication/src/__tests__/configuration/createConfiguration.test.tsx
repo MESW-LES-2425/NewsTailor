@@ -4,14 +4,17 @@ import { MemoryRouter } from 'react-router-dom';
 import { UserProvider } from '../../context/UserContext.tsx';
 import ConfigurationForm from '../../components/configurationForm/ConfigurationForm.tsx';
 import userEvent from '@testing-library/user-event';
+import {GoogleOAuthProvider} from "@react-oauth/google";
 
 describe('Render Configuration Form components', () => {
     beforeEach(() => {
         render(
             <MemoryRouter>
-                <UserProvider>
-                    <ConfigurationForm />
-                </UserProvider>
+                <GoogleOAuthProvider clientId="test-client-id">
+                    <UserProvider>
+                        <ConfigurationForm />
+                    </UserProvider>
+                </GoogleOAuthProvider>
             </MemoryRouter>
         );
     });
@@ -50,9 +53,11 @@ describe('Handles user interaction correctly', () => {
     beforeEach(() => {
         render(
             <MemoryRouter>
-                <UserProvider>
-                    <ConfigurationForm />
-                </UserProvider>
+                <GoogleOAuthProvider clientId="test-client-id">
+                    <UserProvider>
+                        <ConfigurationForm />
+                    </UserProvider>
+                </GoogleOAuthProvider>
             </MemoryRouter>
         );
     });
