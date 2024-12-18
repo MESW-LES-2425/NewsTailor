@@ -70,7 +70,7 @@ const useLoginForm = () => {
             email: email,
         })
 
-        navigate(`/${userId}`, {state: {userId}});
+        navigate(`/home`, {state: {userId}});
     }
 
     return {

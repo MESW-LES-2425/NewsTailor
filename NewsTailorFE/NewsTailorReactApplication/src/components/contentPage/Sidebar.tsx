@@ -15,15 +15,17 @@ interface SidebarProps {
     userId?: string | undefined
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId}) => {
+const user_id = localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')!).id : undefined;
+
+const Sidebar: React.FC<SidebarProps> = () => {
     return (
         <aside className="sidebar">
             <nav className="nav">
-                <Link className="navItem" to={`/${userId}`} state={{userId}} id='homePageLink'>
+                <Link className="navItem" to={`/home`} state={{user_id}} id='homePageLink'>
                     <MdHome className="icon"/>
                     Home
                 </Link>
-                <Link className="navItem" to={`/newspapers/${userId}`} id='newspaperLink'>
+                <Link className="navItem" to={`/newspapers/${user_id}`} id='newspaperLink'>
                     <MdDescription className="icon"/>
                     Your Newspapers
                 </Link>
@@ -31,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId}) => {
                     <MdBookmark className="icon" />
                     Templates
                 </Link>
-                <Link className="navItem" to={`/profile/${userId}`} id='userProfileLink'>
+                <Link className="navItem" to={`/profile/${user_id}`} id='userProfileLink'>
                     <MdPerson className="icon"/>
                     Profile
                 </Link>

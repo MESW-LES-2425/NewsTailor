@@ -32,7 +32,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
                 <Route path="/create-configuration" element={<ProtectedRoute><ConfigurationForm /></ProtectedRoute>} />
                 <Route path="/landingPage" element={<AuthRoute><LandingPage /></AuthRoute>} />
