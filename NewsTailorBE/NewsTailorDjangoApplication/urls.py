@@ -1,11 +1,5 @@
 from django.urls import path
 from .connections.fetch_news_view import FetchNewsView,NewsExtension
-from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, \
-    DeleteNewsPaperIfNotSavedView
-from .views import CreateConfigurationView
-from .connections.newspaper_utils_view import ObtainNewsPaperByIdView
-from .views import UserRegistrationView, UserLoginView, UserLogoutView, UserProfileView, UserUpdateView
-from .connections.fetch_news_view import FetchNewsView
 from .connections.newspaper_utils_view import ReadNewsPaperByIdView, SaveNewsPaperByIdView, ObtainUserNewsPapersView, DeleteNewsPaperIfNotSavedView, CreateUserNewsPaperConfigurationView, FetchUserNewsPaperConfigurationView
 from .views import CreateConfigurationView, DeleteConfigurationAPIView, UpdateConfigurationAPIView, ListConfigurationsAPIView
 from .connections.newspaper_utils_view import ObtainNewsPaperByIdView

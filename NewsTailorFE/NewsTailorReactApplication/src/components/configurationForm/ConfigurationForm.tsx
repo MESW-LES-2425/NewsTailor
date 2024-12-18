@@ -53,7 +53,6 @@ const ConfigurationForm: React.FC = () => {
                     </div>
                     <TopicSelection onTopicChange={setTopics} />
                 </form>
-
             </div>
         </div>
 
