@@ -16,7 +16,7 @@ const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange }) => {
 
     return (
         <div className="timeline-selection">
-            <h3>Timeline</h3>
+            <h3 className="timeline-title">Timeline</h3>
 
             <select
                 value={selectedDate ? selectedDate.value : ""}

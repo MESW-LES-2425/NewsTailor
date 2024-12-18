@@ -101,3 +101,10 @@
 .new-template-btn:focus {
     outline: none;
 }
+
+@media (max-width: 768px) {
+    .configurations-container {
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}

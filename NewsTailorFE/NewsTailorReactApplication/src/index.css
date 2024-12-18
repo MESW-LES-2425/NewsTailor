@@ -111,6 +111,22 @@ body, input {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
   }
 
+  .blue-circle-button-logout{
+    background-color: #1A2A3A;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    right: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  }
+
   .blue-circle-button-about{
     background-color: #1A2A3A;
     color: white;
@@ -168,3 +184,79 @@ body, input {
     margin-top: 10px;
     font-family: 'ABeeZee', sans-serif;
   }
+
+  @media (max-width: 768px) {
+
+    .blue-circle-button{
+        background-color: #1A2A3A;
+        color: white;
+        font-size: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        position: absolute;
+        text-align: center;
+        top: auto;
+        bottom:80px;
+        left: 20px;
+        right:auto;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+      }
+
+      .blue-circle-button-faq {
+        background-color: #1A2A3A;
+        color: white;
+        font-size: 12px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        top: 110px;
+        bottom:auto;
+        right: 110px;
+        left:auto;
+
+      }
+
+      .blue-circle-button-about {
+        background-color: #1A2A3A;
+        color: white;
+        font-size: 12px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        top: 110px;
+        bottom:auto;
+        right: 170px;
+        left:auto;
+
+      }
+
+      .blue-circle-button-logout {
+        background-color: #1A2A3A;
+        color: white;
+        font-size: 12px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        top: 110px;
+        bottom:auto;
+        right: 30px;
+        left:auto;
+      }
+
+
+}

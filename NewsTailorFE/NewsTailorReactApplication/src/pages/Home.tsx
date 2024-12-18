@@ -113,7 +113,7 @@ function Home() {
                     configurations={configurations}
                 />
             )}
-            <button id = "Logout-button" className="blue-circle-button" onClick={handleLogout}>Logout</button>
+            <button id = "Logout-button" className="blue-circle-button-logout" onClick={handleLogout}>Logout</button>
             <button id = "About-page-button" className="blue-circle-button-about" onClick={handleAbout}>About</button>
             <button id="FAQ-button" className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>
         </div>
