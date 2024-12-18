@@ -100,3 +100,11 @@ class FetchUserNewsPaperConfigurationView(APIView):
             return Response({'User Configuration': user_configuration}, status=status.HTTP_200_OK)
         else:
             return Response({'User Configuration': []}, status=status.HTTP_200_OK)   
+        
+class ObtainAllNewsPaperCount(APIView):
+    permission_classes = [AllowAny]
+
+    @staticmethod
+    def get(request):
+        count = NewsPaperSerializer.get_all_newspaper_count()
+        return Response({'NewspaperCount': count}, status=status.HTTP_200_OK)        

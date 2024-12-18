@@ -138,6 +138,21 @@ class ListConfigurationsAPIView(generics.ListAPIView):
         return Configuration.objects.prefetch_related(
             'configuration_category_set__category'
         ).filter(user_configuration=user)
+    
+class ObtainAllConfigurationsCount(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+
+
+        total_count = Configuration.objects.count()
+
+        response_data = {
+            "total_count": total_count
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
 
 class DeleteConfigurationAPIView(generics.DestroyAPIView):
     lookup_url_kwarg = 'configuration_id'

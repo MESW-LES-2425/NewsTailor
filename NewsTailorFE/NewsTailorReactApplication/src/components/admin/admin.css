@@ -1,3 +1,27 @@
+#usage-data {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f8f8f8; 
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#usage-data p {
+    margin: 0;
+    font-size: 20px;
+    color: #1A2A3A;
+}
+
+#usage-data h1 {
+    font-size: 24px;
+    color: #1A2A3A;
+}
+
 .user-list {
     margin: 0 auto;
     padding: 20px;
@@ -51,8 +75,13 @@
 .user-list p {
     margin: 0;
     font-size: 18px;
-    color: #003366;
+    color: #1A2A3A;
     flex: 1;
+}
+
+.user-list h1 {
+    font-size: 24px;
+    color: #1A2A3A;
 }
 
 .user-list button {
@@ -74,6 +103,18 @@
 
 .banned {
     text-decoration: line-through;
+}
+
+.usage-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 768px) {

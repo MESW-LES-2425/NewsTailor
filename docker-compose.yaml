@@ -36,7 +36,6 @@ services:
   newstailor_be:
     image: newstailor_be:latest
     container_name: newstailor_be
-    command: python manage.py seed --mode=create
     ports:
       - "5273:5273"
     volumes:
