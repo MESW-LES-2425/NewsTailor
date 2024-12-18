@@ -27,8 +27,8 @@ const Sidebar: React.FC<SidebarProps> = ({userId}) => {
                     <MdDescription className="icon"/>
                     Your Newspapers
                 </Link>
-                <Link className="navItem" to={`/config/${userId}`} id='templateLink'>
-                    <MdBookmark className="icon"/>
+                <Link className="navItem" to={`/templates`} id='templateLink'>
+                    <MdBookmark className="icon" />
                     Templates
                 </Link>
                 <Link className="navItem" to={`/profile/${userId}`} id='userProfileLink'>
