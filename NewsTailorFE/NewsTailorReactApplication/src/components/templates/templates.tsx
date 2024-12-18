@@ -4,7 +4,9 @@ import Header from "../landingPage/Header.tsx";
 import Sidebar from "../contentPage/Sidebar.tsx";
 import "../contentPage/contentTable.css";
 import "./templates.css";
-import {MdDelete} from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
+import ConfigurationShareButtons from "../socialMediaExports/configurationExport.tsx";
 
 const Templates: React.FC = () => {
     const {
@@ -17,12 +19,37 @@ const Templates: React.FC = () => {
 
     if (loading) return <div>Loading configurations...</div>;
 
+    const formatConfigurationsForSharing = () => {
+        return configurations.map(config => {
+            const categories = config.categories
+                .map(category => `${category.name} (${category.percentage}%)`)
+                .join(", ");
+            return `
+                Name: ${config.name}
+                Reading Time: ${config.read_time} mins
+                Fetch Period: ${fetchPeriodMapper[config.fetch_period]}
+                Sources: ${config.sources.join(", ")}
+                Categories: ${categories}
+            `;
+        }).join("\n\n");
+    };
+
+    const shareableContent = configurations.length > 0
+        ? formatConfigurationsForSharing()
+        : "No configurations available.";
+
     return (
         <>
             <Header />
             <Sidebar userId={user.id!.toString()} />
+            <div className="social-icons">
+                <ConfigurationShareButtons initialContent={shareableContent} />
+            </div>
             <div className="content-table">
                 <h1>Your Templates</h1>
+                <Link to="/create-configuration" className="new-template-btn">
+                    + New
+                </Link>
                 <div className="configurations-container">
                     {configurations.length === 0 ? (
                         <div>No configurations available.</div>
@@ -48,12 +75,19 @@ const Templates: React.FC = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                <Link
+                                    to="/edit-configuration"
+                                    state={{ configuration: config }}
+                                    className="edit-configuration-btn"
+                                >
+                                    Edit
+                                </Link>
                                 <button
                                     className="delete-configuration-btn"
                                     onClick={() => deleteConfiguration(config.id)}
                                     aria-label="delete"
                                 >
-                                    <MdDelete className="delete-icon"/>
+                                    <MdDelete className="delete-icon" />
                                     Delete
                                 </button>
                             </div>

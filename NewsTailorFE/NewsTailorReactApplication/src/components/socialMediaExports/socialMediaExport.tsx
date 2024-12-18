@@ -7,8 +7,7 @@ import "./socialMediaStyling.css";
 
 const ShareButtons = ({ initialContent = "" }) => {
     const articleText = initialContent;
-    // TODO change this to our domain URL as soon as we have one
-    const url = "http://localhost:5173";
+    const url = "https://newstailorreactapplication.fly.dev/";
 
     return (
         <div>

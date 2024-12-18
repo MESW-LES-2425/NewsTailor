@@ -1,6 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import api from "../../api";
 import axios from "axios";
+import {ACCESS_TOKEN, REFRESH_TOKEN, USER_INFO} from "../../constants.ts";
+import {useUserContext} from "../../context/useUserContext.ts";
+import {useNavigate} from "react-router-dom";
 
 interface FormData {
     username: string;
@@ -72,6 +75,25 @@ const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
         }
     };
 
+    const {setUser}= useUserContext();
+    const navigate = useNavigate();
+    const loginToApp = (loginResponse: any) => {
+        const userId = loginResponse.data.id;
+        const {id, username, email} = loginResponse.data;
+
+        localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
+        localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
+        localStorage.setItem(USER_INFO, JSON.stringify({id, username, email}));
+
+        setUser({
+            id: id,
+            username: username,
+            email: email,
+        })
+
+        navigate(`/${userId}`, {state: {userId}});
+    }
+
     return {
         formData,
         isLoading,
@@ -85,6 +107,7 @@ const useRegisterForm = ({ onRegisterSuccess }: callBackFunction) => {
         errors,
         handleChange,
         handleSubmit,
+        loginToApp,
     };
 };
 

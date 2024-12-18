@@ -1,0 +1,74 @@
+name: Regular Deploy to Fly.io
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  deploy:
+    name: Deploy Frontend and Backend to Fly.io (Regular)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Fly.io CLI
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          echo "$HOME/.fly/bin" >> $GITHUB_PATH
+          export PATH="$HOME/.fly/bin:$PATH"
+
+      - name: Set Backend Secrets for Development
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          VITE_API_URL="https://newstailorbe.fly.dev/"
+          APP_NAME="newstailorbe"
+  
+          echo "VITE_API_URL is set to: $VITE_API_URL"
+  
+          flyctl secrets set SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+                            DB_NAME="postgres" \
+                            DB_USER="postgres" \
+                            DB_PASSWORD="${{ secrets.DB_PASSWORD_FLY }}" \
+                            DB_HOST="newstailor-db.flycast" \
+                            DB_PORT="5432" \
+                            DB_URL="${{ secrets.DB_URL_FLY }}" \
+                            GUARDIAN_API_KEY="${{ secrets.GUARDIAN_API_KEY }}" \
+                            NEWS_API_KEY="${{ secrets.NEWS_API_KEY }}" \
+                            NEW_YORK_TIMES_API_KEY="${{ secrets.NEW_YORK_TIMES_API_KEY }}" \
+                            NUMBER_OF_NEWS_ARTICLES="${{ secrets.NUMBER_OF_NEWS_ARTICLES }}" \
+                            FLY_API_TOKEN="${{ secrets.FLY_API_TOKEN }}" \
+                            OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+                            -a "$APP_NAME"
+
+      - name: Deploy Backend to Fly.io
+        working-directory: NewsTailorBE
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --config fly.toml
+
+      - name: Set Frontend Secrets for Development
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          VITE_API_URL="https://newstailorbe.fly.dev/"
+          APP_NAME="newstailorreactapplication"
+  
+          echo "VITE_API_URL is set to: $VITE_API_URL"
+  
+          flyctl secrets set VITE_API_URL="$VITE_API_URL" \
+                            -a "$APP_NAME"
+
+      - name: Deploy Frontend to Fly.io
+        working-directory: NewsTailorFE/NewsTailorReactApplication
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy --config fly.toml

@@ -30,7 +30,7 @@ interface NewsProperties {
 
 const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configurations}) => {
     const [selectedSources, setSelectedSources] = useState<{ label: string, value: string }[]>([]);
-    const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string }[]>([]);
+    const [selectedTopics, setSelectedTopics] = useState<{ label: string, value: string, percentage?: number }[]>([]);
     const [selectedDate, setSelectedDate] = useState<string | null>(null); // Simplified to use a string or null
     const [selectedReadTime, setSelectedReadTime] = useState<number>(5);
     const [error, setError] = useState<string | null>(null);
@@ -40,9 +40,19 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
     const fetchNews = async () => {
         setLoading(true);
         setError(null);
+        localStorage.setItem('selectedSources', JSON.stringify(selectedSources.map(source => source.value)));
+        localStorage.setItem('selectedTopics', JSON.stringify(selectedTopics.map(topic => topic.value)));
+        localStorage.setItem('selectedDate', JSON.stringify(selectedDate));
+        localStorage.setItem('isPresetSelected', JSON.stringify(isPresetSelected));
+        localStorage.setItem('userId', JSON.stringify(userId));
+        localStorage.setItem('language', JSON.stringify('English'));
+        localStorage.setItem('reading_time', JSON.stringify(10));
         try {
             const response = await api.post("api/fetch-news/", {
-                categories: selectedTopics.map(topic => topic.value),
+                categories: selectedTopics.map(topic => ({
+                    value: topic.value,
+                    percentage: topic.percentage!
+                })),
                 language: 'English',
                 sources: selectedSources.map(source => source.value),
                 timeline: selectedDate,
@@ -79,7 +89,7 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
         setSelectedReadTime(readingTime);
     };
 
-    const handleTopicChange = (topics: { label: string, value: string }[]) => {
+    const handleTopicChange = (topics: { label: string, value: string, percentage?: number }[]) => {
         setSelectedTopics(topics);
     };
 
@@ -89,7 +99,11 @@ const NewsGeneration: React.FC<NewsProperties> = ({ userId, onGenerate, configur
 
     const handlePresetSelection = (config:Configuration) => {
         setSelectedSources(config.sources.map((source) => ({ label: source, value: source })));
-        setSelectedTopics(config.categories.map((category) => ({ label: category.name, value: category.name })));
+        setSelectedTopics(config.categories.map((category) => ({
+            label: category.name,
+            value: category.name,
+            percentage: category.percentage
+        })));
         setSelectedDate((config.fetch_period/60).toString());
         setSelectedReadTime(config.read_time);
     };

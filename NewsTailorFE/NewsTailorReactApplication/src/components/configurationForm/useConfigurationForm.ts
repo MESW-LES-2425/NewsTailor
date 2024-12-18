@@ -11,9 +11,10 @@ interface Source {
 interface Topic {
     label: string;
     value: string;
+    percentage?: number;
 }
 
-const useConfigurationForm = () => {
+const useConfigurationForm = (configId?: number) => {
     const [name, setName] = useState<string>("");
     const [timeline, setTimeline] = useState<string | null>(null);
     const [sources, setSources] = useState<Array<Source> | null>(null);
@@ -22,24 +23,60 @@ const useConfigurationForm = () => {
     const { user } = useUserContext();
 
     const navigate = useNavigate();
-    const route = "/api/create-configuration/";
+    const route = configId ? `/api/update-configuration/${configId}/` : "/api/create-configuration/";
+
+    const validateTopics = (topics: Array<Topic>): boolean => {
+        const totalPercentage = topics.reduce((sum, topic) => sum + topic.percentage!, 0);
+
+        if (totalPercentage > 100) {
+            alert("The total percentage of all categories cannot exceed 100%.");
+            return false;
+        }
+
+        if (totalPercentage < 100) {
+            alert("The total percentage of all categories has to be 100%.");
+            return false;
+        }
+
+        const hasZeroPercentage = topics.some((topic) => topic.percentage === 0);
+        if (hasZeroPercentage) {
+            alert("No category can have a 0% percentage.");
+            return false;
+        }
+
+        return true;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (topics && !validateTopics(topics)) {
+            return;
+        }
+
         const sourceValues = sources?.map((source) => source.value) || [];
-        const topicValues = topics?.map((topic) => topic.value) || [];
+        const categoryValuesPercentage = topics?.map((topic) => ({
+            value: topic.value,
+            percentage: topic.percentage,
+        })) || [];
+
         const formData = {
             name,
             fetch_period:timeline,
             sources:sourceValues,
-            categories:topicValues,
+            categories:categoryValuesPercentage,
             read_time:readingTime,
             user_id: user.id
         };
 
         try {
-            await api.post(route, formData);
-            navigate(`/${user.id}`);
+            if(configId) {
+                await api.put(route, formData);
+                navigate(`/templates`);
+            } else{
+                await api.post(route, formData);
+                navigate(`/${user.id}`);
+            }
         } catch (error) {
             console.log(error);
         }
@@ -54,6 +91,7 @@ const useConfigurationForm = () => {
         setTopics,
         setReadingTime,
         handleSubmit,
+        user
     };
 }
 

@@ -11,7 +11,7 @@ const AuthButton: React.FC = () => {
 
   return (
     <div className="auth-button-container">
-      <button className="auth-button" onClick={handleGetStarted}>
+      <button id = "button-auth" className="auth-button" onClick={handleGetStarted}>
         Get Started
       </button>
     </div>

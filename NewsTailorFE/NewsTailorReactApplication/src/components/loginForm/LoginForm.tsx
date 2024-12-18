@@ -4,9 +4,10 @@ import "./loginForm.css";
 import "../../styles/auth-common/signin-signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import {faGoogle} from "@fortawesome/free-brands-svg-icons";
 import Modal from "../../utils/Modal";
 import api from "../../api.ts";
+import {useGoogleLogin} from "@react-oauth/google";
 
 const LoginForm: React.FC = () => {
     const {
@@ -17,6 +18,7 @@ const LoginForm: React.FC = () => {
         errors,
         handleChange,
         handleSubmit,
+        loginToApp,
     } = useLoginForm();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,20 +42,32 @@ const LoginForm: React.FC = () => {
         }
     };
 
+    const googleLogin = useGoogleLogin({
+        flow: 'auth-code',
+        onSuccess: async (codeResponse) => {
+            const loginResponse = await api.post(
+                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
+                    code: codeResponse.code,
+                });
+            loginToApp(loginResponse);
+        },
+        onError: errorResponse => console.log(errorResponse),
+    });
+
     return (
         <>
             <form onSubmit={handleSubmit} className="sign-in-form">
                 <h2 className="signin-signup-title">Sign in</h2>
                 <div className={`signin-signup-input-field ${errors.email ? "error-auth-border" : ""}`}>
                     <FontAwesomeIcon icon={faEnvelope} className="auth-icons" />
-                    <input type="text" name="email" value={formData.email}
+                    <input id = "sign-up-email" type="text" name="email" value={formData.email}
                         onChange={handleChange} placeholder="Email" required
                     />
                 </div>
                 {errors.email && <p className="error-auth-message">{errors.email}</p>}
                 <div className="signin-signup-input-field" style={{ position: 'relative' }}>
                     <FontAwesomeIcon icon={faLock} className="auth-icons" />
-                    <input type={showPassword ? "text" : "password"} name="password" value={formData.password}
+                    <input id="sign-up-password" type={showPassword ? "text" : "password"} name="password" value={formData.password}
                         onChange={handleChange} placeholder="Password" required
                     />
                     <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="toggle-password-icon"
@@ -61,22 +75,13 @@ const LoginForm: React.FC = () => {
                     />
                 </div>
                 {errors.non_field_error && <p className="error-auth-message">{errors.non_field_error}</p>}
-                <button className="auth-btn solid" type="submit" disabled={isLoading}>
+                <button id= "login-button-id" className="auth-btn solid" type="submit" disabled={isLoading}>
                     {isLoading ? "Logging In..." : "Login"}
                 </button>
                 <p className="social-text">Or Sign in with social platforms</p>
                 <div className="social-media">
-                    <a href="#" className="social-icon" data-testid="facebook-icon">
-                        <FontAwesomeIcon icon={faFacebookF} />
-                    </a>
-                    <a href="#" className="social-icon" data-testid="twitter-icon">
-                        <FontAwesomeIcon icon={faTwitter} />
-                    </a>
-                    <a href="#" className="social-icon" data-testid="google-icon">
+                    <a onClick={() => googleLogin()} className="social-icon" data-testid="google-icon">
                         <FontAwesomeIcon icon={faGoogle} />
-                    </a>
-                    <a href="#" className="social-icon" data-testid="linkedin-icon">
-                        <FontAwesomeIcon icon={faLinkedinIn} />
                     </a>
                 </div>
                 <p className="auth-other-options">
@@ -93,7 +98,7 @@ const LoginForm: React.FC = () => {
                             onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required
                         />
                     </div>
-                    <button className="auth-btn solid" type="submit">Submit</button>
+                    <button id = "submit-button" className="auth-btn solid" type="submit">Submit</button>
                 </form>
             </Modal>
         </>

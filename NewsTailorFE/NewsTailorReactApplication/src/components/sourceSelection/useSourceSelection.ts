@@ -40,12 +40,19 @@ const useSourceSelection = (onSourceChange: (sources: Source[]) => void) => {
         setDropdownValue("");
     };
 
+    // for edit form
+    const setInputSources = (sources: Source[]) => {
+        setSelectedSources(sources);
+        onSourceChange(sources);
+    };
+
     return {
         sourcesOptions,
         selectedSources,
         dropdownValue,
         handleRemoveSource,
         handleSelectChange,
+        setInputSources
     }
 }
 
