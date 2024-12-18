@@ -28,6 +28,9 @@ jobs:
         version: latest
 
     - name: Build Docker Image FE
+      env:
+        VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+        VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
       working-directory: NewsTailorFE/NewsTailorReactApplication
       run: |
         docker build -t newstailor_fe .
