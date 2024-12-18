@@ -72,4 +72,14 @@ export const checkAuthStatus = async (): Promise<boolean> => {
     return false;
 };
 
+export const isAdministrator = (): boolean => {
+    const userInfo = localStorage.getItem("user_info");
+    if (!userInfo) {
+        return false;
+    }
+
+    const username = JSON.parse(userInfo).username;
+    return username === "admin";
+}
+
 
