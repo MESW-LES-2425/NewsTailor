@@ -80,6 +80,8 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
+        BASE_API_URL: http://localhost:5273
+        BASE_APP_URL: http://localhost:5173
       run: |
         coverage run manage.py test
         coverage report -m
@@ -90,6 +92,8 @@ jobs:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
         VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
+        BASE_API_URL: http://localhost:5273
+        BASE_APP_URL: http://localhost:5173
       run: |
         echo "Running Selenium Tests"
         pytest tests/selenium/aut_acceptance_tests
