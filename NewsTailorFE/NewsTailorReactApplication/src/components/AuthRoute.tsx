@@ -25,7 +25,7 @@ function AuthRoute({ children }: AuthRouteProps) {
     }
 
     if (isLoggedIn) {
-        return <Navigate to={`/${user.id}`} />;
+        return <Navigate to={`/home`} />;
     }
 
     return <>{children}</>;
