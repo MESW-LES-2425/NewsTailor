@@ -23,7 +23,11 @@ class CreateConfigurationViewTestCase(TestCase):
             'fetch_period': '30',
             'read_time': 5,
             'user_id': self.user.id,
-            'categories': ["economy", "politics", "technology"],
+            'categories': [
+                {'value': "economy", 'percentage': 50},
+                {'value': "politics", 'percentage': 30},
+                {'value': "technology", 'percentage': 20},
+            ],
             'sources': ["guardian", "news_api"]
         }
 
@@ -163,7 +167,9 @@ class UpdateConfigurationAPIViewTest(TestCase):
             'user_id': self.user.id,
             "read_time": 50,
             "fetch_period": "72",
-            "categories": ["category1"],
+            'categories': [
+                {'value': "category1", 'percentage': 100}
+            ],
             "sources": ["news_api"]
         }
 
