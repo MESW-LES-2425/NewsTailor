@@ -1,18 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import useTimelineSelection from "./useTimelineSelection.ts";
 import '../../styles/news-content/configuration.css';
 
-interface DateSelectionProps {
-    onDateChange: (date: string | null) => void;
+interface DateOption {
+    label: string;
+    value: string;
 }
 
-const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange }) => {
+interface DateSelectionProps {
+    onDateChange: (date: string | null) => void;
+    inputData?: DateOption | null;
+}
+
+const TimelineSelection: React.FC<DateSelectionProps> = ({ onDateChange, inputData }) => {
 
     const {
         selectedDate,
         dateOptions,
         handleDateSelection
     } = useTimelineSelection(onDateChange);
+
+    // load input data for edit form
+    useEffect(() => {
+        if(inputData){
+            handleDateSelection(inputData);
+        }
+    }, []);
 
     return (
         <div className="timeline-selection">

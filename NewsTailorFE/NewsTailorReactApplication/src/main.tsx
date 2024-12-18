@@ -19,6 +19,7 @@ import ConfigurationForm from "./components/configurationForm/ConfigurationForm.
 import AdminPage from "./pages/adminPage.tsx";
 import Forbidden from "./pages/Forbidden.tsx";
 import AdminRoute from "./components/AdminRoute.tsx";
+import EditConfigurationForm from "./components/editConfigurationForm/EditConfigurationForm.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <GoogleOAuthProvider clientId="866508719375-9ll87llj25h9v0c1leukt43usator7kn.apps.googleusercontent.com">
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/:userId" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
                 <Route path="/create-configuration" element={<ProtectedRoute><ConfigurationForm /></ProtectedRoute>} />
+                <Route path="/edit-configuration" element={<ProtectedRoute><EditConfigurationForm /></ProtectedRoute>} />
                 <Route path="/landingPage" element={<AuthRoute><LandingPage /></AuthRoute>} />
                 <Route path="/" element={<AuthRoute><LandingPage /></AuthRoute>} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />

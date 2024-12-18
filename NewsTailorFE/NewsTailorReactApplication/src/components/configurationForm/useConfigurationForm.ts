@@ -14,7 +14,7 @@ interface Topic {
     percentage?: number;
 }
 
-const useConfigurationForm = () => {
+const useConfigurationForm = (configId?: number) => {
     const [name, setName] = useState<string>("");
     const [timeline, setTimeline] = useState<string | null>(null);
     const [sources, setSources] = useState<Array<Source> | null>(null);
@@ -23,7 +23,7 @@ const useConfigurationForm = () => {
     const { user } = useUserContext();
 
     const navigate = useNavigate();
-    const route = "/api/create-configuration/";
+    const route = configId ? `/api/update-configuration/${configId}/` : "/api/create-configuration/";
 
     const validateTopics = (topics: Array<Topic>): boolean => {
         const totalPercentage = topics.reduce((sum, topic) => sum + topic.percentage!, 0);
@@ -70,8 +70,13 @@ const useConfigurationForm = () => {
         };
 
         try {
-            await api.post(route, formData);
-            navigate(`/${user.id}`);
+            if(configId) {
+                await api.put(route, formData);
+                navigate(`/templates`);
+            } else{
+                await api.post(route, formData);
+                navigate(`/${user.id}`);
+            }
         } catch (error) {
             console.log(error);
         }

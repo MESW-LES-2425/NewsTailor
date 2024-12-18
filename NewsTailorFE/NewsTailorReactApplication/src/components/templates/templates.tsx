@@ -75,6 +75,13 @@ const Templates: React.FC = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                <Link
+                                    to="/edit-configuration"
+                                    state={{ configuration: config }}
+                                    className="edit-configuration-btn"
+                                >
+                                    Edit
+                                </Link>
                                 <button
                                     className="delete-configuration-btn"
                                     onClick={() => deleteConfiguration(config.id)}
