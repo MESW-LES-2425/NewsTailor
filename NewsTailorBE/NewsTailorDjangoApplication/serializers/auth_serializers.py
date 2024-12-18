@@ -87,3 +87,15 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         if '@' not in value:
             raise serializers.ValidationError("Enter a valid email address.")
         return value
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+    def validate_email(self, value):
+        if not User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("User with this email does not exist.")
+        return value
+
+class AuthSerializer(serializers.Serializer):
+    code = serializers.CharField(required=False)
+    error = serializers.CharField(required=False)

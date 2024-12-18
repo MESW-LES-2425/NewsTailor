@@ -4,7 +4,7 @@ import config from "../../appConfig.json";
 interface Topic {
     label: string;
     value: string;
-    id: number;
+    percentage?: number;
 }
 
 const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
@@ -18,7 +18,7 @@ const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
 
         const updatedTopics = isAlreadySelected
             ? selectedTopics.filter(selected => selected.value !== topic.value)
-            : [...selectedTopics, topic];
+            : [...selectedTopics, { ...topic, percentage: 0 }];
         setSelectedTopics(updatedTopics);
         onTopicChange(updatedTopics);
     };
@@ -41,12 +41,22 @@ const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
         setDropdownValue("");
     };
 
+    const updateTopicPercentage = (value: string, newPercentage: number) => {
+        const updatedTopics = selectedTopics.map((topic) =>
+            topic.value === value ? { ...topic, percentage: newPercentage } : topic
+        );
+
+        setSelectedTopics(updatedTopics);
+        onTopicChange(updatedTopics);
+    };
+
     return {
         topicOptions,
         selectedTopics,
         dropdownValue,
         handleRemoveTopics,
-        handleSelectChange
+        handleSelectChange,
+        updateTopicPercentage,
     }
 }
 

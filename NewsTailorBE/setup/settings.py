@@ -20,7 +20,17 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]   
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://newstailorreactapplication.fly.dev",
+    "https://newstailorreactapplication-prod.fly.dev",
+    "https://newstailorbe-prod.fly.dev",
+    "https://newstailorbe.fly.dev",
+]
+
+ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'www.newstailorbe.fly.dev', 'newstailorbe-prod.fly.dev', 'www.newstailorbe-prod.fly.dev', 'localhost', '127.0.0.1']
+
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -129,6 +139,11 @@ DATABASES = {
     }
 }
 
+BASE_APP_URL = "http://localhost:5173"
+BASE_API_URL = "http://localhost:5273"
+GOOGLE_OAUTH2_CLIENT_ID = "866508719375-9ll87llj25h9v0c1leukt43usator7kn.apps.googleusercontent.com"
+GOOGLE_OAUTH2_CLIENT_SECRET = "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"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -170,6 +185,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'recover.newstailor@gmail.com'
+EMAIL_HOST_PASSWORD = 'aogy roka dyvc udai'
+DEFAULT_FROM_EMAIL = "recover.newstailor@gmail.com"
 AUTH_USER_MODEL = 'NewsTailorDjangoApplication.User'
 
 CORS_ALLOW_ALL_ORIGINS = True

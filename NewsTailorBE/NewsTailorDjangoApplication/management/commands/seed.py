@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
-from NewsTailorDjangoApplication.models import Category
+from NewsTailorDjangoApplication.models import Category, User
+from django.db import connection
+from django.core.management.color import no_style
 
 # python manage.py seed --mode=refresh
 """ Clear all data and creates addresses """
@@ -7,6 +9,8 @@ MODE_REFRESH = 'refresh'
 
 """ Clear all data and do not create any object """
 MODE_CLEAR = 'clear'
+
+MODE_CREATE = 'create'
 
 class Command(BaseCommand):
     help = "Seed database for testing and development."
@@ -20,11 +24,17 @@ class Command(BaseCommand):
         self.stdout.write('Done.')
 
 
+def reset_category_sequence():
+    """Resets the auto-increment sequence for Category model."""
+    sequence_sql = connection.ops.sequence_reset_sql(no_style(), [Category])
+    with connection.cursor() as cursor:
+        for sql in sequence_sql:
+            cursor.execute(sql)
+
 def clear_data():
     """Deletes all the table data"""
     print("Deleting Category instances")
     Category.objects.all().delete()
-
 
 def create_category(name):
     """Creates a Category object."""
@@ -34,6 +44,15 @@ def create_category(name):
     print(f"Category '{name}' created.")
     return category
 
+def create_user(username, email, password):
+    """Creates a User object."""
+    print(f"Creating user: {username}")
+    user = User(username=username, email=email)
+    user.set_password(password)
+    user.save()
+    print(f"User '{username}' created.")
+    return user
+
 def run_seed(self, mode):
     """ Seed database based on mode
 
@@ -41,12 +60,16 @@ def run_seed(self, mode):
     :return:
     """
     # Clear data from tables
+    if mode == MODE_CREATE:
+        create_user(username="funciona", email="funciona@gmail.com", password="12345Aa!")
     if mode == MODE_CLEAR:
         clear_data()
+        reset_category_sequence()
         return
 
     if mode == MODE_REFRESH:
         clear_data()
+        reset_category_sequence()
 
     categories = ["economy", "politics", "technology", "ai", "cryptocurrency"]
 

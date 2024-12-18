@@ -1,0 +1,47 @@
+.social-icons {
+    position: fixed;
+    top: 21%;
+    left: 80%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.social-icons .icon-wrapper{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 60px; 
+    height: 90px;
+    background-color: #f8f8f8; 
+    transition: transform 0.2s, background-color 0.3s; 
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+
+.social-icons .icon-wrapper button {
+    outline: none; 
+    background: transparent; 
+    border: none; 
+    color: black;
+}
+
+.social-icons .icon-wrapper:hover{
+    background-color: #e0e0e0; 
+}
+
+@media (max-width: 768px) {
+    .social-icons {
+        top: 17.5%;
+        left: 90%;
+    }
+
+    .social-icons .icon-wrapper{
+        width: 50px; 
+        height: 70px;
+    }
+}
