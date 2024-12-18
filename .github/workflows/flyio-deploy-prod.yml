@@ -45,6 +45,8 @@ jobs:
                             NUMBER_OF_NEWS_ARTICLES="${{ secrets.NUMBER_OF_NEWS_ARTICLES }}" \
                             FLY_API_TOKEN="${{ secrets.FLY_API_TOKEN }}" \
                             OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+                            VITE_GOOGLE_CLIENT_ID="${{ secrets.VITE_GOOGLE_CLIENT_ID }}" \
+                            VITE_GITHUB_CLIENT_ID="${{ secrets.VITE_GITHUB_CLIENT_ID }}" \
                             -a "$APP_NAME"
 
       - name: Deploy Backend to Fly.io
@@ -57,6 +59,8 @@ jobs:
       - name: Set Frontend Secrets for Development
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
         run: |
           VITE_API_URL="https://newstailorbe-prod.fly.dev/"
           APP_NAME="newstailorreactapplication-prod"
@@ -70,5 +74,7 @@ jobs:
         working-directory: NewsTailorFE/NewsTailorReactApplication
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
         run: |
           flyctl deploy --config fly.prod.toml
