@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { ReactNode, useEffect, useState } from "react";
 import {checkAuthStatus} from "../utils/authUtils";
+import {useUserContext} from "../context/useUserContext.ts";
 
 interface AuthRouteProps {
     children: ReactNode;
@@ -8,6 +9,7 @@ interface AuthRouteProps {
 
 function AuthRoute({ children }: AuthRouteProps) {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+    const { user } = useUserContext();
 
     useEffect(() => {
         const authenticate = async () => {
@@ -23,7 +25,7 @@ function AuthRoute({ children }: AuthRouteProps) {
     }
 
     if (isLoggedIn) {
-        return <Navigate to="/" />;
+        return <Navigate to={`/${user.id}`} />;
     }
 
     return <>{children}</>;

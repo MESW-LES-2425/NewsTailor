@@ -11,7 +11,7 @@ const ReadingTimeSelection: React.FC<ReadingTimeSelectionProps> = ({ onReadingTi
 
     return (
         <div className="reading-time-selection">
-            <h3>Reading Time</h3>
+            <h3 className="reading-time-title">Reading Time</h3>
             <div className="reading-time-slider-container">
                 <div className="reading-time-slider">
                     <h6>1 min</h6>
