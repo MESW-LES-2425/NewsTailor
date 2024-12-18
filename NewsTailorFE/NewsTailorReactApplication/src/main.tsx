@@ -22,9 +22,9 @@ import AdminRoute from "./components/AdminRoute.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-    <UserProvider>
+        <UserProvider>
             <App />
-    </UserProvider>
+        </UserProvider>
     </GoogleOAuthProvider>
 );
 
