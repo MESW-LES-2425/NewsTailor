@@ -109,7 +109,7 @@ describe('LoginForm', () => {
                 })
             );
 
-            expect(navigate).toHaveBeenCalledWith(`/${1}`, { state: { userId: 1 } });
+            expect(navigate).toHaveBeenCalledWith(`/home`, { state: { userId: 1 } });
         });
     });
 

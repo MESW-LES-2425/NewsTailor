@@ -8,8 +8,6 @@ import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 
-const userInfo = JSON.parse(localStorage.getItem("user_info") || '{}');
-const userId = userInfo.id;
 
 const UserList = () => {
     const [users, setUsers] = useState<{ user_id: number, username: string; is_banned: boolean }[]>([]);
@@ -108,7 +106,7 @@ const UserList = () => {
                 </ul>
             )}
             </div>
-            <Link to={`/${userId}`} style={{ textDecoration: "none" }}>
+            <Link to={`/home`} style={{ textDecoration: "none" }}>
                 <button className="home-button">Home</button>
             </Link>
         </div>
