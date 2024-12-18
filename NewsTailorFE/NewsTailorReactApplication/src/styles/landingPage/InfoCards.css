@@ -35,3 +35,29 @@
   margin: 0;
   color: #333;
 }
+
+
+@media (max-width: 768px) {
+  .info-section {
+    padding: 30px;
+  }
+
+  .info-cards {
+    gap: 10px;
+  }
+
+  .info-card {
+    padding: 10px;
+    border-radius: 3px;
+  }
+
+  .news-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+
+  .info-card p {
+    font-size: 0.85rem;
+  }
+
+}

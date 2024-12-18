@@ -5,7 +5,9 @@ import "../../styles/auth-common/signin-signup.css";
 import "./registerForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope, faEye, faEyeSlash, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import {useGoogleLogin} from "@react-oauth/google";
+import api from "../../api.ts";
 
 interface callBackFunction {
     onRegisterSuccess: () => void;
@@ -25,7 +27,20 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
         errors,
         handleChange,
         handleSubmit,
+        loginToApp,
     } = useRegisterForm({ onRegisterSuccess });
+
+    const googleLogin = useGoogleLogin({
+        flow: 'auth-code',
+        onSuccess: async (codeResponse) => {
+            const loginResponse = await api.post(
+                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
+                    code: codeResponse.code,
+                });
+            loginToApp(loginResponse);
+        },
+        onError: errorResponse => console.log(errorResponse),
+    });
 
     return (
         <form onSubmit={handleSubmit} className="sign-up-form">
@@ -76,22 +91,13 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
                     onClick={() => toggleShowPassword2(!showPassword2)} data-testid="toggle-password-icon"
                 />
             </div>
-            <button className="auth-btn" type="submit" disabled={isLoading}>
+            <button id="register-button" className="auth-btn" type="submit" disabled={isLoading}>
                 {isLoading ? "Registering..." : "Register"}
             </button>
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
-                <a href="#" className="social-icon" data-testid="facebook-icon">
-                    <FontAwesomeIcon icon={faFacebookF} />
-                </a>
-                <a href="#" className="social-icon" data-testid="twitter-icon">
-                    <FontAwesomeIcon icon={faTwitter} />
-                </a>
-                <a href="#" className="social-icon" data-testid="google-icon">
+                <a onClick={googleLogin} className="social-icon" data-testid="google-icon">
                     <FontAwesomeIcon icon={faGoogle} />
-                </a>
-                <a href="#" className="social-icon" data-testid="linkedin-icon">
-                    <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
             </div>
         </form>

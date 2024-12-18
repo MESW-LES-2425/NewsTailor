@@ -20,7 +20,17 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]   
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://newstailorreactapplication.fly.dev",
+    "https://newstailorreactapplication-prod.fly.dev",
+    "https://newstailorbe-prod.fly.dev",
+    "https://newstailorbe.fly.dev",
+]
+
+ALLOWED_HOSTS = ['newstailorbe.fly.dev', 'www.newstailorbe.fly.dev', 'newstailorbe-prod.fly.dev', 'www.newstailorbe-prod.fly.dev', 'localhost', '127.0.0.1']
+
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -128,6 +138,11 @@ DATABASES = {
         "PORT": env("DB_PORT"),
     }
 }
+
+BASE_APP_URL = "http://localhost:5173"
+BASE_API_URL = "http://localhost:5273"
+GOOGLE_OAUTH2_CLIENT_ID = "866508719375-9ll87llj25h9v0c1leukt43usator7kn.apps.googleusercontent.com"
+GOOGLE_OAUTH2_CLIENT_SECRET = "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"
 
 
 # Password validation

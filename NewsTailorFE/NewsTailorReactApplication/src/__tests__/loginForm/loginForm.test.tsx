@@ -7,6 +7,7 @@ import api from "../../api.ts";
 import {ACCESS_TOKEN, REFRESH_TOKEN, USER_INFO} from "../../constants.ts";
 import useLoginForm from "../../components/loginForm/useLoginForm.ts";
 import {UserProvider} from "../../context/UserContext.tsx";
+import {GoogleOAuthProvider} from "@react-oauth/google";
 
 jest.mock("../../api.ts");
 
@@ -37,9 +38,11 @@ describe('LoginForm', () => {
         (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
             <MemoryRouter>
-                <UserProvider>
-                    <LoginForm />
-                </UserProvider>
+                <GoogleOAuthProvider clientId="test-client-id">
+                    <UserProvider>
+                        <LoginForm />
+                    </UserProvider>
+                </GoogleOAuthProvider>
             </MemoryRouter>
         );
     });
@@ -54,10 +57,7 @@ describe('LoginForm', () => {
         expect(screen.getByTestId('toggle-password-icon')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: /login/i })).toBeInTheDocument();
         expect(screen.getByText('Or Sign in with social platforms')).toBeInTheDocument();
-        expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
-        expect(screen.getByTestId('twitter-icon')).toBeInTheDocument();
         expect(screen.getByTestId('google-icon')).toBeInTheDocument();
-        expect(screen.getByTestId('linkedin-icon')).toBeInTheDocument();
     });
 
     test('login fields can receive input', async () => {
@@ -109,7 +109,7 @@ describe('LoginForm', () => {
                 })
             );
 
-            expect(navigate).toHaveBeenCalledWith(`/${1}`, { state: { userId: 1 } });
+            expect(navigate).toHaveBeenCalledWith(`/home`, { state: { userId: 1 } });
         });
     });
 

@@ -6,6 +6,7 @@ import UserEvent from "@testing-library/user-event";
 import api from "../../api.ts";
 import useRegisterForm from "../../components/registerForm/useRegisterForm.ts";
 import {UserProvider} from "../../context/UserContext.tsx";
+import {GoogleOAuthProvider} from "@react-oauth/google";
 
 jest.mock("../../api.ts");
 
@@ -23,9 +24,11 @@ describe('RegisterForm', () => {
         (useNavigate as jest.Mock).mockReturnValue(navigate);
         render(
             <MemoryRouter>
-                <UserProvider>
-                    <RegisterForm onRegisterSuccess={onRegisterSuccessMock} />
-                </UserProvider>
+                <GoogleOAuthProvider clientId="test-client-id">
+                    <UserProvider>
+                        <RegisterForm onRegisterSuccess={onRegisterSuccessMock} />
+                    </UserProvider>
+                </GoogleOAuthProvider>
             </MemoryRouter>
         );
     });
@@ -45,10 +48,7 @@ describe('RegisterForm', () => {
         expect(confirmPasswordInput).toHaveAttribute('type', 'password');
         expect(screen.getByRole('button', { name: /register/i })).toBeInTheDocument();
         expect(screen.getByText('Or Sign up with social platforms')).toBeInTheDocument();
-        expect(screen.getByTestId('facebook-icon')).toBeInTheDocument();
-        expect(screen.getByTestId('twitter-icon')).toBeInTheDocument();
         expect(screen.getByTestId('google-icon')).toBeInTheDocument();
-        expect(screen.getByTestId('linkedin-icon')).toBeInTheDocument();
     });
 
     test('register fields can receive input', async () => {
@@ -154,9 +154,10 @@ describe('RegisterForm', () => {
 });
 
 describe('useRegisterForm Hook', () => {
-
     test('initializes with correct initial state', () => {
-        const { result } = renderHook(() => useRegisterForm({ onRegisterSuccess: onRegisterSuccessMock }));
+        const { result } = renderHook(() => useRegisterForm({ onRegisterSuccess: onRegisterSuccessMock }), {
+            wrapper: ({ children }) => <UserProvider>{children}</UserProvider>,
+        });
 
         expect(result.current.formData).toEqual({
             username: '',

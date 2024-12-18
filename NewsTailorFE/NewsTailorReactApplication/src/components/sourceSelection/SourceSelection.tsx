@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import useSourceSelection from "./useSourceSelection.ts";
 import '../../styles/news-content/configuration.css';
 
@@ -9,20 +9,36 @@ interface Source {
 
 interface SourceSelectionProps {
     onSourceChange: (sources: Source[]) => void;
+    inputData?: string[];
 }
 
-const SourceSelection: React.FC<SourceSelectionProps> = ({ onSourceChange }) => {
+const SourceSelection: React.FC<SourceSelectionProps> = ({ onSourceChange, inputData }) => {
     const {
         sourcesOptions,
         selectedSources,
         dropdownValue,
         handleRemoveSource,
         handleSelectChange,
+        setInputSources
     } = useSourceSelection(onSourceChange)
 
+    const mapSources = (sources: string[], sourcesOptions: { label: string; value: string }[]): { label: string; value: string }[] => {
+        return sources.map(sourceValue => {
+            const source = sourcesOptions.find(option => option.value === sourceValue);
+            return source ? source : { label: '', value: sourceValue };
+        });
+    };
+
+    useEffect(() => {
+        if (inputData) {
+            const transformedSources = mapSources(inputData, sourcesOptions);
+            setInputSources(transformedSources);
+        }
+    }, []);
+
     return (
-        <div className="form-source-selection">
-            <h3>News Sources</h3>
+        <div id = "source-selection-button" className="form-source-selection">
+            <h3 className="news-sources-title">News Sources</h3>
             <div className="selected-news-sources">
                 {selectedSources.map((source) => (
                     <div key={source.value} className="source-tag">

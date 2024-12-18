@@ -149,3 +149,9 @@ class NewsPaperSerializer(serializers.ModelSerializer):
         except Configuration_User_Newspaper.DoesNotExist:
             return None
         
+    @classmethod
+    def get_all_newspaper_count(cls):
+        """
+        Returns the count of all newspapers.
+        """
+        return Newspaper.objects.count()        

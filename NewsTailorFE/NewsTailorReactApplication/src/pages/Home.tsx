@@ -5,7 +5,6 @@ import api from "../api";
 import Header from '../components/landingPage/Header';
 import { checkAuthStatus, clearAuthTokens } from "../utils/authUtils.ts";
 import NewsPresentation from '../components/contentPage/NewsPresentation';
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { REFRESH_TOKEN } from "../constants";
 
@@ -38,14 +37,14 @@ interface Configuration {
 
 function Home() {
     const navigate = useNavigate();
-    const { userId } = useParams<{ userId: string }>();
+    const user_id = localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')!).id : undefined;
     const [news, setNews] = useState<NewsType | null>(null);
     const [configurations, setConfigurations] = useState<Configuration[] | null>(null);
 
     useEffect(() => {
         const checkIfNewsExists = async () => {
             try {
-                const response = await api.post(`api/check-news/${userId}/`);
+                const response = await api.post(`api/check-news/${user_id}/`);
                 if (response.data.exists) {
                     setNews(response.data.Newspaper as NewsType);
                 }
@@ -64,11 +63,11 @@ function Home() {
             }
         };
 
-        if (userId) {
+        if (user_id) {
             checkIfNewsExists();
             fetchConfigurations();
         }
-    }, [userId]);
+    }, [user_id]);
 
     const handleGenerate = async (newsData: NewsType) => {
         setNews(newsData);
@@ -103,19 +102,19 @@ function Home() {
     return (
         <div>
             <Header />
-            <Sidebar userId={userId} />
+            <Sidebar />
             {news ? (
                 <NewsPresentation news={news} onConclude={handleConclude} />
             ) : (
                 <NewsGeneration
-                    userId={userId}
+                    userId={user_id}
                     onGenerate={handleGenerate}
                     configurations={configurations}
                 />
             )}
-            <button className="blue-circle-button" onClick={handleLogout}>Logout</button>
-            <button className="blue-circle-button-about" onClick={handleAbout}>About</button>
-            <button className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>
+            <button id = "Logout-button" className="blue-circle-button-logout" onClick={handleLogout}>Logout</button>
+            <button id = "About-page-button" className="blue-circle-button-about" onClick={handleAbout}>About</button>
+            <button id="FAQ-button" className="blue-circle-button-faq" onClick={handleFaq}>FAQ</button>
         </div>
     );
 }

@@ -78,6 +78,8 @@ jobs:
         NEW_YORK_TIMES_API_KEY: ${{ secrets.NEW_YORK_TIMES_API_KEY }}
         NUMBER_OF_NEWS_ARTICLES: ${{ secrets.NUMBER_OF_NEWS_ARTICLES }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+        VITE_GITHUB_CLIENT_ID: ${{ secrets.VITE_GITHUB_CLIENT_ID }}
       run: |
         coverage run manage.py test
         coverage report -m
@@ -88,7 +90,7 @@ jobs:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         echo "Running Selenium Tests"
-        pytest tests/automated_tests
+        pytest tests/selenium/aut_acceptance_tests
 
     - name: Shut down Docker containers
       run: |

@@ -43,20 +43,7 @@ const useLoginForm = () => {
 
         try {
             const loginResponse = await api.post(route, formData);
-            const userId = loginResponse.data.id;
-            const { id, username, email } = loginResponse.data;
-
-            localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
-            localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
-            localStorage.setItem(USER_INFO, JSON.stringify({ id, username, email }));
-
-            setUser({
-                id:id,
-                username:username,
-                email:email,
-            })
-
-            navigate(`/${userId}`, { state: { userId } });
+            loginToApp(loginResponse);
         } catch (error) {
 
             if (axios.isAxiosError(error) && error.response) {
@@ -69,6 +56,23 @@ const useLoginForm = () => {
         }
     }
 
+    const loginToApp = (loginResponse: any) => {
+        const userId = loginResponse.data.id;
+        const {id, username, email} = loginResponse.data;
+
+        localStorage.setItem(ACCESS_TOKEN, loginResponse.data.tokens.access);
+        localStorage.setItem(REFRESH_TOKEN, loginResponse.data.tokens.refresh);
+        localStorage.setItem(USER_INFO, JSON.stringify({id, username, email}));
+
+        setUser({
+            id: id,
+            username: username,
+            email: email,
+        })
+
+        navigate(`/home`, {state: {userId}});
+    }
+
     return {
         formData,
         isLoading,
@@ -77,6 +81,7 @@ const useLoginForm = () => {
         errors,
         handleChange,
         handleSubmit,
+        loginToApp,
     }
 
 }
