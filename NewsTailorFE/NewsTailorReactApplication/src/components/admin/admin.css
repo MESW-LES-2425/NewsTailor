@@ -1,3 +1,4 @@
+
 #usage-data {
     margin: 0 auto;
     padding: 20px;
@@ -105,22 +106,49 @@
     text-decoration: line-through;
 }
 
-.usage-data {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.home-button {
+    background-color: #1A2A3A;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
     padding: 10px 20px;
-    background-color: #f8f8f8;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    width: 150px;
 }
+
 
 @media (max-width: 768px) {
     .user-list {
         margin: 0 10px;
         padding: 15px;
+        height: 450px;
+        max-height: 80vh;
+    }
+
+    #usage-data {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        text-align: center;
+        margin: 0 10px;
+        margin-bottom: 10px;
+    }
+
+    #usage-data p {
+        font-size: 16px;
+    }
+
+    #usage-data h1 {
+        font-size: 24px;
+        color: #1A2A3A;
+        text-align: left;
     }
 
     .user-list li {
@@ -137,4 +165,7 @@
     .user-list p {
         font-size: 16px;
     }
+
+
+    
 }
