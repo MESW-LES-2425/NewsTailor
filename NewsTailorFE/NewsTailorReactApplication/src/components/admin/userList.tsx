@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import api from "../../api.ts";
 import "./admin.css";
-import {faBan, faCheck} from "@fortawesome/free-solid-svg-icons";
+import {faBan, faCheck, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
@@ -52,12 +52,21 @@ const UserList = () => {
         }
     }
 
+    const deleteUser = (user_id: number) => async () => {
+        try {
+            await api.delete(`/api/users/delete/${user_id}/`);
+            setUsers(users.filter(user => user.user_id !== user_id));
+        } catch (error) {
+            console.error("Error deleting user", error);
+        }
+    }
+
     return (
         <div className="user-list">
             <h1>Users</h1>
             {loading ? (
                 <div className="spinner">
-                    <FontAwesomeIcon icon={faSpinner} spin size="3x"/>
+                    <FontAwesomeIcon icon={faSpinner} spin size="3x" />
                 </div>
             ) : (
                 <ul>
@@ -65,13 +74,18 @@ const UserList = () => {
                         <li key={user.user_id}>
                             <p className={user.is_banned ? "banned" : ""}>{user.username}</p>
                             {user.username === "admin" ? null : (
-                                <button onClick={banUser(user.user_id)}>
-                                    {user.is_banned ? (
-                                        <FontAwesomeIcon icon={faCheck} size="lg"/>
-                                    ) : (
-                                        <FontAwesomeIcon icon={faBan} size="lg"/>
-                                    )}
-                                </button>
+                                <>
+                                    <button onClick={banUser(user.user_id)}>
+                                        {user.is_banned ? (
+                                            <FontAwesomeIcon icon={faCheck} size="lg" />
+                                        ) : (
+                                            <FontAwesomeIcon icon={faBan} size="lg" />
+                                        )}
+                                    </button>
+                                    <button onClick={deleteUser(user.user_id)}>
+                                        <FontAwesomeIcon icon={faTrashAlt} size="lg" />
+                                    </button>
+                                </>
                             )}
                         </li>
                     ))}

@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
 
 User = get_user_model()
 
@@ -30,3 +31,16 @@ class BanUnbanUserView(APIView):
         changed_user = User.objects.get(id=user_id)
 
         return Response({"user_id": changed_user.id, "username": changed_user.username, "is_banned": changed_user.is_banned})
+
+class DeleteUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, user_id):
+        try:
+            user = User.objects.get(id=user_id)
+            if user.username == "admin":
+                return Response({"detail": "Cannot delete the admin user."}, status=status.HTTP_400_BAD_REQUEST)
+            user.delete()
+            return Response({"detail": "User deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
