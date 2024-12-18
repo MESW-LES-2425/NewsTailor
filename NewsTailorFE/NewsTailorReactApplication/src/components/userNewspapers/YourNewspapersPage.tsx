@@ -26,7 +26,7 @@ const NewsPresentation: React.FC<NewsPropertiesPresentation> = ({ news, onDelete
               { newspaperid: news.id },
               { headers: { "Content-Type": "application/json" } }
             );
-            navigate(`/${news?.user_newspaper}`);
+            navigate(`/home`);
           } catch (error) {
             console.error("Error deleting news:", error);
           }
