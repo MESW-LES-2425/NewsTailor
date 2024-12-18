@@ -84,7 +84,7 @@ jobs:
         coverage run manage.py test
         coverage report -m
 
-    - name: Run Selenium Tests with pytest
+    - name: Run Selenium Tests with pytest. 
       working-directory: NewsTailorBE/NewsTailorDjangoApplication/
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
