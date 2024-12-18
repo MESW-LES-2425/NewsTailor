@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8d1e52-b894-4ae7-93cd-e9d1484234ac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../NewsTailorBE/NewsTailorDjangoApplication/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/NewsTailorReactApplication/src/components/contentPage/NewsGeneration.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
     "Jest.useRegisterForm Hook.executor": "Run",
     "Jest.useRegisterForm Hook.initializes with correct initial state.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "session-duration",
+    "git-widget-placeholder": "admin-delete-users",
     "last_opened_file_path": "/Users/jooaooliveira_11/Documents/MES/LES/projects/NewsTailor/NewsTailorFE/NewsTailorReactApplication/src/components/configurationForm/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
