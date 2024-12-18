@@ -4,7 +4,7 @@ import "./loginForm.css";
 import "../../styles/auth-common/signin-signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import {faGoogle} from "@fortawesome/free-brands-svg-icons";
 import Modal from "../../utils/Modal";
 import api from "../../api.ts";
 import {useGoogleLogin} from "@react-oauth/google";
@@ -80,17 +80,8 @@ const LoginForm: React.FC = () => {
                 </button>
                 <p className="social-text">Or Sign in with social platforms</p>
                 <div className="social-media">
-                    <a href="#" className="social-icon" data-testid="facebook-icon">
-                        <FontAwesomeIcon icon={faFacebookF} />
-                    </a>
-                    <a href="#" className="social-icon" data-testid="twitter-icon">
-                        <FontAwesomeIcon icon={faTwitter} />
-                    </a>
                     <a onClick={() => googleLogin()} className="social-icon" data-testid="google-icon">
                         <FontAwesomeIcon icon={faGoogle} />
-                    </a>
-                    <a href="#" className="social-icon" data-testid="linkedin-icon">
-                        <FontAwesomeIcon icon={faLinkedinIn} />
                     </a>
                 </div>
                 <p className="auth-other-options">

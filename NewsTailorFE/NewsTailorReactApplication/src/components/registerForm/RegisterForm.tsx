@@ -5,7 +5,7 @@ import "../../styles/auth-common/signin-signup.css";
 import "./registerForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock, faEnvelope, faEye, faEyeSlash, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import {useGoogleLogin} from "@react-oauth/google";
 import api from "../../api.ts";
 
@@ -96,17 +96,8 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
             </button>
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
-                <a href="#" className="social-icon" data-testid="facebook-icon">
-                    <FontAwesomeIcon icon={faFacebookF} />
-                </a>
-                <a href="#" className="social-icon" data-testid="twitter-icon">
-                    <FontAwesomeIcon icon={faTwitter} />
-                </a>
                 <a onClick={googleLogin} className="social-icon" data-testid="google-icon">
                     <FontAwesomeIcon icon={faGoogle} />
-                </a>
-                <a href="#" className="social-icon" data-testid="linkedin-icon">
-                    <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
             </div>
         </form>
