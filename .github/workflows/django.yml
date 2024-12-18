@@ -88,7 +88,7 @@ jobs:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
         echo "Running Selenium Tests"
-        pytest tests/automated_tests
+        pytest tests/selenium/aut_acceptance_tests
 
     - name: Shut down Docker containers
       run: |

@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-from NewsTailorDjangoApplication.tests.automated_tests.test_signup import sign_up
+from NewsTailorDjangoApplication.tests.selenium.aut_acceptance_tests.test_signup import sign_up
 
 
 def sign_in(self):

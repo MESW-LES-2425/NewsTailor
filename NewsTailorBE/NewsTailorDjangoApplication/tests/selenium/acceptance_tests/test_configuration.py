@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from NewsTailorDjangoApplication.tests.automated_tests.test_main_page_buttons import sign_in
+from NewsTailorDjangoApplication.tests.selenium.test_main_page_buttons import sign_in
 
 
 class TestConfiguration:

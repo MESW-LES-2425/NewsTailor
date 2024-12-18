@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from NewsTailorDjangoApplication.tests.automated_tests.test_sign_in import sign_in
-from NewsTailorDjangoApplication.tests.automated_tests.test_signup import sign_up
+from NewsTailorDjangoApplication.tests.selenium.aut_acceptance_tests.test_sign_in import sign_in
+from NewsTailorDjangoApplication.tests.selenium.aut_acceptance_tests.test_signup import sign_up
 
 
 class TestProfile:
