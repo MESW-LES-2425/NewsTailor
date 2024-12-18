@@ -4,16 +4,16 @@
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem);
   color: #00264d;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: clamp(10px, 3vw, 20px);
 }
 
 .news-icon {
-  width: 70px; 
-  height: 70px;
+  width: clamp(50px, 10vw, 70px);
+  height: auto;
 }

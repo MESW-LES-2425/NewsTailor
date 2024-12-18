@@ -1,16 +1,14 @@
 {
     "topicOptions": [
-        { "label": "Economy", "value": "economy" , "id": 1},
-        { "label": "Politics", "value": "politics", "id": 2 },
-        { "label": "Technology", "value": "technology", "id": 3},
-        { "label": "Artificial Intelligence", "value": "ai", "id": 4},
-        { "label": "Criptocurrency", "value": "cryptocurrency", "id": 5}
+        { "label": "Economy", "value": "economy"},
+        { "label": "Politics", "value": "politics"},
+        { "label": "Technology", "value": "technology"},
+        { "label": "Artificial Intelligence", "value": "ai"},
+        { "label": "Criptocurrency", "value": "cryptocurrency"}
     ],
     "sourcesOptions": [
-        { "label": "Guardian", "value": "guardian" },
-        { "label": "News API (Generic)", "value": "news_api" },
-        { "label": "Dev TO (Generic)", "value": "dev_to" },
-        { "label": "New York Times", "value": "nyt" }
+        { "label": "World News", "value": "world_news" },
+        { "label": "Dev TO (Generic)", "value": "dev_to" }
     ],
     "readingSpeedOptions": [
         { "label": "Fast", "value": 300 },
