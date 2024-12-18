@@ -6,7 +6,7 @@ from NewsTailorDjangoApplication.connections.news_sources.dev_to_news import obt
 from NewsTailorDjangoApplication.connections.news_sources.world_news import obtain_news_from_world_news
 from rest_framework.response import Response
 from NewsTailorDjangoApplication.serializers.newspaper_serializers import NewsPaperSerializer
-from NewsTailorDjangoApplication.views import UserProfileView
+from NewsTailorDjangoApplication.views_dir.v_user import UserProfileView
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
