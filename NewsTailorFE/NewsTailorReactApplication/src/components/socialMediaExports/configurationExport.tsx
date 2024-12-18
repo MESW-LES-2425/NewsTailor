@@ -5,7 +5,7 @@ import { faWhatsapp, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg
 
 import "./socialMediaStyling.css";
 
-const ShareButtons = ({ initialContent = "" }) => {
+const ConfigurationShareButtons = ({ initialContent = "" }) => {
     const articleText = initialContent;
     const url = "https://newstailorreactapplication.fly.dev/";
 
@@ -14,8 +14,8 @@ const ShareButtons = ({ initialContent = "" }) => {
             <div className="icon-wrapper" title="Share via Email">
                 <EmailShareButton
                     url={url}
-                    subject="Check out this Newspaper I just generated with NewsTailor!"
-                    body={`${articleText}\n\nCheck it out here: ${url}`}
+                    subject="Check out my configuration presets with NewsTailor!"
+                    body={`${articleText}\n\nCheck it out here:`}
                 >
                     <FontAwesomeIcon icon={faEnvelope} size="lg" />
                 </EmailShareButton>
@@ -31,7 +31,7 @@ const ShareButtons = ({ initialContent = "" }) => {
                 <LinkedinShareButton
                     url={url}
                     title="Check out NewsTailor!"
-                    summary="I just generated a newspaper with NewsTailor!"
+                    summary="I just created a new configuration to generate a newspaper with NewsTailor!"
                     source="NewsTailor"
                 >
                     <FontAwesomeIcon icon={faLinkedin} size="lg" />
@@ -41,7 +41,7 @@ const ShareButtons = ({ initialContent = "" }) => {
             <div className="icon-wrapper" title="Share via X">
                 <TwitterShareButton
                     url={url}
-                    title="I just generated a newspaper with NewsTailor!"
+                    title="I just created a new configuration to generate a newspaper with NewsTailor!"
                     via="NewsTailor"
                     hashtags={["news", "ai", "newspaper"]}
                 >
@@ -52,4 +52,4 @@ const ShareButtons = ({ initialContent = "" }) => {
     );
 };
 
-export default ShareButtons;
+export default ConfigurationShareButtons;

@@ -6,7 +6,6 @@ import ReadingTimeSelection from "../readingTimeSelection/ReadingTimeSelection.t
 import useConfigurationForm from "./useConfigurationForm.ts";
 import Header from '../../components/landingPage/Header';
 import '../../styles/news-content/configuration.css';
-import ShareButtons from "../socialMediaExports/socialMediaExport.tsx";
 import Sidebar from "../contentPage/Sidebar.tsx";
 
 const ConfigurationForm: React.FC = () => {
@@ -24,10 +23,6 @@ const ConfigurationForm: React.FC = () => {
 
     return (
         <div>
-            <div className="social-icons">
-                <ShareButtons initialContent={ `${name}`} />
-            </div>
-            
             <Header />
             {user.id && <Sidebar userId={user.id.toString()} />}
             <div className="form-wrapper">
