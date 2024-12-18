@@ -50,6 +50,11 @@ const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
         onTopicChange(updatedTopics);
     };
 
+    const setInputTopics = (topics: Topic[]) => {
+        setSelectedTopics(topics);
+        onTopicChange(topics);
+    };
+
     return {
         topicOptions,
         selectedTopics,
@@ -57,6 +62,7 @@ const useTopicSelection = (onTopicChange: (topics: Topic[]) => void) => {
         handleRemoveTopics,
         handleSelectChange,
         updateTopicPercentage,
+        setInputTopics
     }
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import useTopicSelection from "./useTopicSelection";
 import "../../styles/news-content/configuration.css";
 
@@ -10,9 +10,16 @@ interface Topic {
 
 interface TopicSelectionProps {
     onTopicChange: (topics: Topic[]) => void;
+    inputData?: Category[];
 }
 
-const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
+interface Category {
+    id: number;
+    name: string;
+    percentage: number;
+}
+
+const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange, inputData }) => {
     const {
         topicOptions,
         selectedTopics,
@@ -20,7 +27,22 @@ const TopicSelection: React.FC<TopicSelectionProps> = ({ onTopicChange }) => {
         handleRemoveTopics,
         handleSelectChange,
         updateTopicPercentage,
+        setInputTopics
     } = useTopicSelection(onTopicChange);
+
+    const mapCategoriesToTopics = (categories: Category[], topicOptions: { label: string; value: string }[]): Topic[] => {
+        return categories.map(category => {
+            const foundTopic = topicOptions.find(option => option.value === category.name);
+            return foundTopic ? { ...foundTopic, percentage: category.percentage } : { label: "", value: "" };
+        });
+    };
+
+    useEffect(() => {
+        if (inputData) {
+            const transformedTopics = mapCategoriesToTopics(inputData, topicOptions);
+            setInputTopics(transformedTopics);
+        }
+    }, []);
 
     return (
         <div className="source-selection">
