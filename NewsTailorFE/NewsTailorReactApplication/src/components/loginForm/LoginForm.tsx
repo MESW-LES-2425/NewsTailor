@@ -7,6 +7,7 @@ import { faEnvelope, faLock, faEye, faEyeSlash } from "@fortawesome/free-solid-s
 import { faFacebookF, faTwitter, faGoogle, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import Modal from "../../utils/Modal";
 import api from "../../api.ts";
+import {useGoogleLogin} from "@react-oauth/google";
 
 const LoginForm: React.FC = () => {
     const {
@@ -17,6 +18,7 @@ const LoginForm: React.FC = () => {
         errors,
         handleChange,
         handleSubmit,
+        loginToApp,
     } = useLoginForm();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +41,18 @@ const LoginForm: React.FC = () => {
             alert("Please enter your email to reset password.");
         }
     };
+
+    const googleLogin = useGoogleLogin({
+        flow: 'auth-code',
+        onSuccess: async (codeResponse) => {
+            const loginResponse = await api.post(
+                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
+                    code: codeResponse.code,
+                });
+            loginToApp(loginResponse);
+        },
+        onError: errorResponse => console.log(errorResponse),
+    });
 
     return (
         <>
@@ -72,7 +86,7 @@ const LoginForm: React.FC = () => {
                     <a href="#" className="social-icon" data-testid="twitter-icon">
                         <FontAwesomeIcon icon={faTwitter} />
                     </a>
-                    <a href="#" className="social-icon" data-testid="google-icon">
+                    <a onClick={() => googleLogin()} className="social-icon" data-testid="google-icon">
                         <FontAwesomeIcon icon={faGoogle} />
                     </a>
                     <a href="#" className="social-icon" data-testid="linkedin-icon">
