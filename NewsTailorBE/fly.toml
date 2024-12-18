@@ -17,10 +17,12 @@ release_command = "python manage.py migrate --noinput"
 
 [env]
   PORT = '8000'
+  AUTO_DESTROY = "false"
 
 [http_service]
   internal_port = 8000
   force_https = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
