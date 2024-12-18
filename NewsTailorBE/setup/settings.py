@@ -139,6 +139,11 @@ DATABASES = {
     }
 }
 
+BASE_APP_URL = "http://localhost:5173"
+BASE_API_URL = "http://localhost:5273"
+GOOGLE_OAUTH2_CLIENT_ID = "866508719375-9ll87llj25h9v0c1leukt43usator7kn.apps.googleusercontent.com"
+GOOGLE_OAUTH2_CLIENT_SECRET = "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"
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
