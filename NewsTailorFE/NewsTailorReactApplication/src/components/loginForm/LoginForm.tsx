@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
         flow: 'auth-code',
         onSuccess: async (codeResponse) => {
             const loginResponse = await api.post(
-                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
+                `${import.meta.env.VITE_API_URL}/auth/api/login/google/`, {
                     code: codeResponse.code,
                 });
             loginToApp(loginResponse);
