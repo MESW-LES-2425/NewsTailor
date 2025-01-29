@@ -28,7 +28,7 @@ describe('Render Configuration Form components', () => {
     test('renders readingTime component correctly', () => {
         expect(screen.getByText(/Reading Time/i)).toBeInTheDocument();
         expect(screen.getByText('1 min')).toBeInTheDocument();
-        expect(screen.getByText('1 hour')).toBeInTheDocument();
+        expect(screen.getByText('20 min')).toBeInTheDocument();
         expect(screen.getByRole('slider')).toBeInTheDocument();
         expect(screen.getByText(/5 minutes/i)).toBeInTheDocument();
     });
