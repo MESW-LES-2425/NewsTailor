@@ -75,7 +75,7 @@ const useConfigurationForm = (configId?: number) => {
                 navigate(`/templates`);
             } else{
                 await api.post(route, formData);
-                navigate(`/${user.id}`);
+                navigate(`/`);
             }
         } catch (error) {
             console.log(error);
