@@ -28,7 +28,7 @@ const ReadingTimeSelection: React.FC<ReadingTimeSelectionProps> = ({ onReadingTi
                         className="slider"
                         required
                     />
-                    <h6>  20 min</h6>
+                    <h6>20 min</h6>
                 </div>
                 <h5 className="reading-time-slider-value">{readingTime} minutes</h5>
             </div>
