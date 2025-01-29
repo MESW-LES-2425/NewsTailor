@@ -1,5 +1,13 @@
 # NewsTailor
 
+## Grade distribution:
+- Duarte Cardoso - 25%
+- Maria Leonor - 25%
+- Pedro Magalhães - 25%
+- João Oliveira - 25%
+- Francisco Nunes - 0%
+
+
 NewsTailor is a smart, personalized news curator that tailors content to match the user’s interests and available time. Developed as part of the Software Engineering Lab course within the Master’s program in Software Engineering at the Faculty of Engineering, University of Porto.
 
 ## Deployment
