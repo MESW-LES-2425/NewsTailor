@@ -8,7 +8,7 @@ class User(AbstractUser):
     is_banned = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    wpm = models.IntegerField(null=False, default=238)
+    wpm = models.IntegerField(null=False, default=250)
     
     USERNAME_FIELD="email"
     REQUIRED_FIELDS=["username"]

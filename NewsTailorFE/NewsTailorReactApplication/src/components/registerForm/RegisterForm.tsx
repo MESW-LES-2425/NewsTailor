@@ -33,11 +33,16 @@ const RegisterForm: React.FC<callBackFunction> = ({ onRegisterSuccess }) => {
     const googleLogin = useGoogleLogin({
         flow: 'auth-code',
         onSuccess: async (codeResponse) => {
-            const loginResponse = await api.post(
-                `${import.meta.env.VITE_API_URL}auth/api/login/google/`, {
-                    code: codeResponse.code,
-                });
-            loginToApp(loginResponse);
+            try {
+                const loginResponse = await api.post(
+                    `${import.meta.env.VITE_API_URL}/auth/api/login/google/`, {
+                        code: codeResponse.code,
+                    });
+                console.log("Google login response:", loginResponse);
+                loginToApp(loginResponse);
+            } catch (error) {
+                console.error("Google login error:", error);
+            }
         },
         onError: errorResponse => console.log(errorResponse),
     });
